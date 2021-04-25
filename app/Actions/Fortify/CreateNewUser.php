@@ -20,17 +20,25 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        $input += ['country' => ip_info('country', 'N/A')];
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:35'],
+            'email' => ['required', 'string', 'email', 'max:85', 'unique:users'],
+            'username' => ['required', 'string', 'max:20', 'unique:users'],
+            'referrer' => ['nullable', 'string', 'max:20'],
+            'country' => ['required', 'string', 'max:60'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
+        $data = array_merge($input, [
             'password' => Hash::make($input['password']),
         ]);
+
+        if (!$referrer = User::firstWhere('username', $input['referrer'])) {
+            return User::create($data);
+        }
+
+        return $referrer->referred()->create($data);
     }
 }

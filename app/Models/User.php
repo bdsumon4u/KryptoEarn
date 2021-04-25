@@ -26,6 +26,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'username',
+        'country',
+        'city',
+        'address',
         'password',
     ];
 
@@ -58,4 +63,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function referrer()
+    {
+        return $this->belongsTo(static::class, 'referrer_id');
+    }
+
+    public function referred()
+    {
+        return $this->hasMany(static::class, 'referrer_id');
+    }
 }

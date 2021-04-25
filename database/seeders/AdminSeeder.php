@@ -17,6 +17,7 @@ class AdminSeeder extends Seeder
         Admin::factory()->create([
             'name' => 'aDmiN',
             'email' => 'admin@admin.com',
+            'username' => 'admin',
         ]);
     }
 }
