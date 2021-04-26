@@ -79,7 +79,9 @@
                         </li>
                         @if (Route::has('login'))
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">{{ __('Dashboard') }}</a>
+                                <li class="nav-item animated" data-animation=fadeInDown data-animation-delay="1.7s">
+                                    <a href="{{ route('dashboard') }}" class="nav-link">{{ __('Dashboard') }}</a>
+                                </li>
                             @else
                                 <li class="nav-item animated" data-animation=fadeInDown data-animation-delay="1.7s">
                                     <a class=nav-link href="{{ route('login') }}">{{ __('Log in') }}</a>

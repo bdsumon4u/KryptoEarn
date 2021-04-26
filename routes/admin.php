@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::domain(admin_url())->group(function () {
     Route::redirect('/', '/dashboard');
     Route::group(['middleware' => ['auth:sanctum,admin', 'verified']], function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', \App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
     });
 });
