@@ -104,6 +104,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
+    public function getTaskRemainingAttribute()
+    {
+        if (! $this->is_member) {
+            return 0;
+        }
+
+        return $this->membership->task_limit - $this->membership->task_completed;
+    }
+
     public function validForFree(): bool
     {
         return $this->memberships()->where('type', 'free')->doesntExist();

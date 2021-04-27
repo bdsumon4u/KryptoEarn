@@ -15,10 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', \App\Http\Controllers\HomeController::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
     Route::post('membership/{plan}/upgrade', \App\Http\Controllers\MembershipController::class)->name('membership.upgrade');
 });
