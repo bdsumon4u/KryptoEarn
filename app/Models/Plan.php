@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use Bavix\Wallet\Interfaces\Customer;
+use Bavix\Wallet\Interfaces\Product;
+use Bavix\Wallet\Traits\HasWallet;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 
-class Plan extends Model
+class Plan extends Model implements Product
 {
     use HasFactory;
+    use HasWallet;
 
     protected $guarded = ['id'];
 
@@ -22,11 +26,6 @@ class Plan extends Model
         });
     }
 
-    public function memberships()
-    {
-        return $this->hasMany(Membership::class);
-    }
-
     public function validityFor(User $user): Carbon
     {
         return $user->is_member
@@ -34,4 +33,35 @@ class Plan extends Model
             : now()->addDays($this->validity);
     }
 
+    public function canBuy(Customer $customer, int $quantity = 1, bool $force = null): bool
+    {
+        /**
+         * If the service can be purchased once, then
+         *  return !$customer->paid($this);
+         */
+
+        if (!$this->price) {
+            return !$customer->purchasedPocket()->paid($this);
+        }
+
+        return $customer->purchasedPocked()->balanceFloat >= $this->getAmountProduct($customer) * $quantity;
+    }
+
+    public function getAmountProduct(Customer $customer)
+    {
+        return $this->price;
+    }
+
+    public function getMetaProduct(): ?array
+    {
+        return [
+            'name' => $this->name,
+            'description' => 'Upgrade Plan #' . $this->name,
+        ];
+    }
+
+    public function getUniqueId(): string
+    {
+        return (string)$this->getKey();
+    }
 }

@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use App\Traits\HasPocket;
+use Bavix\Wallet\Interfaces\Customer;
+use Bavix\Wallet\Interfaces\Wallet;
+use Bavix\Wallet\Interfaces\WalletFloat;
+use Bavix\Wallet\Traits\CanPayFloat;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,11 +16,13 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFloat, Customer
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
+    use HasPocket;
+    use CanPayFloat;
     use Notifiable;
     use TwoFactorAuthenticatable;
 
@@ -113,18 +120,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->membership->task_limit - $this->membership->task_completed;
     }
 
-    public function validForFree(): bool
-    {
-        return $this->memberships()->where('type', 'free')->doesntExist();
-    }
-
     /**
      * @throws \Throwable
      */
     public function purchase(Plan $plan): Membership
     {
-        throw_if(!$plan->price && !$this->validForFree(), "You Can't Purchase Free Plan.");
-
+        throw_unless($plan->canBuy($this), "You Can't Purchase Free Plan.");
+        throw_unless($this->purchasedPocket()->payFree($plan), "Error While Purchasing Plan #" . $plan->name);
         return $this->memberships()->create([
             'plan_id' => $plan->id,
             'tomorrow' => now()->addDay(),
@@ -137,7 +139,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @throws \Throwable
      */
-    public function purchaseFreePlan()
+    public function purchaseFreePlan(): Membership
     {
         $freePlan = Plan::query()->firstWhere('price', 0);
         throw_unless($freePlan, "There Is No Free Plan.");

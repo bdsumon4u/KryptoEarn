@@ -29,47 +29,51 @@
                     <div class="row m-0 chart-main">
                         <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
                             <div class="media align-items-center">
-                                <div class="hospital-small-chart"><img src="https://entrycaptcha.com/images/money.png">
+                                <div class=""><img src="https://entrycaptcha.com/images/money.png">
                                 </div>
                                 <div class="media-body">
-                                    <div class="right-chart-content"><h4> $1.60
-                                        </h4><span>Main balance</span></div>
+                                    <div class="right-chart-content">
+                                        <h4>${{ $user->earningPocket()->balanceFloat }}</h4><span>Earning Balance</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
                             <div class="media align-items-center">
-                                <div class="hospital-small-chart">
+                                <div class="">
                                     <div class="small-bar"><img src="https://entrycaptcha.com/images/contactless.png">
                                     </div>
                                 </div>
                                 <div class="media-body">
-                                    <div class="right-chart-content"><h4> $0.00
-                                        </h4><span>Purchases balance</span></div>
+                                    <div class="right-chart-content">
+                                        <h4>${{ $user->purchasedPocket()->balanceFloat }}</h4><span>Purchased Balance</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
                             <div class="media align-items-center">
-                                <div class="hospital-small-chart">
+                                <div class="">
                                     <div class="small-bar"><img
                                             src="https://entrycaptcha.com/images/cost-per-click.png"></div>
                                 </div>
                                 <div class="media-body">
-                                    <div class="right-chart-content"><h4> $0.00
-                                        </h4><span>Commission balance</span></div>
+                                    <div class="right-chart-content">
+                                        <h4>${{ $user->commissionPocket()->balanceFloat }}</h4><span>Commission Balance</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
                             <div class="media border-none align-items-center">
-                                <div class="hospital-small-chart">
+                                <div class="">
                                     <div class="small-bar"><img src="https://entrycaptcha.com/images/money-bag.png">
                                     </div>
                                 </div>
                                 <div class="media-body">
-                                    <div class="right-chart-content"><h4> $0.00
-                                        </h4><span>Bonus balance</span></div>
+                                    <div class="right-chart-content">
+                                        <h4>${{ $user->bonusPocket()->balanceFloat }}</h4><span>Bonus Balance</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
