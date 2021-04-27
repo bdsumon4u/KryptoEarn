@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="media">
                         <div class="badge-groups w-100">
-                            <div class="badge f-12"><i class="me-1" data-feather="clock"></i><span id="txt"></span></div>
+                            <div class="badge f-12"><i class="me-1" style="overflow: initial;" data-feather="clock"></i><span id="txt"></span></div>
                         </div>
                     </div>
                     <div class="greeting-user text-center">
@@ -251,4 +251,7 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script src="{{ asset('cuba/assets/js/dashboard/default.js') }}"></script>
+    @endpush
 </x-admin-layout>

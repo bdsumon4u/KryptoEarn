@@ -31,6 +31,8 @@ function checkTime(i) {
     return i;
 }
 
+document.body.onload = startTime();
+
 // currently sale
 var options = {
     series: [{

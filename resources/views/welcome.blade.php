@@ -217,19 +217,21 @@
                         </div>
                         <div class=pricing-wrapper>
                             <div class=row>
+                                @foreach($plans as $plan)
                                 <div class="col-md-12 col-lg-4 col-xl-4 mb-sm-5 mb-xs-5">
-                                    <div class="pricing-table">
-                                        <h3 class=pricing-title>STARTER</h3>
-                                        <div class=price>$0.00<sup>/14 days</sup>
+                                    <div class="pricing-table {{ $loop->last ? 'recommended' : '' }}">
+                                        <h3 class=pricing-title>{{ $plan->name }}</h3>
+                                        <div class=price>${{ $plan->price }}<sup>/{{ $plan->validity }} days</sup>
                                         </div>
                                         <!-- Lista de Caracteristicas / Propiedades -->
                                         <ul class=table-list>
-                                            <li>Work load:<span> 1 tasks per day</span></li>
-                                            <li>Min. payout: <span class=unlimited>$16.00</span></li>
-                                            <li>Earning per task: <span class=unlimited>$0.40</span></li>
-                                            <li>Duration: <span class=unlimited>2 weeks</span></li>
-                                            <li>Min. daily earnings: <span class=unlimited>$0.40</span></li>
-                                            <li>Instant payout: <span class=unlimited>DISABLED</span></li>
+                                            <li>Daily Limit:<span> {{ $plan->task_limit }} Tasks</span></li>
+                                            <li>Validity: <span class=unlimited>{{ $plan->validity }} days</span></li>
+                                            <li>Earning Per Task: <span class=unlimited>${{ $plan->earning_per_task / 100 }}</span></li>
+                                            <li>Min. Daily Earning: <span class=unlimited>${{ $plan->task_limit * $plan->earning_per_task / 100 }}</span></li>
+                                            <li>Min. Total Earning: <span class=unlimited>${{ $plan->validity * $plan->task_limit * $plan->earning_per_task / 100 }}</span></li>
+                                            <li>Instant Payout: <span class=unlimited>{{ $plan->instant_payouts ? 'Enabled' : 'Disabled' }}</span></li>
+                                            <li>Minimum Withdraw: <span class=unlimited>${{ $plan->minimum_withdraw }}</span></li>
                                         </ul>
                                         <!-- Contratar / Comprar -->
                                         <div class=table-buy>
@@ -237,25 +239,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-lg-4 col-xl-4 mb-sm-5 mb-xs-5">
-                                    <div class="pricing-table recommended">
-                                        <h3 class=pricing-title>ULTRA</h3>
-                                        <div class=price>$399.00<sup>/180 days</sup></div>
-                                        <!-- Lista de Caracteristicas / Propiedades -->
-                                        <ul class=table-list>
-                                            <li>Work load: <span>25 tasks per day</span></li>
-                                            <li>Min. payout: <span class=unlimited>$16.00</span></li>
-                                            <li>Earning per task: <span class=unlimited>$0.40</span></li>
-                                            <li>Duration : <span class=unlimited>6 months</span></li>
-                                            <li>Min. daily earnings: <span class=unlimited>$10.00</span></li>
-                                            <li>Instant payout: <span class=unlimited>DISABLED</span></li>
-                                        </ul>
-                                        <!-- Contratar / Comprar -->
-                                        <div class=table-buy>
-                                            <a href="{{ route('register') }}" class=pricing-action>Get Started</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

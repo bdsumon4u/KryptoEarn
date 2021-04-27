@@ -36,8 +36,10 @@
     <link id="color" rel="stylesheet" href="{{ asset('cuba/assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('cuba/assets/css/responsive.css') }}">
+    @stack('styles')
 </head>
-<body onload="startTime()">
+<body>
+<div id="success-flash" class="d-none" data-message="{{ session('success') }}"></div>
 <div class="loader-wrapper">
     <div class="loader-index"><span></span></div>
     <svg>
@@ -113,19 +115,7 @@
         <!-- Page Sidebar Ends-->
         <div class="page-body">
             <div class="container-fluid">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-6">
-                            <h3>Default</h3>
-                        </div>
-                        <div class="col-6">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ config('app.url') }}"><i data-feather="home"></i></a></li>
-                                <li class="breadcrumb-item active">Dashboard</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
+                <div class="py-3"></div>
             </div>
             <!-- Container-fluid starts-->
             <div class="container-fluid">
@@ -166,7 +156,6 @@
 <script src="{{ asset('cuba/assets/js/chart/apex-chart/apex-chart.js') }}"></script>
 <script src="{{ asset('cuba/assets/js/chart/apex-chart/stock-prices.js') }}"></script>
 <script src="{{ asset('cuba/assets/js/notify/bootstrap-notify.min.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/dashboard/default.js') }}"></script>
 <script src="{{ asset('cuba/assets/js/notify/index.js') }}"></script>
 <script src="{{ asset('cuba/assets/js/datepicker/date-picker/datepicker.js') }}"></script>
 <script src="{{ asset('cuba/assets/js/datepicker/date-picker/datepicker.en.js') }}"></script>
@@ -176,5 +165,6 @@
 <script src="{{ asset('cuba/assets/js/script.js') }}"></script>
 <!-- login js-->
 <!-- Plugin used-->
+@stack('scripts')
 </body>
 </html>
