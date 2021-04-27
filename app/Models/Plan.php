@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 class Plan extends Model
@@ -20,4 +21,17 @@ class Plan extends Model
             Cache::tags(['plans'])->flush();
         });
     }
+
+    public function memberships()
+    {
+        return $this->hasMany(Membership::class);
+    }
+
+    public function validityFor(User $user): Carbon
+    {
+        return $user->is_member
+            ? $user->valid_till->addDays($this->validity)
+            : now()->addDays($this->validity);
+    }
+
 }

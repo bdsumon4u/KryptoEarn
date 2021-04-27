@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -35,10 +36,16 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
+        DB::beginTransaction();
         if (!$referrer = User::firstWhere('username', $input['referrer'])) {
-            return User::create($data);
+            $user = User::create($data);
+        } else {
+            $user = $referrer->referred()->create($data);
         }
 
-        return $referrer->referred()->create($data);
+        $user->purchaseFreePlan();
+        DB::commit();
+
+        return $user;
     }
 }
