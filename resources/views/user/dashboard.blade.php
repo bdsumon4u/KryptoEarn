@@ -204,14 +204,22 @@
         <div class="col-sm-12 col-xl-6 box-col-6">
             <div class="card">
                 <div class="card-body">
-                    <h5>Direct Refferals - 1 </h5>
+                    <h5>Direct Referrals - {{ $referral_count }}</h5>
+                    <!-- Chart's container -->
+                    <div>
+                        {!! $directReferrals->container() !!}
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-12 col-xl-6 box-col-6">
             <div class="card">
                 <div class="card-body">
-                    <h5> Credited money </h5>
+                    <h5> Wallet Report </h5>
+                    <!-- Chart's container -->
+                    <div>
+                        {!! $walletReport->container() !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -248,6 +256,10 @@
             <div class="card">
                 <div class="card-body">
                     <h5>Balances Division <span class="badge badge-pill badge-secondary"> USD </span></h5>
+                    <!-- Chart's container -->
+                    <div>
+                        {!! $balanceDivision->container() !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -255,5 +267,10 @@
     @push('scripts')
         <script src="{{ asset('cuba/user1/assets/js/clipboard/clipboard.js') }}"></script>
         <script src="{{ asset('cuba/user1/assets/js/clipboard/clipboard-script.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+        <script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js charset=utf-8></script>
+        {!! $directReferrals->script() !!}
+        {!! $walletReport->script() !!}
+        {!! $balanceDivision->script() !!}
     @endpush
 </x-user-layout>
