@@ -19,15 +19,17 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         $user = $request->user();
+        $user->load(['wallets', 'transactions.wallet']);
         $referral_count = $user->referred()->count();
-        $transactions = $user->transactions()->latest()->take(5)->get();
+        $transactions = $user->transactions()->with('wallet')->latest()->take(5)->get();
 
         $referred = $this->lastWeek($user->referred(), function ($rows, $day) {
             return [$day => $rows->count()];
         });
 
-        $deposits = $this->lastWeek($user->transactions()->where('type', Transaction::TYPE_DEPOSIT));
-        $withdraws = $this->lastWeek($user->transactions()->where('type', Transaction::TYPE_WITHDRAW), null,true);
+        $walletTransaction = $user->transactions()->with('wallet');
+        $deposits = $this->lastWeek($walletTransaction->where('type', Transaction::TYPE_DEPOSIT));
+        $withdraws = $this->lastWeek($walletTransaction->where('type', Transaction::TYPE_WITHDRAW), null,true);
 
         $divisions = $user->transactions()->with('wallet')->get()->groupBy(function ($transaction) {
             return ucfirst($transaction->wallet->name);
