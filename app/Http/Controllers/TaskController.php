@@ -21,9 +21,8 @@ class TaskController extends Controller
         }
 
         $user = $request->user();
-        $membership = $user->membership;
 
-        if (!$user->is_member) {
+        if (!$membership = $user->membership) {
             return back()->with('error', 'Your Membership Is Expired');
         }
 
@@ -41,7 +40,7 @@ class TaskController extends Controller
         } else {
             $membership->update([
                 'task_completed' => 0,
-                'tomorrow' => now()->addMinutes(2),
+                'tomorrow' => now()->addMinutes(5),
             ]);
         }
         DB::commit();

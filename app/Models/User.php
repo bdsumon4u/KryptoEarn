@@ -94,22 +94,9 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
             ->latest();
     }
 
-    public function getValidTillAttribute(): ?Carbon
+    public function getValidTillAttribute(): Carbon
     {
-        if (!$this->membership) {
-            return null;
-        }
-
-        return $this->membership->valid_till;
-    }
-
-    public function getIsMemberAttribute(): bool
-    {
-        if ($this->valid_till) {
-            return !$this->valid_till->isPast();
-        }
-
-        return false;
+        return $this->membership->valid_till ?? now();
     }
 
     public function getEarningPerTaskAttribute()
@@ -119,11 +106,11 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
 
     public function getTaskRemainingAttribute()
     {
-        if (! $this->is_member) {
+        if ($this->membership->tomorrow->isFuture()) {
             return 0;
         }
 
-        if ($this->membership->tomorrow->isFuture()) {
+        if (!$this->valid_till->isFuture()) {
             return 0;
         }
 
@@ -135,14 +122,12 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
      */
     public function purchase(Plan $plan): Membership
     {
-        throw_unless($plan->canBuy($this), "You Can't Purchase Free Plan.");
-        throw_unless($this->purchasedPocket()->payFree($plan), "Error While Purchasing Plan #" . $plan->name);
         return $this->memberships()->create([
             'plan_id' => $plan->id,
             'tomorrow' => now(),
             'task_limit' => $plan->task_limit,
-            'valid_till' => $plan->validityFor($this),
             'type' => $plan->price ? 'premium' : 'free',
+            'valid_till' => $this->valid_till->addDays($plan->validity),
         ]);
     }
 

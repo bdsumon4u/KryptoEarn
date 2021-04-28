@@ -27,7 +27,7 @@ class DashboardController extends Controller
         });
 
         $deposits = $this->lastWeek($user->transactions()->where('type', Transaction::TYPE_DEPOSIT));
-        $withdraws = $this->lastWeek($user->transactions()->where('type', Transaction::TYPE_WITHDRAW));
+        $withdraws = $this->lastWeek($user->transactions()->where('type', Transaction::TYPE_WITHDRAW), null,true);
 
         $divisions = $user->transactions()->with('wallet')->get()->groupBy(function ($transaction) {
             return ucfirst($transaction->wallet->name);
@@ -42,26 +42,27 @@ class DashboardController extends Controller
 
         $walletReport = new WalletReport();
         $walletReport->labels(array_keys($deposits));
-        $walletReport->dataset('Deposits USD', 'line', array_values($deposits))
+        $walletReport->dataset('Credit ($)', 'line', array_values($deposits))
             ->color('green');
-        $walletReport->dataset('Withdraws USD', 'line', array_values($withdraws))
+        $walletReport->dataset('Debit ($)', 'line', array_values($withdraws))
             ->color('red');
 
         $balanceDivision = new BalanceDivision();
         $balanceDivision->labels(array_keys($divisions));
-        $balanceDivision->dataset('Deposits USD', 'pie', array_values($divisions))
+        $balanceDivision->dataset('Divisions', 'pie', array_values($divisions))
             ->backgroundColor(collect(['red', 'green', 'blue']));
 
         return view('user.dashboard', compact('user', 'referral_count', 'directReferrals', 'walletReport', 'transactions', 'balanceDivision'));
     }
 
-    private function lastWeek($builder, callable $cb = null): array
+    private function lastWeek($builder, callable $cb = null, bool $abs = false): array
     {
         $records = $builder->where('created_at', '>', now()->subWeek())->get()
             ->groupBy(function ($user) {
                 return $user->created_at->day;
-            })->mapWithKeys($cb ?? static function ($rows, $day) {
-                return [$day => round($rows->sum->amountFloat, 2)];
+            })->mapWithKeys($cb ?? static function ($rows, $day) use ($abs) {
+                $amount = round($rows->sum->amountFloat, 2);
+                return [$day => $abs ? abs($amount) : $amount];
             })->toArray();
 
         $today = now()->day;

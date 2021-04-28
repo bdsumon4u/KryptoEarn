@@ -4,16 +4,15 @@ namespace App\Models;
 
 use Bavix\Wallet\Interfaces\Customer;
 use Bavix\Wallet\Interfaces\Product;
-use Bavix\Wallet\Traits\HasWallet;
+use Bavix\Wallet\Traits\HasWalletFloat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 class Plan extends Model implements Product
 {
     use HasFactory;
-    use HasWallet;
+    use HasWalletFloat;
 
     protected $guarded = ['id'];
 
@@ -24,13 +23,6 @@ class Plan extends Model implements Product
         static::saved(function () {
             Cache::tags(['plans'])->flush();
         });
-    }
-
-    public function validityFor(User $user): Carbon
-    {
-        return $user->is_member
-            ? $user->valid_till->addDays($this->validity)
-            : now()->addDays($this->validity);
     }
 
     public function canBuy(Customer $customer, int $quantity = 1, bool $force = null): bool
@@ -44,12 +36,12 @@ class Plan extends Model implements Product
             return !$customer->paid($this);
         }
 
-        return $customer->balanceFloat >= $this->getAmountProduct($customer) * $quantity;
+        return $customer->balance >= $this->getAmountProduct($customer) * $quantity;
     }
 
     public function getAmountProduct(Customer $customer)
     {
-        return $this->price;
+        return $this->price * 100;
     }
 
     public function getMetaProduct(): ?array

@@ -233,7 +233,7 @@
                             <tr>
                                 <th scope="col">Trx ID#</th>
                                 <th scope="col">Cause</th>
-                                <th scope="col">Amount</th>
+                                <th scope="col">Amount ($)</th>
                                 <th scope="col">Time</th>
                             </tr>
                             </thead>
@@ -242,7 +242,7 @@
                             <tr>
                                 <th scope="row">{{ $transaction->id }}</th>
                                 <td>{{ $transaction->meta['name'] }}</td>
-                                <td>{{ $transaction->type === 'deposit' ? '+' : '-' }}${{ round($transaction->amountFloat, 2) }}</td>
+                                <td>{{ $transaction->type === 'deposit' ? '+' : '' }}{{ round($transaction->amountFloat, 2) }}</td>
                                 <td>{{ $transaction->created_at->diffForHumans() }}</td>
                             </tr>
                             @endforeach
