@@ -90,6 +90,7 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
     public function membership()
     {
         return $this->hasOne(Membership::class)
+            ->with('plan')
             ->latest();
     }
 
@@ -111,9 +112,18 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
         return false;
     }
 
+    public function getEarningPerTaskAttribute()
+    {
+        return $this->membership->plan->earning_per_task;
+    }
+
     public function getTaskRemainingAttribute()
     {
         if (! $this->is_member) {
+            return 0;
+        }
+
+        if ($this->membership->tomorrow->isFuture()) {
             return 0;
         }
 
@@ -129,7 +139,7 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
         throw_unless($this->purchasedPocket()->payFree($plan), "Error While Purchasing Plan #" . $plan->name);
         return $this->memberships()->create([
             'plan_id' => $plan->id,
-            'tomorrow' => now()->addDay(),
+            'tomorrow' => now(),
             'task_limit' => $plan->task_limit,
             'valid_till' => $plan->validityFor($this),
             'type' => $plan->price ? 'premium' : 'free',

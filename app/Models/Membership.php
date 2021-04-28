@@ -15,4 +15,9 @@ class Membership extends Model
         'tomorrow' => 'datetime',
         'valid_till' => 'datetime',
     ];
+
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class);
+    }
 }

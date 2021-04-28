@@ -14,9 +14,7 @@ class PlanSeeder extends Seeder
      */
     public function run()
     {
-        Plan::query()->truncate();
-
-        Plan::insert([
+        Plan::query()->upsert([
             [
                 'name' => 'Startar',
                 'price' => 0,
@@ -67,6 +65,6 @@ class PlanSeeder extends Seeder
                 'minimum_withdraw' => 80,
                 'validity' => 360,
             ],
-        ]);
+        ], 'price');
     }
 }

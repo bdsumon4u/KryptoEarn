@@ -17,5 +17,6 @@ Route::get('/', \App\Http\Controllers\HomeController::class);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
-    Route::post('membership/{plan}/upgrade', \App\Http\Controllers\MembershipController::class)->name('membership.upgrade');
+    Route::resource('/tasks', \App\Http\Controllers\TaskController::class)->only(['index', 'store']);
+    Route::post('/membership/{plan}/upgrade', \App\Http\Controllers\MembershipController::class)->name('membership.upgrade');
 });

@@ -147,7 +147,7 @@
                     <div class="body-bottom">
                         <h6>MY REFFERAL LINK:</h6>
                         <input style="margin-bottom:5px;"
-                               value="{{ url('/') }}?ref={{ auth()->user()->username }}"
+                               value="{{ route('register', ['ref' => auth()->user()->username]) }}"
                                class="form-control" readonly=""
                                id="clipboardExample1" type="text" />
                         <div class="row">
@@ -218,46 +218,26 @@
         <div class="col-sm-12 col-xl-6 box-col-6">
             <div class="card">
                 <div class="card-body">
-                    <h5> Balance logs </h5>
+                    <h5> Balance Logs </h5>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Transaction type</th>
+                                <th scope="col">Trx ID#</th>
+                                <th scope="col">Cause</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Time</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($transactions as $transaction)
                             <tr>
-                                <th scope="row">0</th>
-                                <td>Captcha resolves</td>
-                                <td> $0.40
-                                </td>
-                                <td> 17 minutes ago</td>
+                                <th scope="row">{{ $transaction->id }}</th>
+                                <td>{{ $transaction->meta['name'] }}</td>
+                                <td>{{ $transaction->type === 'deposit' ? '+' : '-' }}${{ round($transaction->amountFloat, 2) }}</td>
+                                <td>{{ $transaction->created_at->diffForHumans() }}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Captcha resolves</td>
-                                <td> $0.40
-                                </td>
-                                <td> 1 day ago</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Captcha resolves</td>
-                                <td> $0.40
-                                </td>
-                                <td> 3 days ago</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Captcha resolves</td>
-                                <td> $0.40
-                                </td>
-                                <td> 3 days ago</td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

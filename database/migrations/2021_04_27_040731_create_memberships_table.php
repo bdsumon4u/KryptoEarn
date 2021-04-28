@@ -27,7 +27,8 @@ class CreateMembershipsTable extends Migration
             $table->integer('task_limit');
             $table->integer('task_completed')
                 ->default(0);
-            $table->timestamp('tomorrow');
+            $table->timestamp('tomorrow')
+                ->useCurrent();
             $table->timestamp('valid_till');
             $table->timestamps();
         });

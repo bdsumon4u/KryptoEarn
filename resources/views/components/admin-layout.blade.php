@@ -40,6 +40,7 @@
 </head>
 <body>
 <div id="success-flash" class="d-none" data-message="{{ session('success') }}"></div>
+<div id="danger-flash" class="d-none" data-message="{{ session('error') }}"></div>
 <div class="loader-wrapper">
     <div class="loader-index"><span></span></div>
     <svg>
@@ -59,7 +60,11 @@
     <div class="page-header">
         <div class="header-wrapper row m-0">
             <div class="header-logo-wrapper col-auto p-0">
-                <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="{{ asset('cuba/assets/images/logo/logo.png') }}" alt=""></a></div>
+                <div class="logo-wrapper">
+                    <a href="{{ route('dashboard') }}">
+                        <img class="img-fluid" src="{{ asset('cuba/assets/images/logo/logo.png') }}" alt="">
+                    </a>
+                </div>
                 <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
             </div>
             <div class="left-header col horizontal-wrapper ps-0">

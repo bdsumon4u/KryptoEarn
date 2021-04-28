@@ -41,10 +41,10 @@ class Plan extends Model implements Product
          */
 
         if (!$this->price) {
-            return !$customer->purchasedPocket()->paid($this);
+            return !$customer->paid($this);
         }
 
-        return $customer->purchasedPocked()->balanceFloat >= $this->getAmountProduct($customer) * $quantity;
+        return $customer->balanceFloat >= $this->getAmountProduct($customer) * $quantity;
     }
 
     public function getAmountProduct(Customer $customer)
