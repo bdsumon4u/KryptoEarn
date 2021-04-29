@@ -18,6 +18,20 @@ if(type) notify = $.notify('<i class="fa fa-bell-o"></i><strong>'+ message +'</s
     }
 });
 
+window.addEventListener('alert', function (ev) {
+    $.notify('<i class="fa fa-bell-o"></i><strong>'+ ev.detail.message +'</strong>', {
+        type: ev.detail.type,
+        allow_dismiss: true,
+        delay: 5000,
+        showProgressbar: true,
+        timer: 5000,
+        animate:{
+            enter:'animated fadeInDown',
+            exit:'animated fadeOutUp'
+        }
+    });
+})
+
 // setTimeout(function() {
 //     notify.update('message', '<i class="fa fa-bell-o"></i><strong>Loading</strong> Inner Data.');
 // }, 1000);
