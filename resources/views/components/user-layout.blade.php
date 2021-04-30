@@ -78,8 +78,8 @@
                     <li class="maximize px-2"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                     <li class="profile-nav onhover-dropdown p-0 px-2 me-0">
                         <div class="media profile-media"><img class="b-r-10" src="{{ asset('cuba/assets/images/dashboard/profile.jpg') }}" alt="">
-                            <div class="media-body"><span>Emay Walter</span>
-                                <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                            <div class="media-body"><span>{{ request()->user()->name }}</span>
+                                <p class="mb-0 font-roboto">{{ request()->user()->membership->plan->name }} <i class="middle fa fa-angle-down"></i></p>
                             </div>
                         </div>
                         <ul class="profile-dropdown onhover-show-div">

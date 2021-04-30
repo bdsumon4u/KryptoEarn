@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ReferralTaskCompleteCommission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -44,6 +45,8 @@ class TaskController extends Controller
             ]);
         }
         DB::commit();
+
+        ReferralTaskCompleteCommission::dispatch($user);
 
         return back()->with('success', '$'.round($trans->amountFloat, 2).' Credited To Your Earning Balance.');
     }

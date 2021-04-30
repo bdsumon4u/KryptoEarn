@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ReferralPlanUpgradeCommission;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -51,6 +52,8 @@ class PlanController extends Controller
             return back()->with('error', 'Error While Purchasing '.$plan->name.' Plan.');
         }
         DB::commit();
+
+        ReferralPlanUpgradeCommission::dispatch($user, $plan);
 
         return back()->with('success', 'You\'ve Migrated To '.$plan->name.' Plan.');
     }

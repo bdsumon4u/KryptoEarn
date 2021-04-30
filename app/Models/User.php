@@ -101,6 +101,10 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
 
     public function getEarningPerTaskAttribute()
     {
+        if (!$this->valid_till->isFuture()) {
+            return 0;
+        }
+
         return $this->membership->plan->earning_per_task;
     }
 
@@ -139,5 +143,25 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
         $freePlan = Plan::query()->firstWhere('price', 0);
         throw_unless($freePlan, "There Is No Free Plan.");
         return $this->purchase($freePlan);
+    }
+
+    public function refPlanUpgradeCommission($amount)
+    {
+        if (!$this->valid_till->isFuture()) {
+            return 0;
+        }
+
+        # Amount is on dollar.
+        return $amount * $this->membership->plan->ref_commission_on_plan_upgrade / 100;
+    }
+
+    public function refTaskCompleteCommission($amount)
+    {
+        if (!$this->valid_till->isFuture()) {
+            return 0;
+        }
+
+        # Amount is on cent.
+        return $amount * $this->membership->plan->ref_commission_on_each_task / 100;
     }
 }
