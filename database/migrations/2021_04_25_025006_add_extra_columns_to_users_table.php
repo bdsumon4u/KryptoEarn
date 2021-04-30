@@ -29,16 +29,19 @@ return new class extends Migration
                 ->nullable()
                 ->after('email');
 
-            $table->string('country', 60)
-                ->after('phone');
-
-            $table->string('city', 35)
-                ->nullable()
-                ->after('country');
-
             $table->string('address')
                 ->nullable()
+                ->after('phone');
+
+            $table->string('city', 255)
+                ->nullable()
+                ->after('address');
+
+            $table->string('country', 60)
                 ->after('city');
+
+            $table->string('timezone', 60)
+                ->after('country');
         });
     }
 

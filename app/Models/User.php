@@ -24,8 +24,6 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
     use HasPocket;
     use CanPayFloat;
     use Notifiable;
-    use TwoFactorAuthenticatable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -36,11 +34,14 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
         'email',
         'phone',
         'username',
-        'country',
-        'city',
         'address',
+        'city',
+        'country',
+        'timezone',
         'password',
     ];
+
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that should be hidden for arrays.
