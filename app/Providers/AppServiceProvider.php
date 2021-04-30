@@ -22,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
         Carbon::macro('formatted', function ($format = 'd-M-Y') {
             return $this->format($format);
         });
+
+        config(['app.timezone' => ip_info('timezone', 'UTC')]);
+        date_default_timezone_set(config('app.timezone'));
     }
 
     /**

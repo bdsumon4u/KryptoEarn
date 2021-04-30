@@ -36,6 +36,20 @@
     <link id="color" rel="stylesheet" href="{{ asset('cuba/assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('cuba/assets/css/responsive.css') }}">
+    <style>
+        /* Google font */
+        @import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+        body {
+            background-color: #121212;
+        }
+
+        #clock {
+            font-family: 'Orbitron', sans-serif;
+            color: crimson;
+            font-size: 20px;
+        }
+    </style>
     @stack('styles')
 </head>
 <body>
@@ -68,7 +82,7 @@
                 <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
             </div>
             <div class="left-header col horizontal-wrapper ps-0">
-
+                <x-clock-timer />
             </div>
             <div class="nav-right col-8 pull-right right-header p-0">
                 <ul class="nav-menus m-0">
