@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -21,13 +22,13 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        $input += ['country' => ip_info('country', 'N/A')];
-        Validator::make($input, [
+        Validator::make(array_merge($input, Arr::only(ip_info(), ['country', 'timezone'])), [
             'name' => ['required', 'string', 'max:35'],
             'email' => ['required', 'string', 'email', 'max:85', 'unique:users'],
             'username' => ['required', 'string', 'max:20', 'unique:users'],
             'referrer' => ['nullable', 'string', 'max:20'],
             'country' => ['required', 'string', 'max:60'],
+            'timezone' => ['required', 'string', 'max:60'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();

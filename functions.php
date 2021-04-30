@@ -14,9 +14,7 @@ if (!function_exists('admin_url')) {
 if (!function_exists('ip_info')) {
     function ip_info(string $key = null, string $default = '')
     {
-        $array = session()->remember('ip_info', function () {
-            return Http::get('http://ip-api.com/json')->json();
-        });
+        $array = Http::get('http://ip-api.com/json')->json();
         return $key ? data_get($array, $key, $default) : $array;
     }
 }
