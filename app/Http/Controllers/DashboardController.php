@@ -104,6 +104,11 @@ class DashboardController extends Controller
     {
         $data = array_fill(now()->subWeek()->day + 1, 7, 0);
         foreach ($data as $day => $count) {
+            if (now()->get('day') < 7 && $day > ($prevLastDay = now()->subWeek()->lastOfMonth()->day)) {
+                unset($data[$day]);
+                $day -= $prevLastDay;
+                $data[$day] = 0;
+            }
             if ($day === now()->get('day')) {
                 $data['Today'] = data_get($records, $day, 0);
                 unset($data[$day]);
