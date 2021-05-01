@@ -16,7 +16,7 @@ class DetectsTimezone
      */
     public function handle(Request $request, Closure $next)
     {
-        config(['app.timezone' => $request->user()->timezone]);
+        config(['app.timezone' => $request->user()->timezone ?? 'Asia/Dhaka']);
         date_default_timezone_set(config('app.timezone'));
 
         return $next($request);
