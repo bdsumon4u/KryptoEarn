@@ -54,11 +54,12 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropConstrainedForeignId('referrer_id');
-            $table->dropColumn('phone');
             $table->dropColumn('username');
-            $table->dropColumn('country');
-            $table->dropColumn('city');
+            $table->dropColumn('phone');
             $table->dropColumn('address');
+            $table->dropColumn('city');
+            $table->dropColumn('country');
+            $table->dropColumn('timezone');
         });
     }
 };

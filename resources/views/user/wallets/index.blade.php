@@ -6,41 +6,37 @@
                 <div class="card-body">
                     <h6>MY ADDRESSES: </h6>
                     For security, withdrawals are disabled for 1 days after address change.
+                    <p>Last Updated At: <strong>{{ \Carbon\Carbon::parse($gateway['updated_at'])->format('d-M-Y -- H:i A') }}</strong></p>
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <form id="formId102" method="POST" autocomplete="OFF" action="">
+                                <form id="gateway-form" action="{{ route('gateway') }}" method="POST" autocomplete="OFF" action="">
                                     @csrf
+                                    @method('PATCH')
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">PERFECT MONEY</label>
                                         <div class="col-sm-8">
-                                            <input name="102" id="102" required="" value="U17174604" class="form-control" type="text">
+                                            <input name="perfect_money" id="102" value="{{ old('perfect_money', $gateway['addresses']['perfect_money']) }}" class="form-control" type="text">
                                             <div style="color:red;" class="danger" id="nameError102"></div>
                                         </div>
                                         <div class="col-sm-2 col-form-label">
                                             <button class="btn btn-primary" type="submit">SAVE</button>
                                         </div>
                                     </div>
-                                </form>
-                                <form id="formId505" method="POST" autocomplete="OFF" action="">
-                                    @csrf
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">BITCOIN</label>
                                         <div class="col-sm-8">
-                                            <input name="505" id="505" required="" value="" class="form-control" type="text">
+                                            <input name="bitcoin" id="bitcoin-address" value="{{ old('bitcoin' , $gateway['addresses']['bitcoin']) }}" class="form-control" type="text">
                                             <div style="color:red;" class="danger" id="nameError505"></div>
                                         </div>
                                         <div class="col-sm-2 col-form-label">
                                             <button class="btn btn-primary" type="submit">SAVE</button>
                                         </div>
                                     </div>
-                                </form>
-                                <form id="formId515" method="POST" autocomplete="OFF" action="">
-                                    @csrf
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">PAYEER</label>
                                         <div class="col-sm-8">
-                                            <input name="515" id="515" required="" value="" class="form-control" type="text">
+                                            <input name="payeer" id="515" value="{{ old('payeer', $gateway['addresses']['payeer']) }}" class="form-control" type="text">
                                             <div style="color:red;" class="danger" id="nameError515"></div>
                                         </div>
                                         <div class="col-sm-2 col-form-label">
@@ -129,17 +125,20 @@
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/wallet-address-validator@0.2.4/dist/wallet-address-validator.min.js"></script>
         <script type="text/javascript">
-            document.getElementById('formId505').addEventListener('submit', function (ev) {
+            document.getElementById('gateway-form').addEventListener('submit', function (ev) {
                 ev.preventDefault();
-                console.log('starting!');
+                var btc_address = $("#bitcoin-address").val();
 
-                var btc_address = $("#505").val();
-                console.log(btc_address);
+                if (!btc_address.length) {
+                    document.getElementById("gateway-form").submit();
+                    return true;
+                }
+
                 var valid = WAValidator.validate(btc_address, 'BitCoin');
                 if (!valid) {
                     $("#nameError505").html("Invalid Bitcoin address!");
                 } else {
-                    document.getElementById("formId505").submit();
+                    document.getElementById("gateway-form").submit();
                     return true;
                 }
             });

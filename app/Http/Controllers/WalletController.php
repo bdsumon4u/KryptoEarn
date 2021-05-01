@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class WalletController extends Controller
 {
@@ -14,9 +15,18 @@ class WalletController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $gateway = array_merge(Arr::get($request->user()->extra ?? [], 'gateway', [
+            'addresses' => [
+                'perfect_money' => '',
+                'bitcoin' => '',
+                'payeer' => '',
+            ],
+            'updated_at' => now()->toDateTimeString(),
+        ]));
+
         $user = $request->user()->load('wallets');
         $transactions = $user->transactions()->with('wallet')->latest()->take(5)->get();
-        return view('user.wallets.index', compact('user', 'transactions'));
+        return view('user.wallets.index', compact('user', 'transactions', 'gateway'));
     }
 
     public function withdraw()

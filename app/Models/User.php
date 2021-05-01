@@ -38,6 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
         'city',
         'country',
         'timezone',
+        'extra',
         'password',
     ];
 
@@ -62,6 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'extra' => 'array',
     ];
 
     /**
@@ -164,5 +166,18 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
 
         # Amount is on cent.
         return $amount * $this->membership->plan->ref_commission_on_each_task / 100;
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    public function setExtraAttribute($extra): void
+    {
+        $this->attributes['extra'] = json_encode($extra, JSON_THROW_ON_ERROR);
+    }
+
+    public function getIsGatewaySafeAttribute(): bool
+    {
+        return Carbon::parse($this->extra['gateway']['updated_at'])->addDay()->isPast();
     }
 }

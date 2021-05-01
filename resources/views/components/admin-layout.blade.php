@@ -44,6 +44,10 @@
             background-color: #121212;
         }
 
+        body[class*='dark-'] .for-dark {
+            display: inline-block;
+        }
+
         #clock {
             font-family: 'Orbitron', sans-serif;
             color: crimson;
