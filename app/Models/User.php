@@ -9,6 +9,7 @@ use Bavix\Wallet\Interfaces\WalletFloat;
 use Bavix\Wallet\Traits\CanPayFloat;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -179,5 +180,10 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
     public function getIsGatewaySafeAttribute(): bool
     {
         return Carbon::parse($this->extra['gateway']['updated_at'])->addDay()->isPast();
+    }
+
+    public function deposits(): HasMany
+    {
+        return $this->hasMany(Deposit::class);
     }
 }

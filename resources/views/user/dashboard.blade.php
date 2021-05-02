@@ -62,7 +62,7 @@
                             <i data-feather="upload"></i>
                         </div>
                         <div class="media-body">
-                            <a class="btn btn-block btn-info btn-air-info btn-lg mr-3 wow pulse" href="/deposit">Deposit</a>
+                            <a class="btn btn-block btn-info btn-air-info btn-lg mr-3 wow pulse" href="/deposits/create">Deposit</a>
                             <i class="icon-bg" data-feather="upload"></i>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                             <i data-feather="download"></i>
                         </div>
                         <div class="media-body">
-                            <a class="btn btn-block btn-secondary btn-air-secondary btn-lg mr-3 wow pulse" href="/withdraw">Withdraw</a>
+                            <a class="btn btn-block btn-secondary btn-air-secondary btn-lg mr-3 wow pulse" href="/withdraws/create">Withdraw</a>
                             <i class="icon-bg" data-feather="download"></i>
                         </div>
                     </div>

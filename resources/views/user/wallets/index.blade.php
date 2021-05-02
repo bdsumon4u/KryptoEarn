@@ -58,7 +58,7 @@
                             <img style="margin:10px;" class="img-fluid" src="{{ asset('cuba/user1/assets/images/others/atm.png') }}" alt=" da">
                             <!-- <i class="fa fa-cloud-download fa-5x"></i> --><br>
                             <a
-                                href="/wallet/withdraw"
+                                href="/withdraws/create"
                                 class=" b-b-light btn btn-secondary btn-sm text-center"> WITHDRAW
                             </a>
                         </div>
@@ -70,7 +70,7 @@
                             <!-- <i class="fa fa-cloud-upload fa-5x"></i> -->
                             <img style="margin:10px;" class="img-fluid" src="{{ asset('cuba/user1/assets/images/others/upload.png') }}" alt=" da"><br>
                             <a
-                                href="/wallet/deposit"
+                                href="/deposits/create"
                                 class=" b-b-light btn btn-secondary btn-sm text-center"> DEPOSIT
                             </a>
                         </div>

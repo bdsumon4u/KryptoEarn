@@ -137,19 +137,16 @@
                     <h4>Deposit via <strong>PERFECT MONEY</strong></h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form method="post" onsubmit="">
+                <form method="post" action="{{ route('deposits.store') }}">
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="automatic" value="automatic">
-                        <input type="hidden" name="gateway" value="102">
                         <label class="col-md-12 modal-msg-heading">
                             <strong>DEPOSIT AMOUNT</strong><br>
                             <span class="modal-msg">
-                                $1.00 - $20,000.00 <br>
+                                ${{ config('gateway.deposit.perfect_money.min_amount') }} - ${{ config('gateway.deposit.perfect_money.max_amount') }} <br>
                                 <strong> CHARGES </strong><br>
-                                $0.05 USD + 2%<br>
-                                <strong> PURCHASED BALANCE </strong><br>
-                                USD : 2.4<br>
+                                ${{ config('gateway.deposit.perfect_money.fixed_charge') }} USD + {{ config('gateway.deposit.perfect_money.percent_charge') }}% <br>
                             </span>
                         </label>
                         <hr>
@@ -168,7 +165,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success w-100">
+                        <button type="submit" name="gateway" value="perfect-money" class="btn btn-success w-100">
                             PROCEED
                         </button>
                         <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
@@ -184,19 +181,16 @@
                     <h4>Deposit via <strong>BITCOIN</strong></h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form method="post" onsubmit="">
+                <form method="post" action="{{ route('deposits.store') }}">
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="automatic" value="automatic">
-                        <input type="hidden" name="gateway" value="102">
                         <label class="col-md-12 modal-msg-heading">
                             <strong>DEPOSIT AMOUNT</strong><br>
                             <span class="modal-msg">
-                                $1.00 - $20,000.00 <br>
+                                ${{ config('gateway.deposit.bitcoin.min_amount') }} - ${{ config('gateway.deposit.bitcoin.max_amount') }} <br>
                                 <strong> CHARGES </strong><br>
-                                $0.05 USD + 2%<br>
-                                <strong> PURCHASED BALANCE </strong><br>
-                                USD : 2.4<br>
+                                ${{ config('gateway.deposit.bitcoin.fixed_charge') }} USD + {{ config('gateway.deposit.bitcoin.percent_charge') }}% <br>
                             </span>
                         </label>
                         <hr>
@@ -215,7 +209,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success w-100">
+                        <button type="submit" name="gateway" value="blockchain" class="btn btn-success w-100">
                             PROCEED
                         </button>
                         <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
@@ -231,19 +225,16 @@
                     <h4>Deposit via <strong>PAYEER</strong></h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form method="post" onsubmit="">
+                <form method="post" action="{{ route('deposits.store') }}">
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="automatic" value="automatic">
-                        <input type="hidden" name="gateway" value="102">
                         <label class="col-md-12 modal-msg-heading">
                             <strong>DEPOSIT AMOUNT</strong><br>
                             <span class="modal-msg">
-                                $1.00 - $20,000.00 <br>
+                                ${{ config('gateway.deposit.payeer.min_amount') }} - ${{ config('gateway.deposit.payeer.max_amount') }} <br>
                                 <strong> CHARGES </strong><br>
-                                $0.05 USD + 2%<br>
-                                <strong> PURCHASED BALANCE </strong><br>
-                                USD : 2.4<br>
+                                ${{ config('gateway.deposit.payeer.fixed_charge') }} USD + {{ config('gateway.deposit.payeer.percent_charge') }}% <br>
                             </span>
                         </label>
                         <hr>
@@ -262,7 +253,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success w-100">
+                        <button type="submit" name="gateway" value="payeer" class="btn btn-success w-100">
                             PROCEED
                         </button>
                         <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
@@ -271,4 +262,12 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            $.get( "https://chain.so/api/v2/get_info/BTC", function( response ) {
+                console.log(response)
+                // success! use the data any way you like
+            });
+        </script>
+    @endpush
 </x-user-layout>
