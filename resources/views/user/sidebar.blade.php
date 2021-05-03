@@ -40,14 +40,14 @@
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="#"><i data-feather="upload"></i><span>Deposits</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="/deposits">List</a></li>
+                            <li><a href="/deposits">Deposit List</a></li>
                             <li><a href="/deposits/create">Deposit Now</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="#"><i data-feather="download"></i><span>Withdraws</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="/withdraws">List</a></li>
+                            <li><a href="/withdraws">Withdraw List</a></li>
                             <li><a href="/withdraws/create">Withdraw Now</a></li>
                         </ul>
                     </li>

@@ -186,4 +186,9 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
     {
         return $this->hasMany(Deposit::class);
     }
+
+    public function withdraws(): HasMany
+    {
+        return $this->hasMany(Withdraw::class);
+    }
 }
