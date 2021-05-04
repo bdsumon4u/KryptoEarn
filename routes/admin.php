@@ -19,5 +19,6 @@ Route::domain(admin_url())->group(function () {
         Route::get('/dashboard', \App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
         Route::resource('/plans', \App\Http\Controllers\Admin\PlanController::class)->except(['show', 'destroy']);
         Route::resource('/users', \App\Http\Controllers\Admin\UserController::class)->only(['index', 'edit', 'update']);
+        Route::get('/reports', \App\Http\Controllers\Admin\ReportController::class)->name('reports');
     });
 });

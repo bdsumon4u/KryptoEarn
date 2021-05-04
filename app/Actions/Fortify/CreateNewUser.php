@@ -22,7 +22,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        Validator::make(array_merge($input, Arr::only(ip_info(), ['country', 'timezone'])), [
+        Validator::make($input += Arr::only(ip_info(), ['country', 'timezone']), [
             'name' => ['required', 'string', 'max:35'],
             'email' => ['required', 'string', 'email', 'max:85', 'unique:users'],
             'username' => ['required', 'string', 'max:20', 'unique:users'],
