@@ -1,8 +1,4 @@
 <x-user-layout>
-    @push('styles')
-        <link rel="stylesheet" href="{{ asset('cuba/assets/css/vendors/datatables.css') }}">
-        <link rel="stylesheet" href="{{ asset('cuba/assets/css/vendors/datatables-extension.css') }}">
-    @endpush
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">

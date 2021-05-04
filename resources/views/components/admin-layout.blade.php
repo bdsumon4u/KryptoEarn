@@ -25,6 +25,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('cuba/assets/css/vendors/feather-icon.css') }}">
     <!-- Plugins css start-->
     <link rel="stylesheet" type="text/css" href="{{ asset('cuba/assets/css/vendors/scrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('cuba/assets/css/vendors/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('cuba/assets/css/vendors/datatable-extension.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cuba/assets/css/vendors/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cuba/assets/css/vendors/chartist.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cuba/assets/css/vendors/date-picker.css') }}">

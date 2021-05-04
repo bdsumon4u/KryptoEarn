@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Column;
@@ -22,7 +19,7 @@ class WithdrawController extends Controller
     public function index(Builder $builder)
     {
         if (request()->ajax()) {
-            return DataTables::of(request()->user()->withdraws())->toJson();
+            return DataTables::of(Withdraw::query())->toJson();
         }
 
         $html = $builder->columns([
@@ -58,7 +55,7 @@ class WithdrawController extends Controller
                 ->printable(true),
         ]);
 
-        return view('user.withdraws.index', compact('html'));
+        return view('admin.withdraws.index', compact('html'));
     }
 
     /**
@@ -68,17 +65,7 @@ class WithdrawController extends Controller
      */
     public function create()
     {
-        $user = request()->user();
-        $gateway = array_merge(Arr::get($user->extra ?? [], 'gateway', [
-            'addresses' => [
-                'perfect_money' => '',
-                'bitcoin' => '',
-                'payeer' => '',
-            ],
-            'updated_at' => now()->toDateTimeString(),
-        ]));
-
-        return view('user.withdraws.create', compact('user', 'gateway'));
+        //
     }
 
     /**
@@ -89,23 +76,7 @@ class WithdrawController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->processData($request);
-        $user = $request->user();
-
-        if (!Hash::check($data['password'], $user->password)) {
-            return back()->with('error', 'Incorrect Password');
-        }
-
-        if (!$user->is_gateway_safe) {
-            return back()->with('error', 'You\'ve Updated Your Payment Info Recently. Withdraw Request Can\'t Be Taken.');
-        }
-
-        $withdraw = $user->withdraws()->create($data + [
-            'trx_id' => $this->trxId(),
-            'receivable' => $data['amount'] + $data['charge'],
-        ]);
-
-        return redirect()->action([static::class, 'index'], $withdraw)->with('success', 'Received Withdrawal Request.');
+        //
     }
 
     /**
@@ -151,30 +122,5 @@ class WithdrawController extends Controller
     public function destroy(Withdraw $withdraw)
     {
         //
-    }
-
-    private function processData(Request $request)
-    {
-        $data = $request->validate([
-            'amount' => 'required',
-            'password' => 'required',
-            'gateway' => 'required',
-        ]);
-
-        $charge = config('gateway.withdraw.'.$data['gateway'].'.fixed_charge', 0)
-            + $data['amount'] * config('gateway.withdraw.'.$data['gateway'].'.percent_charge', 0) / 100;
-        $data['charge'] = round($charge, 2);
-
-        return $data;
-    }
-
-    private function trxId($times = 5)
-    {
-        while ($times--) {
-            $trx_id = Str::random(12);
-            if (! Withdraw::firstWhere(compact('trx_id'))) {
-                return $trx_id;
-            }
-        }
     }
 }

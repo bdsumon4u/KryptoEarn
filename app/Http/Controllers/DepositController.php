@@ -19,7 +19,7 @@ class DepositController extends Controller
     public function index(Builder $builder)
     {
         if (request()->ajax()) {
-            return DataTables::of(Deposit::query())->toJson();
+            return DataTables::of(request()->user()->deposits())->toJson();
         }
 
         $html = $builder->columns([
