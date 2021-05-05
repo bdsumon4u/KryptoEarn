@@ -49,12 +49,7 @@
                         </ul>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/reports"><i data-feather="clock"> </i><span>Reports</span></a></li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="command"></i><span>Partners</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="/partners">Partner List</a></li>
-                            <li><a href="/partners?status=pending">Applicants</a></li>
-                        </ul>
-                    </li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/partners"><i data-feather="command"> </i><span>Partners</span></a></li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="cast"></i><span>Pages</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="/pages">All Pages</a></li>

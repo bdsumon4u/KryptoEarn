@@ -26,7 +26,9 @@ class CreateWithdrawsTable extends Migration
             $table->string('currency', 10)->default('USD');
             $table->string('btc_wallet')->nullable();
             $table->integer('btc_amount')->default(0);
-            $table->string('status')->default('pending');
+            $table->string('status', 10)
+                ->default('pending')
+                ->index();
             $table->string('screenshot')->nullable();
             $table->timestamps();
         });

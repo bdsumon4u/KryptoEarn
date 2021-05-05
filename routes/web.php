@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/wallet', \App\Http\Controllers\WalletController::class)->name('wallet');
     Route::patch('/gateway', \App\Http\Controllers\GatewayController::class)->name('gateway');
     Route::get('/wallet/transfer', [\App\Http\Controllers\WalletController::class, 'transfer'])->name('wallet.transfer');
+    Route::resource('/partners', \App\Http\Controllers\PartnerController::class)->except(['edit', 'update', 'destroy']);
     Route::get('/referrals', \App\Http\Controllers\ReferralController::class)->name('referrals');
     Route::post('/membership/{plan}/upgrade', \App\Http\Controllers\MembershipController::class)->name('membership.upgrade');
 
