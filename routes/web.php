@@ -19,6 +19,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
     Route::resource('/plans', \App\Http\Controllers\PlanController::class)->only(['index', 'update']);
     Route::resource('/tasks', \App\Http\Controllers\TaskController::class)->only(['index', 'store']);
+    Route::match(['get', 'post'], '/vouchers/redeem', \App\Http\Controllers\RedeemVoucherController::class)->name('vouchers.redeem');
+    Route::resource('/vouchers', \App\Http\Controllers\VoucherController::class)->only(['index', 'create', 'store']);
     Route::get('/wallet', \App\Http\Controllers\WalletController::class)->name('wallet');
     Route::patch('/gateway', \App\Http\Controllers\GatewayController::class)->name('gateway');
     Route::get('/wallet/transfer', [\App\Http\Controllers\WalletController::class, 'transfer'])->name('wallet.transfer');

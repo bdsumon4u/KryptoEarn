@@ -196,4 +196,14 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
     {
         return $this->hasOne(Partner::class);
     }
+
+    public function getIsPartnerAttribute()
+    {
+        return $this->partner()->approved()->exists();
+    }
+
+    public function vouchers() # Not Owned.
+    {
+        return $this->hasMany(Voucher::class);
+    }
 }

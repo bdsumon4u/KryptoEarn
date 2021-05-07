@@ -1,3 +1,4 @@
+@php($is_partner = request()->user()->is_partner)
 <div class="sidebar-wrapper">
     <div>
         <div class="logo-wrapper">
@@ -31,9 +32,13 @@
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="#"><i data-feather="dollar-sign"></i><span>Vouchers</span></a>
                         <ul class="sidebar-submenu">
+                            @if($is_partner)
                             <li><a href="/vouchers">List</a></li>
+                            @endif
                             <li><a href="/vouchers/redeem">Redeem</a></li>
+                            @if($is_partner)
                             <li><a href="/vouchers/create">Create New</a></li>
+                            @endif
                         </ul>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/wallet"><i data-feather="credit-card"> </i><span>Wallet</span></a></li>
