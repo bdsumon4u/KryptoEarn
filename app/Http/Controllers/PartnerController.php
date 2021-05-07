@@ -19,7 +19,7 @@ class PartnerController extends Controller
     public function index(Builder $builder)
     {
         $query = User::query()
-            ->where('country', request()->user()->country)
+            #->where('country', request()->user()->country)
             ->whereHas('partner', function ($query) {
                 return $query->approved();
             });
