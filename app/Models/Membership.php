@@ -20,4 +20,9 @@ class Membership extends Model
     {
         return $this->belongsTo(Plan::class);
     }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

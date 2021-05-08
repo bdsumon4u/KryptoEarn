@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $user = $request->user()->load(['wallets']);
         $referral_count = $user->referred()->count();
 
-        $last_week_transactions = Cache::remember('user-'.$user->id.':last_week:transactions', 5, function () {
+        $last_week_transactions = Cache::remember('user-'.$user->id.':last_week:transactions', 5 * 60, function () {
             return request()->user()->transactions()->with('wallet')->where('created_at', '>', now()->subWeek())->latest()->get();
         });
 

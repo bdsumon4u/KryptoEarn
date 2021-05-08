@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Charts\TransactionReport;
 use App\Http\Controllers\Controller;
 use App\Models\Deposit;
+use App\Models\Membership;
+use App\Models\User;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
@@ -28,13 +30,30 @@ class DashboardController extends Controller
         $debits = array_sum($this->debits);
         $remains = $credits - $debits;
 
-        return view('admin.dashboard', compact('tab', 'transactionReport', 'credits', 'debits', 'remains'));
+        return view('admin.dashboard', compact('tab', 'transactionReport', 'credits', 'debits', 'remains') + [
+            'total_deposits' => cache()->remember('deposits:total', 5 * 60, function () {
+                return Deposit::sum('amount') / 100;
+            }),
+            'total_withdraws' => cache()->remember('withdraws:total', 5 * 60, function () {
+                return Withdraw::sum('amount') / 100;
+            }),
+            'total_users' => cache()->remember('users:total', 5 * 60, function () {
+                return User::count();
+            }),
+            'premium_users' => cache()->remember('users:premium', 5 * 60, function () {
+                return Membership::query()->where('type', 'premium')->count();
+            }),
+        ]);
     }
 
     private function transactionReport($tab)
     {
-        $this->credits = $this->getTransactionForTab($tab, Deposit::query());
-        $this->debits = $this->getTransactionForTab($tab,Withdraw::query());
+        $this->credits = cache()->remember('credits:'.$tab, 5 * 60, function () use ($tab) {
+            return $this->getTransactionForTab($tab, Deposit::query());
+        });
+        $this->debits = cache()->remember('debits:'.$tab, 5 * 60, function () use ($tab) {
+            return $this->getTransactionForTab($tab, Withdraw::query());
+        });
 
         $transactionReport = new TransactionReport();
         $transactionReport->labels(array_keys($this->credits));
