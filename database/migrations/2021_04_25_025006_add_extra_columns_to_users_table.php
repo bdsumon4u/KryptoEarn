@@ -33,7 +33,7 @@ return new class extends Migration
                 ->nullable()
                 ->after('phone');
 
-            $table->string('city', 255)
+            $table->string('city', 60)
                 ->nullable()
                 ->after('address');
 

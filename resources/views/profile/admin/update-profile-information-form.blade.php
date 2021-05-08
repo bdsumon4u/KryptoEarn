@@ -66,46 +66,11 @@
             <x-jet-input-error for="username" class="mt-2" />
         </div>
 
-        <!-- Phone -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="phone" value="{{ __('Phone') }}" />
-            <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="state.phone" autocomplete="phone" />
-            <x-jet-input-error for="phone" class="mt-2" />
-        </div>
-
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="email" value="{{ __('Email') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
-        </div>
-
-        <!-- Address -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="address" value="{{ __('Address') }}" />
-            <x-jet-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.address" autocomplete="address" />
-            <x-jet-input-error for="address" class="mt-2" />
-        </div>
-
-        <!-- City -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="city" value="{{ __('City') }}" />
-            <x-jet-input id="city" type="text" class="mt-1 block w-full" wire:model.defer="state.city" autocomplete="city" />
-            <x-jet-input-error for="city" class="mt-2" />
-        </div>
-
-        <!-- Country -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="country" value="{{ __('Country') }}" />
-            <x-jet-input id="country" type="text" class="mt-1 block w-full" wire:model.defer="state.country" autocomplete="country" disabled />
-            <x-jet-input-error for="country" class="mt-2" />
-        </div>
-
-        <!-- Timezone -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="timezone" value="{{ __('Timezone') }}" />
-            <x-jet-input id="timezone" type="text" class="mt-1 block w-full" wire:model.defer="state.timezone" autocomplete="timezone" disabled />
-            <x-jet-input-error for="timezone" class="mt-2" />
         </div>
     </x-slot>
 
