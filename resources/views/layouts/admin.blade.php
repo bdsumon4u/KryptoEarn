@@ -97,7 +97,10 @@
                     </li>
                     <li class="maximize px-2"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                     <li class="profile-nav onhover-dropdown p-0 px-2 me-0">
-                        <div class="media profile-media"><img class="b-r-10" src="{{ asset('cuba/assets/images/dashboard/profile.jpg') }}" alt="">
+                        <div class="media profile-media">
+                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                <img class="b-r-5" src="{{ request()->user()->profile_photo_url }}" alt="Photo" width="37" height="37">
+                            @endif
                             <div class="media-body"><span>{{ request()->user()->name }}</span>
                                 <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
                             </div>
@@ -174,17 +177,8 @@
 <script src="{{ asset('cuba/assets/js/config.js') }}"></script>
 <!-- Plugins JS start-->
 <script src="{{ asset('cuba/assets/js/sidebar-menu.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/chart/chartist/chartist.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/chart/chartist/chartist-plugin-tooltip.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/chart/knob/knob.min.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/chart/knob/knob-chart.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/chart/apex-chart/apex-chart.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/chart/apex-chart/stock-prices.js') }}"></script>
 <script src="{{ asset('cuba/assets/js/notify/bootstrap-notify.min.js') }}"></script>
 <script src="{{ asset('cuba/assets/js/notify/index.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/datepicker/date-picker/datepicker.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/datepicker/date-picker/datepicker.en.js') }}"></script>
-<script src="{{ asset('cuba/assets/js/datepicker/date-picker/datepicker.custom.js') }}"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{ asset('cuba/assets/js/script.js') }}"></script>

@@ -132,7 +132,6 @@
         </div>
     </div>
     @push('scripts')
-        <script src="{{ asset('cuba/assets/js/dashboard/default.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
         <script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js charset=utf-8></script>
         {!! $transactionReport->script() !!}
