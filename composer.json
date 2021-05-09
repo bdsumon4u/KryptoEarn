@@ -19,6 +19,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
+        "spatie/laravel-settings": "^2.1",
         "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-html": "^4.0"
     },

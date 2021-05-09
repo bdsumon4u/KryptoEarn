@@ -13,7 +13,7 @@ class ProcessController extends Controller
      */
     public static function process(Deposit $deposit)
     {
-        $val['PAYEE_ACCOUNT'] = config('gateway.setup.perfect-money.wallet_id');
+        $val['PAYEE_ACCOUNT'] = setting('gateway', 'perfect_money_wallet_id');;
         $val['PAYEE_NAME'] = config('app.name');
         $val['PAYMENT_ID'] = $deposit->trx_id;
         $val['PAYMENT_AMOUNT'] = $deposit->payable;
@@ -40,7 +40,7 @@ class ProcessController extends Controller
     public function ipn()
     {
         $deposit = Deposit::where('trx', $_POST['PAYMENT_ID'])->firstOrFail();
-        $passphrase = strtoupper(md5(config('gateway.setup.perfect-money.passphrase')));
+        $passphrase = strtoupper(md5(setting('gateway', 'perfect_money_passphrase')));
 
         define('ALTERNATE_PHRASE_HASH', $passphrase);
         define('PATH_TO_LOG', storage_path('logs'));
@@ -58,7 +58,7 @@ class ProcessController extends Controller
             $amo = $_POST['PAYMENT_AMOUNT'];
             $unit = $_POST['PAYMENT_UNITS'];
             $track = $_POST['PAYMENT_ID'];
-            if ($unit === $deposit->currency && $amo === $deposit->payable && $deposit->status === 'pending' && $_POST['PAYEE_ACCOUNT'] === config('gateway.setup.perfect-money.wallet_id')) {
+            if ($unit === $deposit->currency && $amo === $deposit->payable && $deposit->status === 'pending' && $_POST['PAYEE_ACCOUNT'] === setting('gateway', 'perfect_money_wallet_id')) {
                 //Update User Data
                 DepositController::userDataUpdate($deposit, 'PerfectMoney');
             }

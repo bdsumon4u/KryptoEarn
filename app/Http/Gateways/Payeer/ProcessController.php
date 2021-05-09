@@ -15,13 +15,13 @@ class ProcessController extends Controller
 
     public static function process(Deposit $deposit)
     {
-        $val['m_shop'] = config('gateway.setup.payeer.merchant_id');
+        $val['m_shop'] = setting('gateway', 'payeer_merchant_id');
         $val['m_orderid'] = $deposit->trx_id;
         $val['m_amount'] = $deposit->payable;
         $val['m_curr'] = $deposit->currency;
         $val['m_desc'] = base64_encode('Pay To '. config('app.name'));
         $val['m_sign'] = strtoupper(hash('sha256', implode(":", [
-            $val['m_shop'], $val['m_orderid'], $val['m_amount'], $val['m_curr'], $val['m_desc'], config('gateway.setup.peyeer.secret'),
+            $val['m_shop'], $val['m_orderid'], $val['m_amount'], $val['m_curr'], $val['m_desc'], setting('gateway', 'payeer_secret'),
         ])));
         $send['val'] = $val;
         $send['view'] = 'user.payment.redirect';
@@ -48,7 +48,7 @@ class ProcessController extends Controller
                 $_POST['m_curr'],
                 $_POST['m_desc'],
                 $_POST['m_status'],
-                config('gateway.setup.payeer.secret'),
+                setting('gateway', 'payeer_secret'),
             ])));
 
             if ($_POST["m_sign"] !== $sign_hash) {

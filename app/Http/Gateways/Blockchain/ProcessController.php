@@ -22,9 +22,9 @@ class ProcessController extends Controller
 
             if ($deposit->btc_amount == 0 || !$deposit->btc_wallet) {
                 $blockchain_receive_root = "https://api.blockchain.info/";
-                $secret = config('gateway.setup.blockchain.secret');
-                $my_xpub = config('gateway.setup.blockchain.xpub_key');
-                $my_api_key = config('gateway.setup.blockchain.api_key');
+                $secret = setting('gateway', 'blockchain_secret');
+                $my_xpub = setting('gateway', 'xpub_secret');
+                $my_api_key = setting('gateway', 'api_secret');
                 $invoice_id = $deposit->trx_id;
                 $callback_url = route('ipn.'.$deposit->gateway) . "?invoice_id=" . $invoice_id . "&secret=" . $secret;
 
@@ -53,7 +53,7 @@ class ProcessController extends Controller
     {
         $value_in_btc = $_GET['value'] / 100000000;
         $deposit = Deposit::where('trx_id', $_GET['invoice_id'])->firstOrFail();
-        if ($deposit->btc_amount === $value_in_btc && $_GET['address'] === $deposit->btc_wallet && $_GET['confirmations'] > 2 && $deposit->status === 'pending' && $_GET['secret'] === config('gateway.setup.blockchain.secret')) {
+        if ($deposit->btc_amount === $value_in_btc && $_GET['address'] === $deposit->btc_wallet && $_GET['confirmations'] > 2 && $deposit->status === 'pending' && $_GET['secret'] === setting('gateway', 'blockchain_secret')) {
             DepositController::userDataUpdate($deposit, 'Bitcoin');
         }
     }
