@@ -39,8 +39,8 @@ class ReportController extends Controller
                     return ['deposit' => '+$', 'withdraw' => '-$']
                         [$row->type] . abs(round($row->amountFloat, 2));
                 })
-                ->addColumn('date', function ($row) {
-                    return $row->created_at->formatted();
+                ->addColumn('datetime', function ($row) {
+                    return $row->created_at->formatted(true);
                 })
                 ->toJson();
         }
@@ -50,13 +50,13 @@ class ReportController extends Controller
             ['data' => 'user', 'name' => 'user', 'title' => 'User'],
             ['data' => 'name', 'name' => 'name', 'title' => 'Name'],
             ['data' => 'amount', 'name' => 'amount', 'title' => 'Amount'],
-            ['data' => 'date', 'name' => 'date', 'title' => 'Date'],
+            ['data' => 'datetime', 'name' => 'datetime', 'title' => 'DateTime'],
         ])->parameters([
             'order' => [
                 0, // here is the column number
                 'desc'
             ],
-        ]);;
+        ]);
 
         return view('admin.reports', compact('html'));
     }

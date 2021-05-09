@@ -39,4 +39,9 @@ class Withdraw extends Model
     {
         return $amount / 100;
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

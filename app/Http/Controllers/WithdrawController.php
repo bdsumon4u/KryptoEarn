@@ -102,7 +102,7 @@ class WithdrawController extends Controller
 
         $withdraw = $user->withdraws()->create($data + [
             'trx_id' => $this->trxId(),
-            'receivable' => $data['amount'] + $data['charge'],
+            'receivable' => $data['amount'] - $data['charge'],
         ]);
 
         return redirect()->action([static::class, 'index'], $withdraw)->with('success', 'Received Withdrawal Request.');

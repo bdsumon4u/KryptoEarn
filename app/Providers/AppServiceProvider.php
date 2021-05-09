@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,9 +20,11 @@ class AppServiceProvider extends ServiceProvider
             return $this->getHost() === admin_url();
         });
 
-        Carbon::macro('formatted', function ($format = 'd-M-Y') {
-            return $this->format($format);
+        Carbon::macro('formatted', function ($both = false, $date = 'd-M-Y', $time = 'h:i A') {
+            return $this->timezone(config('app.timezone'))->format($both ? "$date $time" : $date);
         });
+
+        Paginator::useBootstrap();
     }
 
     /**

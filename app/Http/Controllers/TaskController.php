@@ -23,12 +23,13 @@ class TaskController extends Controller
 
         $user = $request->user();
 
-        if (!$membership = $user->membership) {
+        if (!$user->valid_till->isFuture()) {
             return back()->with('error', 'Your Membership Is Expired');
         }
 
+        $membership = $user->membership;
         if ($membership->tomorrow->isFuture()) {
-            return back()->with('error', 'Better Luck Next Time: ' . $user->membership->tomorrow->format('d-M-Y H:i A'));
+            return back()->with('error', 'Better Luck Next Time: ' . $user->membership->tomorrow->formatted(true));
         }
 
         DB::beginTransaction();
