@@ -49,16 +49,6 @@ class PartnerController extends Controller
             ['data' => 'email', 'name' => 'email', 'title' => 'Email'],
             ['data' => 'country', 'name' => 'country', 'title' => 'Country'],
             ['data' => 'city', 'name' => 'city', 'title' => 'City'],
-            Column::make('detail')
-                ->title('Detail')
-                ->searchable(false)
-                ->orderable(false)
-                ->render('function(){
-                    return `<a class="btn btn-sm btn-primary" href="/users/`+this.id+`/edit">Detail</a>`;
-                }')
-                ->footer('Detail')
-                ->exportable(false)
-                ->printable(false),
         ]);
 
         return view('user.partners.index', compact('html') + [
