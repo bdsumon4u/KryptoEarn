@@ -38,14 +38,14 @@
                         <a class="sidebar-link sidebar-title" href="#"><i data-feather="list"></i><span>Deposits</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="/deposits">All Deposits</a></li>
-                            <li><a href="">Gateways</a></li>
+                            <li><a href="/settings/gateway">Gateways</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="#"><i data-feather="list"></i><span>Withdraws</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="/withdraws">All Withdraws</a></li>
-                            <li><a href="">Gateways</a></li>
+                            <li><a href="/settings/gateway">Gateways</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/reports"><i data-feather="clock"> </i><span>Reports</span></a></li>

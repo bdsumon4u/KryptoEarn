@@ -77,16 +77,16 @@
                 <div id="navigation" class="navbar-nav ml-auto">
                     <ul class="navbar-nav mt-1">
                         <li class="nav-item animated" data-animation=fadeInDown data-animation-delay="1.2s">
-                            <a class=nav-link href="#about">About</a>
+                            <a class=nav-link href="{{ url('/#about') }}">About</a>
                         </li>
                         <li class="nav-item animated" data-animation=fadeInDown data-animation-delay="1.3s">
-                            <a class=nav-link href="#pricing">Pricing</a>
+                            <a class=nav-link href="{{ url('/#pricing') }}">Pricing</a>
                         </li>
                         <li class="nav-item animated" data-animation=fadeInDown data-animation-delay="1.4s">
-                            <a class=nav-link href="#faq">FAQS</a>
+                            <a class=nav-link href="{{ url('/#faq') }}">FAQS</a>
                         </li>
                         <li class="nav-item animated" data-animation=fadeInDown data-animation-delay="1.5s">
-                            <a class=nav-link href="#contact">Contact us</a>
+                            <a class=nav-link href="{{ url('/#contact') }}">Contact us</a>
                         </li>
                         <li class="nav-item animated" data-animation=fadeInDown data-animation-delay="1.6s">
                             <a class=nav-link href="/proofs">Proofs</a>
