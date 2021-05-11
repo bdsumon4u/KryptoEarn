@@ -57,6 +57,9 @@
                         </ul>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/supports"><i data-feather="box"> </i><span>Support Tickets</span></a></li>
+                    @if(config('telescope.enabled'))
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/telescope"><i data-feather="aperture"> </i><span>Telescope</span></a></li>
+                    @endif
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
