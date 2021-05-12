@@ -16,16 +16,17 @@
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="video-link" data-bs-toggle="tab" data-bs-target="#sectionC" role="tab" aria-selected="false">
+                                <a class="nav-link" id="video-link" href="/partners" aria-selected="false">
                                     <i class="icon-video-clapper"></i>VIA PARTNERS
-                                </button>
+                                </a>
                             </li>
                         </ul>
                     </div>
                     <div class="tab-content" id="top-tabContent">
                         <div class="tab-pane fade active show" id="sectionA" role="tabpanel" aria-labelledby="all-link">
                             <div class="row">
-                                <div class="col-xl-9 box-col-12"><h6> Automatic universal gateways </h6>
+                                <div class="col-xl-9 box-col-12">
+                                    <x-validation-errors />
                                     <div class="row">
                                         <div class="col-md-4 col-lg-5 col-xs-12 col-sm-6">
                                             <div class="card border shadow-sm">

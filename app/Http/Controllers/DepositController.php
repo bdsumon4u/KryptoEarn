@@ -78,6 +78,11 @@ class DepositController extends Controller
     {
         $data = $this->processData($request);
 
+        $min_amount = config('gateway.deposit.'.$data['gateway'].'.min_amount');
+        if ($data['amount'] < $min_amount) {
+            return back()->withErrors('Amount Must Be At Least $'.$min_amount);
+        }
+
         $deposit = $request->user()->deposits()->create($data + [
             'trx_id' => $this->trxId(),
             'payable' => $data['amount'] + $data['charge'],
@@ -168,7 +173,9 @@ class DepositController extends Controller
     private function processData(Request $request)
     {
         $data = $request->validate([
-            'amount' => 'required',
+            'amount' => [
+                'required',
+            ],
             'gateway' => 'required',
         ]);
 

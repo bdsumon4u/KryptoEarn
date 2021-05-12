@@ -24,7 +24,7 @@ class WalletToWalletTransfer extends Component
     ];
 
     public string $source;
-    public string $destination;
+    public ?string $destination;
     public $amount;
 
     public function rules()

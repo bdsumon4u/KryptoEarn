@@ -19,7 +19,7 @@ return [
 
     'deposit' => [
         'perfect_money' => [
-            'min_amount' => 1,
+            'min_amount' => 3,
             'max_amount' => 20000,
             'fixed_charge' => 0,
             'percent_charge' => 0,
