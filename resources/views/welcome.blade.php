@@ -638,7 +638,11 @@
                         </div>
                         <div class=row>
                             <div class="col-md-12 col-xl-8 mx-auto">
-                                <ul class="list-unstyled contact-info pb-5 mb-5">
+                                <x-validation-errors />
+                                @if($message = session()->get('success'))
+                                <div class="alert alert-success">{{ $message }}</div>
+                                @endif
+                                <ul class="list-unstyled contact-info">
                                     <li class=animated data-animation=fadeInUpShorter data-animation-delay="0.5s">
                                         <i class=ti-headphone></i>
                                         <span class=ml-1>+xxx xxxx xxx xxx</span>
@@ -648,11 +652,11 @@
                                         <span class=ml-1>mail@kryptoearn.com</span>
                                     </li>
                                 </ul>
-                                <form action="" method=post accept-charset=utf-8 class=text-center>
+                                <form action="/contact-mail" method=post accept-charset=utf-8 class=text-center>
                                     @csrf
-                                    <input type=text class="form-control animated" data-animation=fadeInUpShorter data-animation-delay="0.8s" name=name placeholder="Your Name" required />
-                                    <input type=text class="form-control animated" data-animation=fadeInUpShorter data-animation-delay="0.9s" name=email placeholder="Your Mail" required />
-                                    <textarea required rows=4 class="form-control animated" data-animation=fadeInUpShorter data-animation-delay="1.0s" name=message placeholder="Your Massage"></textarea>
+                                    <input type=text class="form-control animated" data-animation=fadeInUpShorter data-animation-delay="0.8s" name=name value="{{ old('name') }}" placeholder="Your Name" required />
+                                    <input type=text class="form-control animated" data-animation=fadeInUpShorter data-animation-delay="0.9s" name=email value="{{ old('email') }}" placeholder="Your Mail" required />
+                                    <textarea required rows=4 class="form-control animated" data-animation=fadeInUpShorter data-animation-delay="1.0s" name=message value="{{ old('message') }}" placeholder="Your Massage"></textarea>
                                     <button type=submit class="btn btn-lg btn-glow btn-gradient-orange btn-round animated" data-animation=fadeInUpShorter data-animation-delay="1.1s">Send Message</button>
                                 </form>
                             </div>

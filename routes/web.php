@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', \App\Http\Controllers\HomeController::class);
 Route::get('/proofs', \App\Http\Controllers\ProofController::class);
+Route::post('/contact-mail', \App\Http\Controllers\ContactController::class);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
