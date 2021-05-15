@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'crisp' => [
+        'website_id' => env('CRISP_WEBSITE_ID', '2d38cfb8-b173-48af-bbc6-3690a975633d'),
+    ],
+
 ];

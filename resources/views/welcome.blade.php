@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
     <link rel=stylesheet href="{{ asset('cryptoico/theme-assets/css/template-counter.min.css') }}">
     <link rel=stylesheet type="text/css" href="{{ asset('cryptoico/theme-assets/vendors/animate/animate.min.css') }}">
+
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="{{ config('services.crisp.website_id') }}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 <body class="1-column page-animated template-intro-video-default template-intro-video" data-menu-open=hover data-menu="">
 <!-- Preloader | Comment below code if you don't want preloader-->

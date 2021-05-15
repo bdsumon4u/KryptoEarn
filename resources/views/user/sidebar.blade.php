@@ -56,7 +56,6 @@
                             <li><a href="/withdraws/create">Withdraw Now</a></li>
                         </ul>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/support"><i data-feather="coffee"> </i><span>Support Ticket</span></a></li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/partners"><i data-feather="award"> </i><span>Our Partners</span></a></li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/referrals"><i data-feather="link"> </i><span>My Referrals</span></a></li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/partners/create"><i data-feather="globe"> </i><span>Partner With Us</span></a></li>
