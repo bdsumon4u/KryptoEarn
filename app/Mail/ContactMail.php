@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class ContactMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,7 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->to(config('mail.to.address'), config('mail.to.name'))
+        return $this->to(config('mail.contact.address'), config('mail.contact.name'))
             ->markdown('emails.contact-mail');
     }
 }
