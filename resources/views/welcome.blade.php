@@ -644,16 +644,6 @@
                                 @if($message = session()->get('success'))
                                 <div class="alert alert-success">{{ $message }}</div>
                                 @endif
-                                <ul class="list-unstyled contact-info">
-                                    <li class=animated data-animation=fadeInUpShorter data-animation-delay="0.5s">
-                                        <i class=ti-headphone></i>
-                                        <span class=ml-1>+xxx xxxx xxx xxx</span>
-                                    </li>
-                                    <li class=animated data-animation=fadeInUpShorter data-animation-delay="0.6s">
-                                        <i class=ti-email></i>
-                                        <span class=ml-1>mail@kryptoearn.com</span>
-                                    </li>
-                                </ul>
                                 <form action="/contact-mail" method=post accept-charset=utf-8 class=text-center>
                                     @csrf
                                     <input type=text class="form-control animated" data-animation=fadeInUpShorter data-animation-delay="0.8s" name=name value="{{ old('name') }}" placeholder="Your Name" required />
