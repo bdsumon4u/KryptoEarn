@@ -50,12 +50,6 @@
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/reports"><i data-feather="clock"> </i><span>Reports</span></a></li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/partners"><i data-feather="command"> </i><span>Partners</span></a></li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="cast"></i><span>Pages</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="/pages">All Pages</a></li>
-                            <li><a href="/pages/create">Create New</a></li>
-                        </ul>
-                    </li>
                     @if(config('telescope.enabled'))
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/telescope"><i data-feather="aperture"> </i><span>Telescope</span></a></li>
                     @endif
