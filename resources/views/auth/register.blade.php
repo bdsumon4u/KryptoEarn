@@ -65,6 +65,22 @@
                             </div>
 
                             <div class="form-group">
+                                <x-jet-label for="country" class="col-form-label" value="{{ __('Country') }}" />
+                                <select id="country" class="form-control" name="country">
+                                    {!! select_country(old('country')) !!}
+                                </select>
+                                <x-jet-input-error for="country" class="text-danger my-1" />
+                            </div>
+
+                            <div class="form-group">
+                                <x-jet-label for="timezone" class="col-form-label" value="{{ __('Timezone') }}" />
+                                <select id="timezone" class="form-control" name="timezone">
+                                    {!! select_timezone(old('timezone')) !!}
+                                </select>
+                                <x-jet-input-error for="timezone" class="text-danger my-1" />
+                            </div>
+
+                            <div class="form-group">
                                 <x-jet-label for="password" class="col-form-label" value="{{ __('Password') }}" />
                                 <x-jet-input id="password" class="form-control" type="password" name="password" placeholder="********" required autocomplete="new-password" />
                                 <x-jet-input-error for="password" class="text-danger my-1" />

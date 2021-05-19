@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
-
 if (!function_exists('admin_url')) {
     function admin_url(string $prefix = 'admin'): string
     {
@@ -11,11 +9,25 @@ if (!function_exists('admin_url')) {
     }
 }
 
-if (!function_exists('ip_info')) {
-    function ip_info(string $key = null, string $default = '')
+if (!function_exists('select_timezone')) {
+    function select_timezone($selected = null): string
     {
-        $array = Http::get('http://ip-api.com/json')->json();
-        return $key ? data_get($array, $key, $default) : $array;
+        return collect(timezone_identifiers_list())
+            ->map(function ($row) use ($selected) {
+                return '<option value="'.$row.'" ' . ($row === $selected ? 'selected' : '') . '>'.$row.'</option>';
+            })
+            ->implode("\n");
+    }
+}
+
+if (!function_exists('select_country')) {
+    function select_country($selected = null): string
+    {
+        return collect(config('country'))
+            ->map(function ($row) use ($selected) {
+                return '<option value="'.$row.'" ' . ($row === $selected ? 'selected' : '') . '>'.$row.'</option>';
+            })
+            ->implode("\n");
     }
 }
 
