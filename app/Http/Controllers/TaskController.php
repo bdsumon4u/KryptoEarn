@@ -65,7 +65,7 @@ class TaskController extends Controller
         } else {
             $membership->update([
                 'task_completed' => 0,
-                'tomorrow' => now()->addMinutes(5),
+                'tomorrow' => now()->addDay(),
             ]);
         }
         DB::commit();
