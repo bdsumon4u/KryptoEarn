@@ -10,7 +10,7 @@ class Withdraw extends Model
     use HasFactory;
 
     protected $fillable = [
-        'trx_id', 'amount', 'gateway', 'charge', 'receivable',
+        'trx_id', 'amount', 'gateway', 'charge', 'receivable', 'status',
     ];
 
     public function setAmountAttribute($amount)
@@ -38,6 +38,16 @@ class Withdraw extends Model
     public function getReceivableAttribute($amount)
     {
         return $amount / 100;
+    }
+
+    public function getGatewayNameAttribute()
+    {
+        return ucwords(str_replace('-', ' ', $this->gateway));
+    }
+
+    public function getGatewayAddressAttribute()
+    {
+        return $this->user->extra['gateway']['addresses'][str_replace('-', '_', $this->gateway)] ?? null;
     }
 
     public function user()

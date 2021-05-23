@@ -18,6 +18,12 @@ class WithdrawController extends Controller
      */
     public function index(Builder $builder)
     {
+        Withdraw::query()
+            ->with('user')
+            ->where('status', 'pending')
+            ->get()
+            ->each(fn ($withdraw) => $withdraw->user->earningPocket()->balanceFloat < $withdraw->amount ? $withdraw->delete() : null);
+
         if (request()->ajax()) {
             return DataTables::of(Withdraw::query())->toJson();
         }
@@ -53,6 +59,21 @@ class WithdrawController extends Controller
                 ->footer('Status')
                 ->exportable(true)
                 ->printable(true),
+            Column::make('actions')
+                ->title('Actions')
+                ->searchable(false)
+                ->orderable(false)
+                ->render('function() {
+                    return this.status === `pending` ? `<a class="btn btn-success btn-sm w-100" href="/withdraws/${this.id}/edit">Edit</a>` : null;
+                }')
+                ->footer('Actions')
+                ->exportable(false)
+                ->printable(false),
+        ])->parameters([
+            'order' => [
+                0, // here is the column number
+                'desc'
+            ],
         ]);
 
         return view('admin.withdraws.index', compact('html'));
@@ -98,7 +119,9 @@ class WithdrawController extends Controller
      */
     public function edit(Withdraw $withdraw)
     {
-        //
+        $withdraw = $withdraw->load('user');
+        $balance = $withdraw->user->earningPocket()->balanceFloat;
+        return view('admin.withdraws.edit', compact('withdraw', 'balance'));
     }
 
     /**
@@ -110,7 +133,17 @@ class WithdrawController extends Controller
      */
     public function update(Request $request, Withdraw $withdraw)
     {
-        //
+        if (($user = $withdraw->user)->earningPocket()->balanceFloat < $withdraw->amount) {
+            return back()->with('error', 'Withdraw Amount Can\'t Be Greater Than Your Earning Balance.');
+        }
+
+        $user->earningPocket()->withdrawFloat($withdraw->amount, [
+            'name' => 'Withdraw Via ' . $withdraw->gatewayName,
+        ]);
+
+        $withdraw->update(['status' => 'completed']);
+
+        return redirect()->action([static::class, 'index'])->with('success', 'Withdraw Complete.');
     }
 
     /**
@@ -121,6 +154,8 @@ class WithdrawController extends Controller
      */
     public function destroy(Withdraw $withdraw)
     {
-        //
+        $withdraw->delete();
+
+        return back()->with('success', 'Withdraw Request Deleted.');
     }
 }

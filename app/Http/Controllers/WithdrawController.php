@@ -100,12 +100,20 @@ class WithdrawController extends Controller
             return back()->with('error', 'You\'ve Updated Your Payment Info Recently. Withdraw Request Can\'t Be Taken.');
         }
 
-        $withdraw = $user->withdraws()->create($data + [
+        if ($user->earningPocket()->balanceFloat < $user->membership->plan->minimum_withdraw) {
+            return back()->with('error', 'Insufficient Balance.');
+        }
+
+        if ($user->earningPocket()->balanceFloat < $data['amount']) {
+            $data['amount'] = $user->earningPocket()->balanceFloat;
+        }
+
+        $user->withdraws()->create($data + [
             'trx_id' => $this->trxId(),
             'receivable' => $data['amount'] - $data['charge'],
         ]);
 
-        return redirect()->action([static::class, 'index'], $withdraw)->with('success', 'Received Withdrawal Request.');
+        return redirect()->action([static::class, 'index'])->with('success', 'Received Withdrawal Request.');
     }
 
     /**
