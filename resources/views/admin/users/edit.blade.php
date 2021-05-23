@@ -56,7 +56,7 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-control-label font-weight-bold">Address </label>
+                                    <label class="form-control-label font-weight-bold">Address <span class="text-danger">*</span></label>
                                     <input class="form-control" type="text" name="address" value="{{ old('address', $user->address) }}">
                                     <small class="form-text text-muted"><i class="las la-info-circle"></i> House number,
                                         street address </small>
@@ -65,21 +65,21 @@
 
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-control-label font-weight-bold">City </label>
+                                    <label class="form-control-label font-weight-bold">City <span class="text-danger">*</span></label>
                                     <input class="form-control" type="text" name="city" value="{{ old('city', $user->city) }}">
                                 </div>
                             </div>
 
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-control-label font-weight-bold">Country </label>
+                                    <label class="form-control-label font-weight-bold">Country <span class="text-danger">*</span></label>
                                     <input class="form-control" type="text" name="country" value="{{ old('country', $user->country) }}">
                                 </div>
                             </div>
 
                             <div class="col-xl-3 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-control-label font-weight-bold">Timezone</label>
+                                    <label class="form-control-label font-weight-bold">Timezone <span class="text-danger">*</span></label>
                                     <input class="form-control" type="text" name="timezone" value="{{ old('timezone', $user->timezone) }}">
                                 </div>
                             </div>

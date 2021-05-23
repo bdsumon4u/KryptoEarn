@@ -59,6 +59,12 @@
                             </div>
 
                             <div class="form-group">
+                                <x-jet-label for="phone" class="col-form-label" value="{{ __('Phone Number') }}" />
+                                <x-jet-input id="phone" class="form-control" type="text" name="phone" :value="old('phone')" required />
+                                <x-jet-input-error for="phone" class="text-danger my-1" />
+                            </div>
+
+                            <div class="form-group">
                                 <x-jet-label for="referrer" class="col-form-label" value="{{ __('Referrer') }}" />
                                 <x-jet-input id="referrer" class="form-control" type="text" name="referrer" :value="old('referrer', request('ref', 'No Referrer'))" required readonly />
                                 <x-jet-input-error for="referrer" class="text-danger my-1" />

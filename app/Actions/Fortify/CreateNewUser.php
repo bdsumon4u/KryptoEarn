@@ -26,6 +26,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:35'],
             'email' => ['required', 'string', 'email', 'max:85', 'unique:users'],
             'username' => ['required', 'string', 'max:20', 'unique:users'],
+            'phone' => ['required', 'string', 'max:20', 'unique:users'],
             'referrer' => ['nullable', 'string', 'max:20'],
             'country' => ['required', 'string', 'max:60'],
             'timezone' => ['required', 'string', 'max:60'],
