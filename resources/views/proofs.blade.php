@@ -140,6 +140,8 @@
                                         <thead>
                                         <tr>
                                             <th>Username</th>
+                                            <th>Country</th>
+                                            <th>Phone</th>
                                             <th>Amount</th>
                                             <th>Gateway</th>
                                             <th>Time</th>
@@ -149,8 +151,10 @@
                                         @forelse($withdraws as $withdraw)
                                             <tr>
                                                 <td>{{ $withdraw->user->username }}</td>
+                                                <td>{{ $withdraw->user->country }}</td>
+                                                <td>{{ $withdraw->user->phone }}</td>
                                                 <td>${{ $withdraw->amount }}</td>
-                                                <td>{{ ucwords(str_replace('-', ' ', $withdraw->gateway)) }}</td>
+                                                <td>{{ $withdraw->gatewayName }}</td>
                                                 <td>{!! $withdraw->updated_at->diffForHumans() !!}</td>
                                             </tr>
                                         @empty
