@@ -180,7 +180,7 @@
                                     <h4 class=title>More!</h4>
                                     Think of it. How many people
                                     are stuck solving captchas right now? Hundreds? Thousands? Yes, probably millions!
-                                    You have been there too at one time.<br> We at Entrycaptcha recognized this
+                                    You have been there too at one time.<br> We at {{ config('app.name') }} recognized this
                                     opportunity.
                                     Recognizing and typing data is a simple and interesting way to make extra income
                                     online. Solving captchas in this case.<br> So for all the captchas/images that
@@ -235,6 +235,7 @@
                                             <li>Min. Total Earning: <span class=unlimited>${{ $plan->validity * $plan->task_limit * $plan->earning_per_task / 100 }}</span></li>
                                             <li>Instant Payout: <span class=unlimited>{{ $plan->instant_payouts ? 'Enabled' : 'Disabled' }}</span></li>
                                             <li>Minimum Withdraw: <span class=unlimited>${{ $plan->minimum_withdraw }}</span></li>
+                                            <li>Payout Days: <span class=unlimited>{{ $plan->payout_days }}</span></li>
                                         </ul>
                                         <!-- Contratar / Comprar -->
                                         <div class=table-buy>
@@ -261,7 +262,8 @@
                                 <span class=medium></span>
                                 <span class=small></span>
                             </div>
-                            <p class="content-desc animated" data-animation=jello data-animation-delay="0.4s">Review more about Entrycaptcha, account set up, and security features.</p>
+                            <p class="content-desc animated" data-animation=jello data-animation-delay="0.4s">Review more about
+                                {{ config('app.name') }}, account set up, and security features.</p>
                         </div>
                         <div class=row>
                             <div class=col>
@@ -313,8 +315,7 @@
                                                     <div class=card-body>
                                                         First, create and verify your account. After
                                                         that, log into you account and click on the Earn link on the
-                                                        side menu. You will be presented with the video adverts to
-                                                        watch. Watch at least 5 seconds of any video to get paid.
+                                                        side menu. You will be presented with some captcha to solve. Solve captcha to get paid.
                                                     </div>
                                                 </div>
                                             </div>
@@ -326,13 +327,13 @@
                                                             data-target="#collapseThree" aria-expanded=false
                                                             aria-controls=collapseThree
                                                         >
-                                                            <span class=icon></span>When do I get paid?
+                                                            <span class=icon></span>How can I get paid?
                                                         </a>
                                                     </h5>
                                                 </div>
                                                 <div id=collapseThree class=collapse aria-labelledby=headingThree data-parent="#general-accordion">
                                                     <div class=card-body>
-                                                        Payouts are on Tuesday and Friday
+                                                        You can get paid via Perfect Money, Bitcoin & Payeer.
                                                     </div>
                                                 </div>
                                             </div>
@@ -412,7 +413,7 @@
                                                             data-target="#tokenCollapseOne" aria-expanded=true
                                                             aria-controls=tokenCollapseOne
                                                         >
-                                                            <span class=icon></span>What deposit methods are availabe?
+                                                            <span class=icon></span>What deposit methods are available?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -468,7 +469,7 @@
                                                     </h5>
                                                 </div>
                                                 <div id=clientCollapseOne class="collapse show" aria-labelledby=clientHeadingOne data-parent="#client-accordion">
-                                                    <div class=card-body>Payouts are on Tuesday and Friday</div>
+                                                    <div class=card-body>Payout days are mentioned with your plan.</div>
                                                 </div>
                                             </div>
                                             <div class=card>
@@ -520,12 +521,12 @@
                                                             aria-controls=legalCollapseOne
                                                         >
                                                             <span class=icon></span>
-                                                            What is a PIN?
+                                                            What is a Password?
                                                         </a>
                                                     </h5>
                                                 </div>
                                                 <div id=legalCollapseOne class="collapse show" aria-labelledby=legalHeadingOne data-parent="#legal-accordion">
-                                                    <div class=card-body> It is a four digit number that is used tosafeguard your transactions.</div>
+                                                    <div class=card-body>It is a word of minimum 8 character length that is used to safeguard your transactions.</div>
                                                 </div>
                                             </div>
                                             <div class=card>
@@ -536,15 +537,15 @@
                                                             data-target="#legalCollapseTwo" aria-expanded=false
                                                             aria-controls=legalCollapseTwo
                                                         >
-                                                            <span class=icon></span>I forgot my PIN/Password, what do I do?
+                                                            <span class=icon></span>I forgot my Password, what do I do?
                                                         </a>
                                                     </h5>
                                                 </div>
                                                 <div id=legalCollapseTwo class=collapse aria-labelledby=legalHeadingTwo data-parent="#legal-accordion">
                                                     <div class=card-body>
-                                                        Do not panick. Click on the Forgot Password
+                                                        Do not panic. Click on the Forgot Password
                                                         link in the login page. We will email you a link to reset the
-                                                        PIN/Password.
+                                                        Password.
                                                     </div>
                                                 </div>
                                             </div>
@@ -601,7 +602,7 @@
                             </div>
                             <div class="col-md-12 col-lg-4 mb-sm-5 mb-xs-5">
                                 <div class=testimonial-card>
-                                    <div class=test-text>One word: perfect! Entrycaptcha has helped me actualize my financial freedom. It has been my most trusted stream of income.</div>
+                                    <div class=test-text>One word: perfect! {{ config('app.name') }} has helped me actualize my financial freedom. It has been my most trusted stream of income.</div>
                                     <div class="test-footer f2">
                                         <div class="test-image user-2"></div>
                                         <h4 class='test-person'>Raphael Nick</h4>
