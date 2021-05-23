@@ -10,7 +10,7 @@ class Deposit extends Model
     use HasFactory;
 
     protected $fillable = [
-        'trx_id', 'amount', 'gateway', 'charge', 'payable',
+        'trx_id', 'amount', 'gateway', 'charge', 'payable', 'status',
     ];
 
     public function setAmountAttribute($amount)

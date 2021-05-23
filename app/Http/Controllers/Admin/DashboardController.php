@@ -32,10 +32,10 @@ class DashboardController extends Controller
 
         return view('admin.dashboard', compact('tab', 'transactionReport', 'credits', 'debits', 'remains') + [
             'total_deposits' => cache()->remember('deposits:total', 5 * 60, function () {
-                return Deposit::sum('amount') / 100;
+                return Deposit::whereStatus('completed')->sum('amount') / 100;
             }),
             'total_withdraws' => cache()->remember('withdraws:total', 5 * 60, function () {
-                return Withdraw::sum('amount') / 100;
+                return Withdraw::whereStatus('completed')->sum('amount') / 100;
             }),
             'total_users' => cache()->remember('users:total', 5 * 60, function () {
                 return User::count();
@@ -49,10 +49,10 @@ class DashboardController extends Controller
     private function transactionReport($tab)
     {
         $this->credits = cache()->remember('credits:'.$tab, 5 * 60, function () use ($tab) {
-            return $this->getTransactionForTab($tab, Deposit::query());
+            return $this->getTransactionForTab($tab, Deposit::whereStatus('completed'));
         });
         $this->debits = cache()->remember('debits:'.$tab, 5 * 60, function () use ($tab) {
-            return $this->getTransactionForTab($tab, Withdraw::query());
+            return $this->getTransactionForTab($tab, Withdraw::whereStatus('completed'));
         });
 
         $transactionReport = new TransactionReport();
