@@ -15,16 +15,18 @@ class RedeemVoucherController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $user = $request->user();
         if ($request->isMethod('GET')) {
-            return view('user.vouchers.redeem', [
-                'vouchers' => $request->user()->vouchers()->with('owner')->get(),
-            ]);
+            return $user->is_partner
+                ? back()->with('error', 'Partner/Agent Can\'t Redeem Vouchers.')
+                :view('user.vouchers.redeem', [
+                    'vouchers' => $user->vouchers()->with('owner')->get(),
+                ]);
         }
 
         $data = $request->validate([
             'code' => 'required|size:12',
         ]);
-        $user = $request->user();
 
         $voucher = $user->vouchers()->where($data)->with('owner')->firstOrFail();
 
