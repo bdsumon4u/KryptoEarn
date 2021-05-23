@@ -25,12 +25,22 @@ class WithdrawController extends Controller
             ->each(fn ($withdraw) => $withdraw->user->earningPocket()->balanceFloat < $withdraw->amount ? $withdraw->delete() : null);
 
         if (request()->ajax()) {
-            return DataTables::of(Withdraw::query())->toJson();
+            return DataTables::of(Withdraw::query()->with('user'))->toJson();
         }
 
         $html = $builder->columns([
             ['data' => 'id', 'name' => 'id', 'title' => 'Id'],
             ['data' => 'trx_id', 'name' => 'trx_id', 'title' => 'Trx Id'],
+            Column::make('type')
+                ->title('Type')
+                ->searchable(false)
+                ->orderable(false)
+                ->render('function(){
+                    return this.user.is_partner ? `Partner` : `Normal`;
+                }')
+                ->footer('Type')
+                ->exportable(true)
+                ->printable(true),
             Column::make('gateway')
                 ->title('Gateway')
                 ->searchable(true)
