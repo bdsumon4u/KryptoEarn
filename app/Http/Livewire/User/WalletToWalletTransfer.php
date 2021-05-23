@@ -9,17 +9,15 @@ use Livewire\Component;
 class WalletToWalletTransfer extends Component
 {
     public array $wallets = [
-        'earning' => [],
-        'purchased' => [
-            'earning',
-            'commission',
-            'bonus',
+        'earning' => [
+            'purchased'
         ],
+        'purchased' => [],
         'commission' => [
-            'earning',
+            'purchased',
         ],
         'bonus' => [
-            'earning',
+            'purchased',
         ],
     ];
 

@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class UserToUserTransfer extends Component
 {
-    public array $wallets = ['purchased', 'commission'];
+    public array $wallets = ['purchased'];
     public string $destination = 'purchased';
 
     public string $source;
@@ -21,7 +21,7 @@ class UserToUserTransfer extends Component
         return [
             'source' => ['required', Rule::in($this->wallets)],
             'username' => ['required', 'string'],
-            'amount' => ['required', 'numeric'],
+            'amount' => ['required', 'numeric', 'min:'.config('others.minimum_user_to_user_transfer', 10)],
         ];
     }
 
