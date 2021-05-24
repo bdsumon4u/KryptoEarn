@@ -33,7 +33,13 @@
                             <li><a href="/plans/create">Create New</a></li>
                         </ul>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/users"><i data-feather="users"> </i><span>Users</span></a></li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Users</span></a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="/users">All Users</a></li>
+                            <li><a href="/users?type=blocked">Blocked</a></li>
+                        </ul>
+                    </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="#"><i data-feather="list"></i><span>Deposits</span></a>
                         <ul class="sidebar-submenu">

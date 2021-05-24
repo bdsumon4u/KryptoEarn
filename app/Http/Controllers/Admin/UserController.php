@@ -20,7 +20,9 @@ class UserController extends Controller
     public function index(Builder $builder)
     {
         if (request()->ajax()) {
-            return DataTables::of(User::query())->toJson();
+            return DataTables::of(User::when(request('type') === 'blocked', function ($query) {
+                $query->where('extra->is_blocked', true);
+            }))->toJson();
         }
 
         $html = $builder->columns([
@@ -40,14 +42,18 @@ class UserController extends Controller
             ['data' => 'email', 'name' => 'email', 'title' => 'Email'],
             ['data' => 'country', 'name' => 'country', 'title' => 'Country'],
             ['data' => 'city', 'name' => 'city', 'title' => 'City'],
-            Column::make('detail')
-                ->title('Detail')
+            Column::make('actions')
+                ->title('Actions')
                 ->searchable(false)
                 ->orderable(false)
                 ->render('function(){
-                    return `<a class="btn btn-sm btn-primary" href="/users/`+this.id+`/edit">Detail</a>`;
+                    var is_blocked = this.extra && this.extra.is_blocked;
+                    return `<form action="/users/${this.id}/block" method="get">
+                        <a class="btn btn-sm btn-primary" href="/users/`+this.id+`/edit">Detail</a>
+                        <button type="submit" class="btn btn-sm ${is_blocked ? \'btn-success\' : \'btn-danger\'}">${is_blocked ? "Unblock" : "Block"}</button>
+                    </form>`;
                 }')
-                ->footer('Detail')
+                ->footer('Actions')
                 ->exportable(false)
                 ->printable(false),
         ]);
