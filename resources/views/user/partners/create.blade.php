@@ -30,7 +30,7 @@
                 <div class="job-description"><h6>Perks</h6>
                     <ul>
                         <li>Competitive pay.</li>
-                        <li>Earn a 15% commission from selling voucher codes.</li>
+                        <li>Earn a {{ config('others.voucher_selling_commission', 15) }}% commission from selling voucher codes.</li>
                         <li>Periodic bonuses based on performance.</li>
                         <li>Priority customer support.</li>
                     </ul>
