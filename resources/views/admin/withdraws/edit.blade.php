@@ -67,6 +67,8 @@
                     <div class="card-footer text-end p-3">
                         @if($balance < $withdraw->amount)
                             <button class="btn btn-danger">DELETE</button>
+                        @elseif($withdraw->status === 'completed')
+                            <a href="{{ route('withdraws.index') }}" class="btn btn-warning">Back</a>
                         @else
                             <button class="btn btn-success">Paid</button>
                         @endif

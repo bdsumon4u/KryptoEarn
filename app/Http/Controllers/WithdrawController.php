@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WithdrawRequestMail;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
@@ -108,10 +109,12 @@ class WithdrawController extends Controller
             $data['amount'] = $user->earningPocket()->balanceFloat;
         }
 
-        $user->withdraws()->create($data + [
+        $withdraw = $user->withdraws()->create($data + [
             'trx_id' => $this->trxId(),
             'receivable' => $data['amount'] - $data['charge'],
         ]);
+
+        Mail::send(new WithdrawRequestMail($withdraw->refresh()));
 
         return redirect()->action([static::class, 'index'])->with('success', 'Received Withdrawal Request.');
     }
