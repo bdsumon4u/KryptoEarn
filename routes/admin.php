@@ -23,6 +23,7 @@ Route::domain(admin_url())->group(function () {
         Route::resource('/deposits', \App\Http\Controllers\Admin\DepositController::class);
         Route::resource('/withdraws', \App\Http\Controllers\Admin\WithdrawController::class);
         Route::resource('/partners', \App\Http\Controllers\Admin\PartnerController::class)->only(['index', 'update']);
+        Route::resource('/notices', \App\Http\Controllers\Admin\NoticeController::class);
         Route::get('/reports', \App\Http\Controllers\Admin\ReportController::class)->name('reports');
         Route::view('/settings/{tab?}', 'admin.settings')->name('settings');
     });

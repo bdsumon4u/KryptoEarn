@@ -94,6 +94,13 @@
             </div>
             <div class="nav-right col-8 pull-right right-header p-0">
                 <ul class="nav-menus m-0">
+                    <li class="onhover-dropdown">
+                        <a data-bs-toggle="modal" data-bs-target="#noticeModal" class="notification-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
+                            </svg>
+                            <span class="badge badge-pill badge-secondary">{{ $notice->exists ? 1 : 0 }}</span>
+                        </a>
+                    </li>
                     <li class="px-2">
                         <div class="mode"><i class="fa fa-moon-o"></i></div>
                     </li>
@@ -152,6 +159,24 @@
             </div>
             <!-- Container-fluid Ends-->
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="noticeModal" tabindex="-1" aria-labelledby="noticeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ $notice->title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Dear {{ request()->user()->name }},<br><br>
+                        {!! $notice->exists ? nl2br($notice->content) : 'You\'ve No Notice.' !!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- footer start-->
         <footer class="footer">
             <div class="container-fluid">
@@ -184,6 +209,20 @@
 <!-- Theme js-->
 <script src="{{ asset('cuba/assets/js/script.js') }}"></script>
 <!-- login js-->
+@if($notice->exists)
+    <script>
+        if (!sessionStorage.getItem('read-notice')) {
+            var target = document.getElementById("noticeModal"),
+                noticeModal = new bootstrap.Modal(target, {});
+            document.onreadystatechange = function () {
+                noticeModal.show();
+            };
+            target.addEventListener('shown.bs.modal', function () {
+                sessionStorage.setItem('read-notice', 'yes');
+            });
+        }
+    </script>
+@endif
 <!-- Plugin used-->
 @stack('scripts')
 </body>

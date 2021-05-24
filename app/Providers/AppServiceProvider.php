@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Notice;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Carbon;
@@ -34,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.user', function ($view) {
+            $view->with('notice', Notice::query()->latest('id')->firstOrNew());
+        });
     }
 }
