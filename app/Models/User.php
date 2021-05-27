@@ -151,7 +151,7 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
 
     public function refPlanUpgradeCommission($amount)
     {
-        if (!$this->valid_till->isFuture()) {
+        if (!$this->valid_till->isFuture() || $this->is_blocked) {
             return 0;
         }
 
@@ -161,7 +161,7 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
 
     public function refTaskCompleteCommission($amount)
     {
-        if (!$this->valid_till->isFuture()) {
+        if (!$this->valid_till->isFuture() || $this->is_blocked) {
             return 0;
         }
 
@@ -200,6 +200,11 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
     public function getIsPartnerAttribute()
     {
         return $this->partner()->approved()->exists();
+    }
+
+    public function getIsBlockedAttribute()
+    {
+        return ($extra = $this->extra) && data_get($extra, 'is_blocked', false);
     }
 
     public function vouchers() # Not Owned.

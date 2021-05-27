@@ -16,7 +16,7 @@ class NotBlockedUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (($extra = $request->user()->extra) && data_get($extra, 'is_blocked', false)) {
+        if ($request->user()->is_blocked) {
             return back()->with('error', 'Your Account Has Been Blocked.');
         }
         return $next($request);
