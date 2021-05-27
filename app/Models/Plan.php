@@ -56,4 +56,9 @@ class Plan extends Model implements Product
     {
         return (string)$this->getKey();
     }
+
+    public function getPayoutDaysAttribute()
+    {
+        return 'Mon, Fri.';
+    }
 }

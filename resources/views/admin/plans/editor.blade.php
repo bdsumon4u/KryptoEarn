@@ -124,12 +124,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="mb-3">
-                                    <label class="col-form-label">Payout Days</label>
-                                    <input class="form-control" type="text" placeholder="Ex: Mon, Fri, ..." name="payout_days" value="{{ old('payout_days', $plan->payout_days) }}">
-                                </div>
-                            </div>
+{{--                            <div class="col-md-5">--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <label class="col-form-label">Payout Days</label>--}}
+{{--                                    <input class="form-control" type="text" placeholder="Ex: Mon, Fri, ..." name="payout_days" value="{{ old('payout_days', $plan->payout_days) }}">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                     <div class="card-footer text-end p-3">
