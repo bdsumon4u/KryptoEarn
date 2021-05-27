@@ -29,8 +29,8 @@ class ReportController extends Controller
             }]);
 
             return DataTables::of($query)
-                ->addColumn('user', function ($row) {
-                    return $row->payable->name;
+                ->addColumn('username', function ($row) {
+                    return $row->payable->username;
                 })
                 ->addColumn('name', function ($row) {
                     return $row->meta['name'];
@@ -47,7 +47,7 @@ class ReportController extends Controller
 
         $html = $builder->columns([
             ['data' => 'id', 'name' => 'id', 'title' => 'Id'],
-            ['data' => 'user', 'name' => 'user', 'title' => 'User'],
+            ['data' => 'username', 'name' => 'username', 'title' => 'User'],
             ['data' => 'name', 'name' => 'name', 'title' => 'Name'],
             ['data' => 'amount', 'name' => 'amount', 'title' => 'Amount'],
             ['data' => 'datetime', 'name' => 'datetime', 'title' => 'DateTime'],

@@ -42,7 +42,7 @@ class PartnerController extends Controller
                 ->footer('Photo')
                 ->exportable(false)
                 ->printable(false),
-            ['data' => 'name', 'name' => 'name', 'title' => 'Name'],
+            ['data' => 'username', 'name' => 'username', 'title' => 'Username'],
             ['data' => 'membership.plan.name', 'title' => 'Plan'],
             Column::make('referred_count')
                 ->title('Ref. Count')

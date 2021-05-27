@@ -37,7 +37,7 @@ class UserController extends Controller
                 ->footer('Photo')
                 ->exportable(false)
                 ->printable(false),
-            ['data' => 'name', 'name' => 'name', 'title' => 'Name'],
+            ['data' => 'username', 'name' => 'username', 'title' => 'Username'],
             ['data' => 'phone', 'name' => 'phone', 'title' => 'Phone'],
             ['data' => 'email', 'name' => 'email', 'title' => 'Email'],
             ['data' => 'country', 'name' => 'country', 'title' => 'Country'],
