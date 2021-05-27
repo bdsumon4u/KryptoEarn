@@ -134,7 +134,7 @@ class DepositController extends Controller
 
         $gatewayDir = implode('', array_map(function ($part) {
             return ucfirst($part);
-        }, explode('-', $deposit->gateway)));
+        }, explode('_', $deposit->gateway)));
 
         $gatewayNsp = '\\App\\Http\\Gateways\\'.$gatewayDir.'\\ProcessController';
 
