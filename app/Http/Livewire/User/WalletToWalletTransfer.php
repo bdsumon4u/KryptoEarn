@@ -22,7 +22,7 @@ class WalletToWalletTransfer extends Component
     ];
 
     public string $source;
-    public ?string $destination;
+    public string $destination;
     public $amount;
 
     public function rules()
@@ -37,6 +37,7 @@ class WalletToWalletTransfer extends Component
     public function mount()
     {
         $this->source = array_key_first($this->wallets);
+        $this->destination = data_get($this->wallets[$this->source], 0);
     }
 
     public function updatedSource(string $source)
