@@ -135,7 +135,7 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
             'tomorrow' => now(),
             'task_limit' => $plan->task_limit,
             'type' => $plan->price ? 'premium' : 'free',
-            'valid_till' => $this->valid_till->addDays($plan->validity),
+            'valid_till' => now()->addDays($plan->validity),
         ]);
     }
 

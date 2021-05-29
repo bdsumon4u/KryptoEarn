@@ -45,9 +45,11 @@ class PlanController extends Controller
 
         DB::beginTransaction();
         $purchased = $user->purchasedPocket()->pay($plan);
+        info('purchased');
         throw_unless($purchased, "Error While Purchasing Plan #" . $plan->name);
 
-        if (!$request->user()->purchase($plan)) {
+        if (!$user->purchase($plan)) {
+            info('broll');
             DB::rollBack();
             return back()->with('error', 'Error While Purchasing '.$plan->name.' Plan.');
         }

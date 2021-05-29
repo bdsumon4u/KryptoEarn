@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Bavix\Wallet\Interfaces\Customer;
 use Bavix\Wallet\Interfaces\Product;
+use Bavix\Wallet\Models\Wallet;
 use Bavix\Wallet\Traits\HasWalletFloat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,7 +42,15 @@ class Plan extends Model implements Product
 
     public function getAmountProduct(Customer $customer)
     {
-        return $this->price * 100;
+        if ($customer instanceof Wallet) {
+            $customer = $customer->holder;
+        }
+
+        $customer = $customer->load('membership.plan');
+        $currentPlan = $customer->membership->plan;
+        $pricePerDay = $currentPlan->price / $currentPlan->validity;
+        $leftDays = $customer->valid_till->diffInDays(now());
+        return ($this->price - $leftDays * $pricePerDay) * 100;
     }
 
     public function getMetaProduct(): ?array
