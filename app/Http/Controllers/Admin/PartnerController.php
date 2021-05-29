@@ -58,17 +58,20 @@ class PartnerController extends Controller
             ['data' => 'email', 'name' => 'email', 'title' => 'Email'],
             ['data' => 'country', 'name' => 'country', 'title' => 'Country'],
             ['data' => 'partner.status', 'name' => 'partner.status', 'title' => 'Status'],
-            ['data' => 'city', 'name' => 'city', 'title' => 'City'],Column::make('action')
-                ->title('Action')
+            ['data' => 'city', 'name' => 'city', 'title' => 'City'],
+            Column::make('actions')
+                ->title('Actions')
                 ->searchable(false)
                 ->orderable(false)
                 ->render('function(){
-                    if (this.partner.status === `approved`) {
-                        return ``;
-                    }
-                    return `<button class="btn btn-sm btn-success btn-approve" type="button" data-id="${this.partner.id}">Approve</button>`;
+                    var is_blocked = this.extra && this.extra.is_blocked;
+                    return `<form action="/users/${this.id}/block" method="get">
+                        `+(this.partner.status !== `approved` ? `<button class="btn btn-sm btn-success btn-approve" type="button" data-id="${this.partner.id}">Approve</button>`: ``)+`
+                        <a class="btn btn-sm btn-primary" href="/users/`+this.id+`/edit">Edit</a>
+                        <button type="submit" class="btn btn-sm ${is_blocked ? \'btn-success\' : \'btn-danger\'}">${is_blocked ? "Unblock" : "Block"}</button>
+                    </form>`;
                 }')
-                ->footer('Action')
+                ->footer('Actions')
                 ->exportable(false)
                 ->printable(false),
         ]);
