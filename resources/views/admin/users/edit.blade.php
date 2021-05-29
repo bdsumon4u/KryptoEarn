@@ -1,4 +1,7 @@
 <x-admin-layout>
+    @push('styles')
+        @livewireStyles
+    @endpush
     <div class="row mb-none-30">
         <div class="col-xl-3 col-lg-5 col-md-5 mb-30">
 
@@ -15,6 +18,8 @@
                     </div>
                 </div>
             </div>
+
+            <livewire:admin.add-fund :user="$user" />
         </div>
 
         <div class="col-xl-9 col-lg-7 col-md-7 mb-30">
@@ -102,6 +107,11 @@
                     </form>
                 </div>
             </div>
+
+            <x-balance-log :user="$user" />
         </div>
     </div>
+    @push('scripts')
+        @livewireScripts
+    @endpush
 </x-admin-layout>

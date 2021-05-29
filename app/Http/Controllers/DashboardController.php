@@ -23,13 +23,9 @@ class DashboardController extends Controller
         $user = $request->user()->load(['wallets']);
         $referral_count = $user->referred()->count();
 
-        $last_week_transactions = Cache::remember('user-'.$user->id.':last_week:transactions', 5 * 60, function () {
-            return request()->user()->transactions()->with('wallet')->where('created_at', '>', now()->subWeek())->latest()->get();
-        });
-
-        $transactions = $last_week_transactions->take(5);
+        $transactions = last_week_user_transactions($user)->take(5);
         $directReferrals = $this->directReferrals($user);
-        $walletReport = $this->walletReport($last_week_transactions);
+        $walletReport = $this->walletReport(last_week_user_transactions($user));
         $balanceDivision = $this->balanceDivision($user);
 
         return view('user.dashboard', compact('user', 'referral_count', 'directReferrals', 'walletReport', 'transactions', 'balanceDivision'));

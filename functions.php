@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
+
 if (!function_exists('admin_url')) {
     function admin_url(string $prefix = 'admin'): string
     {
@@ -39,5 +41,13 @@ if (!function_exists('setting')) {
             });
 
         return resolve($setting)->$name ?: $default;
+    }
+}
+
+if (!function_exists('last_week_user_transactions')) {
+    function last_week_user_transactions(\App\Models\User $user) {
+        return Cache::remember('user-'.$user->id.':last_week:transactions', 5 * 60, function () use ($user) {
+            return $user->transactions()->with('wallet')->where('created_at', '>', now()->subWeek())->latest()->get();
+        });
     }
 }
