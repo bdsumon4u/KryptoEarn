@@ -35,6 +35,8 @@ class PlanController extends Controller
     {
         $user = $request->user();
 
+        $commission = !config('others.refer_commission_on_first_upgrade') || $user->membership->type === 'free';
+
         if (!$plan->price && $user->purchasedPocket()->paid($plan)) {
             return back()->with('error', 'You Can\'t Purchase This Plan Again.');
         }
@@ -55,7 +57,7 @@ class PlanController extends Controller
         }
         DB::commit();
 
-        ReferralPlanUpgradeCommission::dispatch($user, $plan);
+        $commission && ReferralPlanUpgradeCommission::dispatch($user, $plan);
 
         return back()->with('success', 'You\'ve Migrated To '.$plan->name.' Plan.');
     }
