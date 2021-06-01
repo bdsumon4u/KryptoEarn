@@ -1,4 +1,4 @@
-<div id="clock">
+<div class="clock">
     @push('scripts')
         <script>
             function currentTime() {
@@ -8,11 +8,14 @@
                 var sec = date.getSeconds();
                 var midday = "AM";
                 midday = (hour >= 12) ? "PM" : "AM"; /* assigning AM/PM */
-                hour = (hour == 0) ? 12 : ((hour > 12) ? (hour - 12): hour); /* assigning hour in 12-hour format */
+                hour = (hour === 0) ? 12 : ((hour > 12) ? (hour - 12): hour); /* assigning hour in 12-hour format */
                 hour = updateTime(hour);
                 min = updateTime(min);
                 sec = updateTime(sec);
-                document.getElementById("clock").innerText = hour + " : " + min + " : " + sec + " " + midday; /* adding time to the div */
+                /* adding time to the div */
+                document.querySelectorAll(".clock").forEach(function (el) {
+                    el.innerText = hour + " : " + min + " : " + sec + " " + midday;
+                });
                 var t = setTimeout(currentTime, 1000); /* setting timer */
             }
 

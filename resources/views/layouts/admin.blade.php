@@ -50,7 +50,7 @@
             display: inline-block;
         }
 
-        #clock {
+        .clock {
             font-family: 'Orbitron', sans-serif;
             color: crimson;
             font-size: 20px;
@@ -88,7 +88,9 @@
                 <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
             </div>
             <div class="left-header col horizontal-wrapper ps-0">
-                <x-clock-timer />
+                <div class="d-none d-md-block">
+                    <x-clock-timer />
+                </div>
             </div>
             <div class="nav-right col-8 pull-right right-header p-0">
                 <ul class="nav-menus m-0">
@@ -143,7 +145,11 @@
         <!-- Page Sidebar Ends-->
         <div class="page-body">
             <div class="container-fluid">
-                <div class="py-3"></div>
+                <div class="py-3">
+                    <div class="d-flex justify-content-center d-md-none">
+                        <x-clock-timer />
+                    </div>
+                </div>
             </div>
             <!-- Container-fluid starts-->
             <div class="container-fluid">
