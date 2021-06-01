@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class UserToUserTransfer extends Component
 {
-    public array $wallets = ['purchased'];
+    public array $wallets = ['earning'];
     public string $destination = 'purchased';
 
     public string $source;
@@ -67,6 +67,17 @@ class UserToUserTransfer extends Component
 
             return false;
         }
+
+        # Start: Agent/Partner Can't Receive User's Purchased Balance.
+        if ($reciever->is_partner && ($this->source === 'purchased')) {
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'danger',
+                'message' => 'Agent/Partner Can\'t Receive User\'s Purchased Balance!',
+            ]);
+
+            return false;
+        }
+        # End: Agent/Partner Can't Receive User's Purchased Balance.
 
         $sourcePocket->safeTransfer($reciever->{$this->destination.'Pocket'}(), $this->amount * 100, [
             'name' => request()->user()->username.' To '.$this->username,
