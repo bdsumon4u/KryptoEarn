@@ -118,6 +118,10 @@
                                     <div>
                                         <h1 class=animated data-animation=fadeInUpShorter data-animation-delay="1.5s">Welcome to {{ config('app.name') }}</h1>
                                         <hr class=animated data-animation=fadeInUpShorter data-animation-delay="1.5s">
+                                        <div class=animated data-animation=fadeInUpShorter data-animation-delay="1.3s">
+                                            <h6 class="font-italic text-warning"><strong>Total User: {{ $totalUsers }}</strong></h6>
+                                            <h6 class="font-italic text-warning"><strong>Total Withdraw: ${{ round($totalWithdraws, 2) }}</strong></h6>
+                                        </div>
                                         <h5 class=animated data-animation=fadeInUpShorter data-animation-delay="1.6s">Earn money online with your PC/Phone</h5>
                                         <div class="purchase-token-btn mt-3">
                                             <a
