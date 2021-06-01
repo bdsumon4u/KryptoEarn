@@ -8,7 +8,6 @@ use App\Charts\WalletReport;
 use App\Models\User;
 use Bavix\Wallet\Models\Transaction;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
 {
@@ -40,7 +39,7 @@ class DashboardController extends Controller
                 return [$day => $rows->count()];
             })->toArray();
 
-        $data = $this->fillWeek($records);
+        $data = fill_weekly($records);
 
         $directReferrals = new DirectReferrals();
         $directReferrals->labels(array_keys($data));
@@ -77,7 +76,7 @@ class DashboardController extends Controller
                     return [$day => abs(round($rows->sum->amountFloat, 2))];
                 })->toArray();
 
-        return $this->fillWeek($records);
+        return fill_weekly($records);
     }
 
     private function balanceDivision(User $user): BalanceDivision
@@ -94,25 +93,5 @@ class DashboardController extends Controller
             ->backgroundColor(collect(['red', 'green', 'blue']));
 
         return $balanceDivision;
-    }
-
-    private function fillWeek(array $records): array
-    {
-        $data = array_fill(now()->subWeek()->day + 1, 7, 0);
-        foreach ($data as $day => $count) {
-            if (now()->get('day') < 7 && $day > ($prevLastDay = now()->subWeek()->lastOfMonth()->day)) {
-                unset($data[$day]);
-                $day -= $prevLastDay;
-                $data[$day] = 0;
-            }
-            if ($day === now()->get('day')) {
-                $data['Today'] = data_get($records, $day, 0);
-                unset($data[$day]);
-            } else {
-                $data[$day] = data_get($records, $day, 0);
-            }
-        }
-
-        return $data;
     }
 }

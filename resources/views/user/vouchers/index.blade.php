@@ -7,6 +7,9 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-12">
+            <x-voucher-sells :user="request()->user()" />
+        </div>
     </div>
     @push('scripts')
         <script src="{{ asset('cuba/assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>

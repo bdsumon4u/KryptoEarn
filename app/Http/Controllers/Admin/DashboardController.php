@@ -93,46 +93,6 @@ class DashboardController extends Controller
                 return [$key => abs(round($val->sum->amount, 2))];
             })->toArray();
 
-        return $this->{'fill'.ucfirst($tab)}($records);
-    }
-
-    private function fillWeekly($records)
-    {
-        $data = array_fill(now()->subWeek()->day + 1, 7, 0);
-        foreach ($data as $day => $count) {
-            if (now()->get('day') < 7 && $day > ($prevLastDay = now()->subWeek()->lastOfMonth()->day)) {
-                unset($data[$day]);
-                $day -= $prevLastDay;
-                $data[$day] = 0;
-            }
-            if ($day === now()->get('day')) {
-                $data['Today'] = data_get($records, $day, 0);
-                unset($data[$day]);
-            } else {
-                $data[$day] = data_get($records, $day, 0);
-            }
-        }
-
-        return $data;
-    }
-
-    private function fillMonthly($records)
-    {
-        return collect(array_fill(now()->firstOfMonth()->day, now()->lastOfMonth()->day, 0))
-            ->mapWithKeys(function ($val, $key) use ($records) {
-                return [$key => data_get($records, $key, 0)];
-            })
-            ->toArray();
-    }
-
-    private function fillYearly($records)
-    {
-        $firstOfYear = now()->firstOfYear();
-        return collect(array_fill(0, 12, 0))
-            ->mapWithKeys(function ($val, $key) use ($firstOfYear, $records) {
-                $mon = $firstOfYear->copy()->addMonths($key)->shortMonthName;
-                return [$mon => data_get($records, $mon, 0)];
-            })
-            ->toArray();
+        return ('fill_'.$tab)($records);
     }
 }

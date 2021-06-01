@@ -109,6 +109,7 @@
             </div>
 
             <x-balance-log :user="$user" />
+            <x-voucher-sells :user="$user" />
         </div>
     </div>
     @push('scripts')

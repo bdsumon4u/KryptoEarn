@@ -25,6 +25,7 @@ class CreateVouchersTable extends Migration
             $table->integer('amount');
             $table->string('currency', 10)->default('USD');
             $table->string('pocket', 15)->default('purchased');
+            $table->string('status', 8)->default('intake');
             $table->timestamps();
         });
     }

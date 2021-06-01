@@ -17,7 +17,7 @@ class RedeemVoucherController extends Controller
     {
         $user = $request->user();
         if ($request->isMethod('GET')) {
-            return $user->is_partner
+            return $user->partner && ($user->partner->status === 'approved')
                 ? back()->with('error', 'Partner/Agent Can\'t Redeem Vouchers.')
                 :view('user.vouchers.redeem', [
                     'vouchers' => $user->vouchers()->with('owner')->get(),
@@ -30,6 +30,10 @@ class RedeemVoucherController extends Controller
 
         $voucher = $user->vouchers()->where($data)->with('owner')->firstOrFail();
 
+        if ($voucher->status === 'claimed') {
+            return back()->with('error', 'You\'ve Already Claimed This Voucher.');
+        }
+
         DB::beginTransaction();
         $user->purchasedPocket()->depositFloat($voucher->amount, [
             'name' => 'Redeem ' . $voucher->owner->username . '\'s Voucher',
@@ -37,7 +41,7 @@ class RedeemVoucherController extends Controller
         $voucher->owner->commissionPocket()->depositFloat($voucher->amount * config('others.voucher_selling_commission', 15) / 100, [
             'name' => 'Selling Voucher To ' . $user->username,
         ]);
-        $voucher->delete();
+        $voucher->update(['status' => 'claimed']);
         DB::commit();
 
         return back()->with('success', 'You\'ve Got $' . $voucher->amount);

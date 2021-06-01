@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
+use Yajra\DataTables\Html\Column;
 
 class VoucherController extends Controller
 {
@@ -19,8 +20,14 @@ class VoucherController extends Controller
      */
     public function index(Builder $builder)
     {
+        abort_unless(request()->user()->partner, 403, 'You\'re not our partner.');
+
         if (request()->ajax()) {
-            return DataTables::of(Voucher::where('owner_id', request()->user()->id)->with('user'))->toJson();
+            return DataTables::of(Voucher::where('owner_id', request()->user()->id)->with('user'))
+                ->addColumn('date', function ($row) {
+                    return $row->created_at->formatted();
+                })
+                ->toJson();
         }
 
         $html = $builder->columns([
@@ -28,8 +35,16 @@ class VoucherController extends Controller
             ['data' => 'code', 'name' => 'code', 'title' => 'Code'],
             ['data' => 'user.username', 'name' => 'user.username', 'title' => 'User'],
             ['data' => 'amount', 'name' => 'amount', 'title' => 'Amount'],
-            ['data' => 'currency', 'name' => 'currency', 'title' => 'Currency'],
-            ['data' => 'user.country', 'name' => 'user.country', 'title' => 'Country'],
+            Column::make('status')
+                ->title('Status')
+                ->searchable(true)
+                ->orderable(true)
+                ->render('function(){
+                    return this.status.toLowerCase().replace(/-/g, \' \').replace(/\b[a-z]/g, function(letter) {
+                        return letter.toUpperCase();
+                    });
+                }'),
+            ['data' => 'date', 'name' => 'date', 'title' => 'Date'],
         ]);
 
         return view('user.vouchers.index', compact('html'));
@@ -54,9 +69,9 @@ class VoucherController extends Controller
     public function store(VoucherRequest $request)
     {
         $data = $request->validated();
-        $requestedPocket = $request->user()->$request->pocket.'Pocket';
+        $requestedPocket = $request->user()->{$request->pocket . 'Pocket'}();
 
-        if ($request->amount < $requestedPocket->balanceFloat) {
+        if ($request->amount > $requestedPocket->balanceFloat) {
             return back()->with('error', 'Insufficient Balance In Your ' . strtoupper($request->pocket) . ' Pocket');
         }
 
