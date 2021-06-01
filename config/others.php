@@ -5,4 +5,5 @@ return [
     'voucher_selling_commission' => 10,
     'minimum_user_to_user_transfer' => 10,
     'refer_commission_on_first_upgrade' => true,
+    'partner_receive_money_commission' => 2,
 ];

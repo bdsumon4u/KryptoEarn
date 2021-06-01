@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use App\Models\User;
 use Bavix\Wallet\Models\Wallet;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -79,11 +80,20 @@ class UserToUserTransfer extends Component
         }
         # End: Agent/Partner Can't Receive User's Purchased Balance.
 
+        DB::beginTransaction();
         $sourcePocket->safeTransfer($reciever->{$this->destination.'Pocket'}(), $this->amount * 100, [
             'name' => request()->user()->username.' To '.$this->username,
             'from_wallet' => $this->source,
             'to_wallet' => $this->destination,
         ]);
+
+        // Agent's/Partner's Commission.
+        if ($reciever->is_partner) {
+            $reciever->commissionPocket()->depositFloat($this->amount * config('others.partner_receive_money_commission', 2) / 100, [
+                'name' => 'Receive Money From '.request()->user()->username,
+            ]);
+        }
+        DB::commit();
 
         $this->dispatchBrowserEvent('alert', [
             'type' => 'success',
