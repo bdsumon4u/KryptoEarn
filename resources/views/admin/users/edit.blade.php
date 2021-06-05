@@ -95,6 +95,28 @@
                                     <input class="form-control" type="text" name="package" value="{{ old('package', $user->membership->plan->name) }}">
                                 </div>
                             </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-control-label font-weight-bold">Road No</label>
+                                    <input class="form-control" type="text" name="road_no" value="{{ old('road_no', $user->road_no) }}">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-control-label font-weight-bold">Postal Code <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" name="postal_code" value="{{ old('postal_code', $user->postal_code) }}">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-control-label font-weight-bold">Language <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" name="language" value="{{ old('language', $user->language) }}">
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="row mt-4">

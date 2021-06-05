@@ -19,7 +19,7 @@ class WithdrawController extends Controller
     public function index(Builder $builder)
     {
         Withdraw::query()
-            ->with('user')
+            ->with('user.wallets')
             ->where('status', 'pending')
             ->get()
             ->each(fn ($withdraw) => $withdraw->user->earningPocket()->balanceFloat < $withdraw->amount ? $withdraw->delete() : null);

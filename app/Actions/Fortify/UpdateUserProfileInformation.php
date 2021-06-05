@@ -14,7 +14,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'email', 'max:255', $this->unique($user)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ];
 
@@ -23,9 +23,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         }
 
         return array_merge($rules, [
-            'phone' => ['required', 'string', 'max:20'],
-            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:20', $this->unique($user)],
             'city' => ['required', 'string', 'max:60'],
+            'road_no' => ['nullable', 'string', 'max:25'],
+            'postal_code' => ['required', 'string', 'max:25'],
+            'language' => ['required', 'string', 'max:25'],
+            'address' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -72,5 +75,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         ])->save();
 
         $user->sendEmailVerificationNotification();
+    }
+
+    public function unique($user)
+    {
+        return Rule::unique('users')->ignore($user->id);
     }
 }

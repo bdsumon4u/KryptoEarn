@@ -37,6 +37,15 @@ return new class extends Migration
                 ->nullable()
                 ->after('address');
 
+            $table->string('road_no', 25)
+                ->after('city');
+
+            $table->string('postal_code', 25)
+                ->after('road_no');
+
+            $table->string('language', 25)
+                ->after('postal_code');
+
             $table->string('country', 60)
                 ->after('city');
 
@@ -58,6 +67,9 @@ return new class extends Migration
             $table->dropColumn('phone');
             $table->dropColumn('address');
             $table->dropColumn('city');
+            $table->dropColumn('road_no');
+            $table->dropColumn('postal_code');
+            $table->dropColumn('language');
             $table->dropColumn('country');
             $table->dropColumn('timezone');
         });

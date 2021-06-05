@@ -29,6 +29,9 @@ class UserRequest extends FormRequest
             'phone' => ['required', 'string', 'max:20', $this->unique()],
             'address' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:60'],
+            'road_no' => ['nullable', 'string', 'max:25'],
+            'postal_code' => ['required', 'string', 'max:25'],
+            'language' => ['required', 'string', 'max:25'],
             'country' => ['required', 'string', 'max:60'],
             'timezone' => ['required', 'string', 'max:60'],
         ];
