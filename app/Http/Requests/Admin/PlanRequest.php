@@ -20,6 +20,7 @@ class PlanRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
+            'payout_days' => $this->get('payout_days', 'Mon, Fri.'),
             'instant_payouts' => $this->has('instant_payouts'),
             'is_active' => $this->has('is_active'),
         ]);
