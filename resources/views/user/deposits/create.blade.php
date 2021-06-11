@@ -36,7 +36,7 @@
                                                     <h5 class="card-title text-center">PERFECT MONEY</h5>
                                                     <img class="img-responsive"
                                                          style="display: block; margin-left: auto; margin-right: auto; margin-bottom:10px"
-                                                         src="{{ asset('cuba/user1/assets/images/gateway/perfect-money.png') }}"
+                                                         src="{{ asset('cuba/user1/assets/images/gateway/perfect_money.png') }}"
                                                          height="100" width="100" alt="Card image cap">
                                                     <button
                                                         data-bs-toggle="modal" data-bs-target="#depositModal102"

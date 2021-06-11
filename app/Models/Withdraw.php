@@ -42,12 +42,12 @@ class Withdraw extends Model
 
     public function getGatewayNameAttribute()
     {
-        return ucwords(str_replace('-', ' ', $this->gateway));
+        return ucwords(str_replace('_', ' ', $this->gateway));
     }
 
     public function getGatewayAddressAttribute()
     {
-        return $this->user->extra['gateway']['addresses'][str_replace('-', '_', $this->gateway)] ?? null;
+        return $this->user->extra['gateway']['addresses'][$this->gateway] ?? null;
     }
 
     public function user()

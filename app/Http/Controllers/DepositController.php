@@ -26,17 +26,17 @@ class DepositController extends Controller
             ['data' => 'id', 'name' => 'id', 'title' => 'Id'],
             ['data' => 'trx_id', 'name' => 'trx_id', 'title' => 'Trx Id'],
             Column::make('gateway')
-            ->title('Gateway')
-            ->searchable(true)
-            ->orderable(true)
-            ->render('function(){
-                    return this.gateway.toLowerCase().replace(/-/g, \' \').replace(/\b[a-z]/g, function(letter) {
+                ->title('Gateway')
+                ->searchable(true)
+                ->orderable(true)
+                ->render('function(){
+                    return this.gateway.toLowerCase().replace(/_/g, \' \').replace(/\b[a-z]/g, function(letter) {
                         return letter.toUpperCase();
                     });
                 }')
-            ->footer('Gateway')
-            ->exportable(true)
-            ->printable(true),
+                ->footer('Gateway')
+                ->exportable(true)
+                ->printable(true),
             ['data' => 'amount', 'name' => 'amount', 'title' => 'Amount'],
             ['data' => 'charge', 'name' => 'charge', 'title' => 'Charge'],
             ['data' => 'payable', 'name' => 'payable', 'title' => 'Payable'],

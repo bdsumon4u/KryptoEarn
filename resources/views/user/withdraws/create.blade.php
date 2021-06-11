@@ -34,7 +34,7 @@
                                                     <h5 class="card-title text-center">PERFECT MONEY</h5>
                                                     <img class="img-responsive"
                                                          style="display: block; margin-left: auto; margin-right: auto; margin-bottom:10px"
-                                                         src="{{ asset('cuba/user1/assets/images/gateway/perfect-money.png') }}"
+                                                         src="{{ asset('cuba/user1/assets/images/gateway/perfect_money.png') }}"
                                                          height="100" width="100" alt="Card image cap">
                                                     @if($gateway['addresses']['perfect_money'])
                                                     <button
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="gateway" value="perfect-money" class="btn btn-success w-100">
+                        <button type="submit" name="gateway" value="perfect_money" class="btn btn-success w-100">
                             WITHDRAW NOW
                         </button>
                         <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>

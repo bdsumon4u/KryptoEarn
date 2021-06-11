@@ -30,7 +30,7 @@ class DepositController extends Controller
                 ->searchable(true)
                 ->orderable(true)
                 ->render('function(){
-                    return this.gateway.toLowerCase().replace(/-/g, \' \').replace(/\b[a-z]/g, function(letter) {
+                    return this.gateway.toLowerCase().replace(/_/g, \' \').replace(/\b[a-z]/g, function(letter) {
                         return letter.toUpperCase();
                     });
                 }')
