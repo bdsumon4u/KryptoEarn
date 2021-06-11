@@ -38,12 +38,15 @@ return new class extends Migration
                 ->after('address');
 
             $table->string('road_no', 25)
+                ->nullable()
                 ->after('city');
 
             $table->string('postal_code', 25)
+                ->nullable()
                 ->after('road_no');
 
             $table->string('language', 25)
+                ->default('English')
                 ->after('postal_code');
 
             $table->string('country', 60)
