@@ -16,7 +16,7 @@
                 $(document).on('click', '.btn-approve', function (ev) {
                     $.ajax({
                         type: 'POST',
-                        url: '{{ route("partners.update", "ID") }}'.replace('ID', $(this).data('id')),
+                        url: '/partners/' + $(this).data('id'),
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content'),
                             _method: 'PATCH',
