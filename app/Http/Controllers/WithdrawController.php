@@ -70,12 +70,15 @@ class WithdrawController extends Controller
     public function create()
     {
         $user = request()->user();
-        if (!$user->is_partner && ($now = now(config('app.timezone'))) && !$now->isMonday() && !$now->isFriday()) {
-            return back()->with('error', 'Today Is Neither Monday Nor Friday.');
-        }
 
-        if (!($user->is_partner && $user->withdraws()->latest('id')->first()->created_at->addDay()->isPast())) {
-            return back()->with('error', 'You Can\'t Withdraw More Than Once Within 24H.');
+        if (!$user->is_partner) {
+            if (($now = now(config('app.timezone'))) && !$now->isMonday() && !$now->isFriday()) {
+                return back()->with('error', 'Today Is Neither Monday Nor Friday.');
+            }
+
+            if (($withdraw = $user->withdraws()->latest('id')->first()) && $withdraw->created_at->addDay()->isPast()) {
+                return back()->with('error', 'You Can\'t Withdraw More Than Once Within 24H.');
+            }
         }
 
         $gateway = array_merge(Arr::get($user->extra ?? [], 'gateway', [
