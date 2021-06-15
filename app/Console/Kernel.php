@@ -26,11 +26,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('telescope:prune --hours=48')
-            ->everyMinute()
+            ->daily()
             ->withoutOverlapping()
             ->runInBackground();
         $schedule->command('backup:run')
-            ->everyMinute()
+            ->hourly()
             ->withoutOverlapping()
             ->runInBackground();
     }
