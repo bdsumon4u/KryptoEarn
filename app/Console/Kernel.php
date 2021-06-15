@@ -29,6 +29,10 @@ class Kernel extends ConsoleKernel
             ->daily()
             ->withoutOverlapping()
             ->runInBackground();
+        $schedule->command('backup:clean')
+            ->daily()
+            ->withoutOverlapping()
+            ->runInBackground();
         $schedule->command('backup:run')
             ->hourly()
             ->withoutOverlapping()
