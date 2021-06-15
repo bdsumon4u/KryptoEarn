@@ -29,7 +29,8 @@ class CreateMembershipsTable extends Migration
                 ->default(0);
             $table->timestamp('tomorrow')
                 ->useCurrent();
-            $table->timestamp('valid_till');
+            $table->timestamp('valid_till')
+                ->nullable();
             $table->timestamps();
         });
     }
