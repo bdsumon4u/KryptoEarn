@@ -48,9 +48,14 @@ class Plan extends Model implements Product
 
         $customer = $customer->load('membership.plan');
         $currentPlan = $customer->membership->plan;
-        $pricePerDay = $currentPlan->price / $currentPlan->validity;
-        $leftDays = $customer->valid_till->diffInDays(now());
-        return ($this->price - $leftDays * $pricePerDay) * 100;
+
+        if ($currentPlan->price < $this->price) {
+            $pricePerDay = $currentPlan->price / $currentPlan->validity;
+            $leftDays = $customer->valid_till->diffInDays(now());
+            return ($this->price - $leftDays * $pricePerDay) * 100;
+        }
+
+        return $this->price * 100;
     }
 
     public function getMetaProduct(): ?array

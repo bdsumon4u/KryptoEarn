@@ -12,7 +12,6 @@ class WalletToWalletTransfer extends Component
         'earning' => [
             'purchased'
         ],
-        'purchased' => [],
         'commission' => [
             'purchased',
         ],

@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class UserToUserTransfer extends Component
 {
-    public array $wallets = ['earning'];
+    public array $wallets = ['purchased'];
     public string $destination = 'purchased';
 
     public string $source;
