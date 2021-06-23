@@ -96,6 +96,10 @@ class VoucherController extends Controller
         $requestedPocket->withdrawFloat($data['amount'], [
             'name' => 'Voucher For ' . $request->username,
         ]);
+        // Instant Commission
+        $user->commissionPocket()->depositFloat($request->amount * config('others.voucher_selling_commission', 15) / 100, [
+            'name' => 'Selling Voucher To ' . $request->username,
+        ]);
         DB::commit();
 
         return redirect()->action([static::class, 'index'])->with('success', 'Voucher Is Created.');

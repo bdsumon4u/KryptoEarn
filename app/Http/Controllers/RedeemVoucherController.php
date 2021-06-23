@@ -38,9 +38,6 @@ class RedeemVoucherController extends Controller
         $user->purchasedPocket()->depositFloat($voucher->amount, [
             'name' => 'Redeem ' . $voucher->owner->username . '\'s Voucher',
         ]);
-        $voucher->owner->commissionPocket()->depositFloat($voucher->amount * config('others.voucher_selling_commission', 15) / 100, [
-            'name' => 'Selling Voucher To ' . $user->username,
-        ]);
         $voucher->update(['status' => 'claimed']);
         DB::commit();
 
