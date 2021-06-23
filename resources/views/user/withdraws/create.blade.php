@@ -16,9 +16,9 @@
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="video-link" href="/partners" aria-selected="false">
+                                <button class="nav-link" id="video-link" data-bs-toggle="tab" data-bs-target="#sectionC" role="tab" aria-selected="false">
                                     <i class="icon-video-clapper"></i>VIA PARTNERS
-                                </a>
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -139,8 +139,9 @@
                         </div>
                         <div class="tab-pane fade" id="sectionC" role="tabpanel" aria-labelledby="video-link">
                             <div class="row">
-                                <div class="col-xl-12"><h6 class="mb-2"> 0 partner processors
-                                        found</h6></div>
+                                <div class="col-md-6 offset-md-3">
+                                    <livewire:user.user-to-agent-transfer />
+                                </div>
                             </div>
                         </div>
                     </div>
