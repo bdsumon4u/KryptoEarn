@@ -41,7 +41,9 @@ class DashboardController extends Controller
                 return User::count();
             }),
             'premium_users' => cache()->remember('users:premium', 5 * 60, function () {
-                return Membership::query()->where('type', 'premium')->count();
+                return User::query()->whereHas('membership', function ($query) {
+                    $query->where('type', 'premium');
+                })->count();
             }),
         ]);
     }
