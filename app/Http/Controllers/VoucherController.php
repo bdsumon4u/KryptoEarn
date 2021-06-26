@@ -89,6 +89,9 @@ class VoucherController extends Controller
             ->where('username', $request->username)
             ->firstOrFail();
 
+        if ($user->is_partner) {
+            return back()->with('error', 'Agent To Agent Voucher Selling Is Prohibited.');
+        }
         if ($user->country != $request->user()->country) {
             return back()->with('error', $request->username . ' Is Not From Your Country.');
         }
