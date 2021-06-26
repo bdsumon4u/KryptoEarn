@@ -45,6 +45,12 @@ class VoucherController extends Controller
                     });
                 }'),
             ['data' => 'date', 'name' => 'date', 'title' => 'Date'],
+        ])->parameters([
+            'order' => [
+                0, // here is the column number
+                'desc'
+            ],
+            'dom' => 'lBf<"table dataTable no-footer table-responsive"t>rip',
         ]);
 
         return view('user.vouchers.index', compact('html'));

@@ -53,6 +53,12 @@ class DepositController extends Controller
                 ->footer('Status')
                 ->exportable(true)
                 ->printable(true),
+        ])->parameters([
+            'order' => [
+                0, // here is the column number
+                'desc'
+            ],
+            'dom' => 'lBf<"table dataTable no-footer table-responsive"t>rip',
         ]);
 
         return view('admin.deposits.index', compact('html'));

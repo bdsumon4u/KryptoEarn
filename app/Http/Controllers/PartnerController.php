@@ -64,6 +64,12 @@ class PartnerController extends Controller
             ['data' => 'road_no', 'name' => 'road_no', 'title' => 'Road No'],
             ['data' => 'postal_code', 'name' => 'postal_code', 'title' => 'Postal Code'],
             ['data' => 'address', 'name' => 'address', 'title' => 'Address'],
+        ])->parameters([
+            'order' => [
+                0, // here is the column number
+                'desc'
+            ],
+            'dom' => 'lBf<"table dataTable no-footer table-responsive"t>rip',
         ]);
 
         return view('user.partners.index', compact('html') + [

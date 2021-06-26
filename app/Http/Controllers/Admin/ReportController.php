@@ -56,6 +56,7 @@ class ReportController extends Controller
                 0, // here is the column number
                 'desc'
             ],
+            'dom' => 'lBf<"table dataTable no-footer table-responsive"t>rip',
         ]);
 
         return view('admin.reports', compact('html'));
