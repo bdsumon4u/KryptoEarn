@@ -50,10 +50,10 @@ class DashboardController extends Controller
 
     private function transactionReport($tab)
     {
-        $this->credits = cache()->remember('credits:'.$tab, 5 * 60, function () use ($tab) {
+        $this->credits = cache()->remember('credits:'.$tab, 5, function () use ($tab) {
             return $this->getTransactionForTab($tab, Deposit::whereStatus('completed'));
         });
-        $this->debits = cache()->remember('debits:'.$tab, 5 * 60, function () use ($tab) {
+        $this->debits = cache()->remember('debits:'.$tab, 5, function () use ($tab) {
             return $this->getTransactionForTab($tab, Withdraw::whereStatus('completed'));
         });
 
