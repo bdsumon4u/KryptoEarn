@@ -39,11 +39,13 @@ class AddFund extends Component
             'name' => $this->name,
         ]);
 
-        $this->dispatchBrowserEvent('alert', [
-            'type' => 'success',
-            'message' => 'Fund Added.',
-        ]);
+//        $this->dispatchBrowserEvent('alert', [
+//            'type' => 'success',
+//            'message' => 'Fund Added.',
+//        ]);
 
-        $this->reset('amount', 'name');
+//        $this->reset('amount', 'name');
+        session()->flash('success', 'Fund Added.');
+        $this->redirect(back()->getTargetUrl());
     }
 }

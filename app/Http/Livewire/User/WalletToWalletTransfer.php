@@ -73,6 +73,8 @@ class WalletToWalletTransfer extends Component
             'type' => 'success',
             'message' => 'Money Transferred Successfully.',
         ]);
+        session()->flash('success', 'Money Transferred Successfully.');
+        $this->redirect(back()->getTargetUrl());
     }
 
     public function wallet(string $name): Wallet

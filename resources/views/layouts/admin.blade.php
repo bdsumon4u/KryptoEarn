@@ -55,6 +55,12 @@
             color: crimson;
             font-size: 20px;
         }
+
+        @media (min-width: 1000px) {
+            .table-responsive {
+                overflow-x: hidden;
+            }
+        }
     </style>
     @stack('styles')
 </head>
