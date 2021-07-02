@@ -24,7 +24,7 @@ class PartnerController extends Controller
     {
         $query = User::query()
             ->with('membership.plan')
-            ->where('country', request()->user()->country)
+//            ->where('country', request()->user()->country)
             ->whereHas('partner', function ($query) {
                 return $query->approved();
             });
