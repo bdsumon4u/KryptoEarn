@@ -6,19 +6,19 @@
                     <div class="text-center" id="myTab">
                         <ul class="nav nav-tabs search-list" id="top-tab" role="tablist">
                             <li class="nav-item">
-                                <button class="nav-link active" id="all-link" data-bs-toggle="tab"
+                                <button class="nav-link d-inline-flex active" id="all-link" data-bs-toggle="tab"
                                         data-bs-target="#sectionA" role="tab" aria-selected="true">
                                     <i class="icon-target"></i>AUTO PROCESSORS
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="image-link" data-bs-toggle="tab" data-bs-target="#sectionB"
+                                <button class="nav-link d-inline-flex" id="image-link" data-bs-toggle="tab" data-bs-target="#sectionB"
                                         role="tab" aria-selected="false">
                                     <i class="icon-pin"></i>LOCAL PROCESSORS
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="video-link" href="/partners" aria-selected="false">
+                                <a class="nav-link d-inline-flex" id="video-link" href="/partners" aria-selected="false">
                                     <i class="icon-video-clapper"></i>VIA PARTNERS
                                 </a>
                             </li>
