@@ -128,7 +128,7 @@
                             <h6 class="sub-title animated fadeInUpShorter"
                                 data-animation="fadeInUpShorter"
                                 data-animation-delay="0.2s"
-                                style="animation-delay: 0.2s; opacity: 1;">Payment</h6>
+                                style="animation-delay: 0.2s; opacity: 1; top: 12px; font-size: 3.625rem;">Payment</h6>
                             <h2 class="title animated fadeInUpShorter" data-animation="fadeInUpShorter"
                                 data-animation-delay="0.3s" style="animation-delay: 0.3s; opacity: 1;">Proofs</h2>
                         </div>
