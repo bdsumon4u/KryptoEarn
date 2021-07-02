@@ -34,7 +34,6 @@ class PlanController extends Controller
     public function update(Request $request, Plan $plan)
     {
         $user = $request->user();
-
         $commission = !config('others.refer_commission_on_first_upgrade') || $user->membership->type === 'free';
 
         if (!$plan->price && $user->purchasedPocket()->paid($plan)) {
@@ -43,6 +42,10 @@ class PlanController extends Controller
 
         if ($user->purchasedPocket()->balance < $plan->getAmountProduct($user)) {
             return back()->with('error', 'Insufficient "PURCHASED" Balance');
+        }
+
+        if ($plan->price <= $user->membership->plan->price && $user->valid_till->isFuture()) {
+            return back()->with('success', 'You Must Choose Bigger Package.');
         }
 
         DB::beginTransaction();

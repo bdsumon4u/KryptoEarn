@@ -21,10 +21,10 @@
                         </a>
                         <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                     </li>
-                    <li class="sidebar-main-title">
+                    <li class="sidebar-main-title pb-0">
                         <div>
-                            <h6 class="lan-8">Applications</h6>
-                            <p class="lan-9">Ready to use Apps</p>
+                            <p style="margin-bottom: 5px;">Current Package:</p>
+                            <h6 style="margin-bottom: 0;">{{ request()->user()->membership->plan->name }}</h6>
                         </div>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/plans"><i data-feather="arrow-up-circle"> </i><span>Upgrade Plan</span></a></li>
