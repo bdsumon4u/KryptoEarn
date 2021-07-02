@@ -3,7 +3,7 @@
         <style>
             .captcha-card {
                 margin: 0 auto;
-                width: 315px;
+                width: 290px;
                 height: 360px;
                 border-radius: 4px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
@@ -34,11 +34,11 @@
     <x-slot name="title">Tasks</x-slot>
     <div class="container-fluid search-page">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 p-0">
                 <div class="card">
                     <div class="card-body"><h6 class="mb-2">{{ $user->task_remaining }} captcha remaining.</h6>
                         <div class="row" style="margin-bottom: 25px;">
-                            <div class="col">
+                            <div class="col p-0">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -78,7 +78,7 @@
                                         <div class="card-header p-2">
                                             <span>Drag/Draw To Earn</span>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="card-body p-1">
                                             <x:dynamic-component :component="'captcha.'.$captcha['type']" />
                                         </div>
                                         <div class="card-footer p-2">
