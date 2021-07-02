@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-0">
-                                    <label class="col-form-label">Pocket</label>
+                                    <label class="col-form-label">Wallet</label>
                                     <select class="form-control" name="pocket" id="pocket">
                                         <option value="earning">Earning</option>
                                         <option value="purchased">Purchased</option>
