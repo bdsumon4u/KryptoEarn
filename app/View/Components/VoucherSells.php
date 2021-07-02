@@ -11,6 +11,9 @@ class VoucherSells extends Component
 {
     public User $user;
     public VoucherSellsChart $voucherSells;
+    public $todaySells = 0;
+    public $thisWeekSells = 0;
+    public $lifetimeSells = 0;
 
     /**
      * Create a new component instance.
@@ -20,7 +23,8 @@ class VoucherSells extends Component
     public function __construct(User $user)
     {
         $this->user = $user;
-        $records = Voucher::where('owner_id', $user->id)
+        $records = Voucher::select('amount')
+            ->where('owner_id', $user->id)
             ->where('created_at', '>', now()->subWeek())->get()
             ->groupBy(function ($user) {
                 return $user->created_at->day;
@@ -29,6 +33,11 @@ class VoucherSells extends Component
             })->toArray();
 
         $data = fill_weekly($records);
+        $this->todaySells = $data['Today'];
+        $this->thisWeekSells = array_sum($data);
+        $this->lifetimeSells = Voucher::select('amount')
+            ->where('owner_id', $user->id)->get()
+            ->sum('amount');
 
         $this->voucherSells = new VoucherSellsChart();
         $this->voucherSells->labels(array_keys($data));
