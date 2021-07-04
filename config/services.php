@@ -34,4 +34,9 @@ return [
         'website_id' => env('CRISP_WEBSITE_ID', '2d38cfb8-b173-48af-bbc6-3690a975633d'),
     ],
 
+    'onesignal' => [
+        'enabled' => env('ONESIGNAL_ENABLED'),
+        'app_id' => env('ONESIGNAL_APP_ID'),
+        'rest_api_key' => env('ONESIGNAL_REST_API_KEY')
+    ],
 ];

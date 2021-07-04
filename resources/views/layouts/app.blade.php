@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
         @livewireStyles
-
+        <x-onesignal-scripts />
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>

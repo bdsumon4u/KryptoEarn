@@ -23,6 +23,7 @@
     @endpush
     <x-slot name="header">Dashboard</x-slot>
     <div class="row ">
+        <div class="onesignal-customlink-container text-center mb-4"></div>
         <x-pocket-balances :user="$user" />
         <div class="col-sm-6 col-xl-3 col-lg-6">
             <div class="card o-hidden">
