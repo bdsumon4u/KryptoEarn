@@ -167,6 +167,7 @@
             </div>
             <!-- Container-fluid starts-->
             <div class="container-fluid">
+                <div class="onesignal-customlink-container text-center mb-4"></div>
                 {{ $slot }}
             </div>
             <!-- Container-fluid Ends-->
