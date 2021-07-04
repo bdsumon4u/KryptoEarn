@@ -40,16 +40,9 @@
                             <thead>
                             <tr>
                                 <th scope="col">Features</th>
-                                <th scope="col"> STARTER
-                                </th>
-                                <th scope="col"> BASIC
-                                </th>
-                                <th scope="col"> STANDARD
-                                </th>
-                                <th scope="col"> SUPER
-                                </th>
-                                <th scope="col"> ULTRA
-                                </th>
+                                @foreach($plans as $plan)
+                                    <th>${{ $plan->name }}</th>
+                                @endforeach
                             </tr>
                             </thead>
                             <tbody>
