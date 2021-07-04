@@ -41,7 +41,7 @@
                             <tr>
                                 <th scope="col">Features</th>
                                 @foreach($plans as $plan)
-                                    <th>${{ $plan->name }}</th>
+                                    <th>{{ $plan->name }}</th>
                                 @endforeach
                             </tr>
                             </thead>
