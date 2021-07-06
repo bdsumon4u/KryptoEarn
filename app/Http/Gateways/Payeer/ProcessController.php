@@ -17,7 +17,7 @@ class ProcessController extends Controller
     {
         $val['m_shop'] = setting('gateway', 'payeer_merchant_id');
         $val['m_orderid'] = $deposit->trx_id;
-        $val['m_amount'] = $deposit->payable;
+        $val['m_amount'] = number_format($deposit->payable, 2);
         $val['m_curr'] = $deposit->currency;
         $val['m_desc'] = base64_encode('Pay To '. config('app.name'));
         $val['m_sign'] = strtoupper(hash('sha256', implode(":", [
