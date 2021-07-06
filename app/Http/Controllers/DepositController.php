@@ -216,6 +216,7 @@ class DepositController extends Controller
             //                //
             //            }
 
+            info('Deposit Completed.', $deposit->toArray());
             session()->flash('success', 'Deposit Completed.');
         }
     }
