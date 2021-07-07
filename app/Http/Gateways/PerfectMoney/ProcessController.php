@@ -44,21 +44,17 @@ class ProcessController extends Controller
 
         define('ALTERNATE_PHRASE_HASH', $passphrase);
         define('PATH_TO_LOG', storage_path('logs'));
-        $string =
-            $_POST['PAYMENT_ID'] . ':' . $_POST['PAYEE_ACCOUNT'] . ':' .
-            $_POST['PAYMENT_AMOUNT'] . ':' . $_POST['PAYMENT_UNITS'] . ':' .
-            $_POST['PAYMENT_BATCH_NUM'] . ':' .
-            $_POST['PAYER_ACCOUNT'] . ':' . ALTERNATE_PHRASE_HASH . ':' .
-            $_POST['TIMESTAMPGMT'];
 
-        $hash = strtoupper(md5($string));
+        $hash = strtoupper(md5(implode(':', [
+            $_POST['PAYMENT_ID'], $_POST['PAYEE_ACCOUNT'], $_POST['PAYMENT_AMOUNT'], $_POST['PAYMENT_UNITS'], $_POST['PAYMENT_BATCH_NUM'], $_POST['PAYER_ACCOUNT'], ALTERNATE_PHRASE_HASH, $_POST['TIMESTAMPGMT'],
+        ])));
         $hash2 = $_POST['V2_HASH'];
 
-        if ($hash == $hash2) {
+        if ($hash === $hash2) {
             $amo = $_POST['PAYMENT_AMOUNT'];
             $unit = $_POST['PAYMENT_UNITS'];
             $track = $_POST['PAYMENT_ID'];
-            if ($unit === $deposit->currency && $amo === $deposit->payable && $deposit->status === 'pending' && $_POST['PAYEE_ACCOUNT'] === setting('gateway', 'perfect_money_wallet_id')) {
+            if ($track === $deposit->trx_id && $unit === $deposit->currency && $amo >= $deposit->payable && $deposit->status === 'pending' && $_POST['PAYEE_ACCOUNT'] === setting('gateway', 'perfect_money_wallet_id')) {
                 //Update User Data
                 DepositController::userDataUpdate($deposit, 'PerfectMoney');
             }

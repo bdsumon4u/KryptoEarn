@@ -39,7 +39,7 @@ class ProcessController extends Controller
 
     public function ipn(Request $request)
     {
-        info('Payeer IPN', $request->all());
+//        info('Payeer IPN', $request->all());
         if (isset($_POST["m_operation_id"], $_POST["m_sign"])) {
             $deposit = Deposit::where('trx_id', $_POST['m_orderid'])->firstOrFail();
             $sign_hash = strtoupper(hash('sha256', implode(":", [
@@ -56,24 +56,27 @@ class ProcessController extends Controller
                 setting('gateway', 'payeer_secret'),
             ])));
 
-            info('Receiving Payeer SIGN:', [
-                'deposit_id' => $deposit->id,
-                'm_sign' => $sign_hash,
-            ]);
+//            info('Receiving Payeer SIGN:', [
+//                'deposit_id' => $deposit->id,
+//                'm_sign' => $sign_hash,
+//            ]);
             if ($_POST["m_sign"] !== $sign_hash) {
                 info('SIGN doesn\'t matched.');
                 session()->flash('error', 'The digital signature did not matched.');
             } else {
-                info('SIGN matched.');
+//                info('SIGN matched.');
+//                info('Currency:', [$_POST['m_curr'], $deposit->currency]);
+//                info('Status:', [$_POST['m_status'], $deposit->status]);
+//                info('Amount:', [$_POST['m_amount'], number_format($deposit->payable, 2)]);
                 if ($_POST['m_curr'] === $deposit->currency && $_POST['m_status'] === 'success' && $deposit->status === 'pending' && $_POST['m_amount'] >= number_format($deposit->payable, 2)) {
                     DepositController::userDataUpdate($deposit, 'Payeer');
                     info('Status Updated.');
                     session()->flash('success', 'Transaction is successful');
                     ob_end_clean(); exit($_POST['m_orderid'].'|success');
-                } else {
-                    info('SIGN Matched But Failed.');
-                    session()->flash('error', 'Payment Failed.');
                 }
+
+                info('SIGN Matched But Failed.');
+                session()->flash('error', 'Payment Failed.');
             }
         } else {
             info('Payment Failed.');

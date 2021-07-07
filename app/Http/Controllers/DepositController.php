@@ -207,8 +207,7 @@ class DepositController extends Controller
         if ($deposit->status === 'pending') {
             $deposit->update(['status' => 'completed']);
 
-            $user = \request()->user();
-            $user->purchasedPocket()->depositFloat($deposit->amount, [
+            $deposit->user->purchasedPocket()->depositFloat($deposit->amount, [
                 'name' => 'Deposit via '.$gatewayName.'.',
             ]);
 

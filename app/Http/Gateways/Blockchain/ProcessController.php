@@ -53,7 +53,7 @@ class ProcessController extends Controller
     {
         $value_in_btc = $_GET['value'] / 100000000;
         $deposit = Deposit::where('trx_id', $_GET['invoice_id'])->firstOrFail();
-        if ($deposit->btc_amount === $value_in_btc && $_GET['address'] === $deposit->btc_wallet && $_GET['confirmations'] > 2 && $deposit->status === 'pending' && $_GET['secret'] === setting('gateway', 'blockchain_secret')) {
+        if ($value_in_btc >= $deposit->btc_amount && $_GET['address'] === $deposit->btc_wallet && $_GET['confirmations'] > 2 && $deposit->status === 'pending' && $_GET['secret'] === setting('gateway', 'blockchain_secret')) {
             DepositController::userDataUpdate($deposit, 'Bitcoin');
         }
     }
