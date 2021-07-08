@@ -17,6 +17,8 @@ class CreateGatewaySettings extends SettingsMigration
             'gateway.blockchain_api_key' => '',
             'gateway.payeer_merchant_id' => '',
             'gateway.payeer_secret' => '',
+            'gateway.coinbase_api_key' => '',
+            'gateway.coinbase_secret' => '',
         ];
 
         foreach ($props as $prop => $default) {

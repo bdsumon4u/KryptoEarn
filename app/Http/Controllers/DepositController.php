@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Deposit;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -202,7 +203,7 @@ class DepositController extends Controller
         }
     }
 
-    public static function userDataUpdate(Deposit $deposit, $gatewayName): void
+    public static function userDataUpdate(Model $deposit, $gatewayName): void
     {
         if ($deposit->status === 'pending') {
             $deposit->update(['status' => 'completed']);

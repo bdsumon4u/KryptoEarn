@@ -12,47 +12,62 @@
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="col-form-label">Wallet ID</label>
-                        <input class="form-control" type="text" placeholder="Wallet ID" wire:model.defer="perfect_money_wallet_id" value="{{ old('perfect_money.wallet_id') }}">
+                        <input class="form-control" type="text" placeholder="Wallet ID" wire:model.defer="perfect_money_wallet_id" value="{{ old('perfect_money_wallet_id') }}">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="col-form-label">Passphrase</label>
-                        <input class="form-control" type="text" placeholder="Passphrase" wire:model.defer="perfect_money_passphrase" value="{{ old('perfect_money.passphrase') }}">
+                        <input class="form-control" type="text" placeholder="Passphrase" wire:model.defer="perfect_money_passphrase" value="{{ old('perfect_money_passphrase') }}">
                     </div>
                 </div>
                 <hr class="mt-4 mb-4">
-                <h6 class="pb-3 mb-0">Blockchain</h6>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="col-form-label">Secret</label>
-                        <input class="form-control" type="text" placeholder="Secret" wire:model.defer="blockchain_secret" value="{{ old('blockchain.secret') }}">
+{{--                <h6 class="pb-3 mb-0">Blockchain</h6>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="mb-3">--}}
+{{--                        <label class="col-form-label">Secret</label>--}}
+{{--                        <input class="form-control" type="text" placeholder="Secret" wire:model.defer="blockchain_secret" value="{{ old('blockchain_secret') }}">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="mb-3">--}}
+{{--                        <label class="col-form-label">xPub Key</label>--}}
+{{--                        <input class="form-control" type="text" placeholder="xPub Key" wire:model.defer="blockchain_xpub_key" value="{{ old('blockchain_xpub_key') }}">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="mb-3">--}}
+{{--                        <label class="col-form-label">API Key</label>--}}
+{{--                        <input class="form-control" type="text" placeholder="API Key" wire:model.defer="blockchain_api_key" value="{{ old('blockchain_api_key') }}">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <hr class="mt-4 mb-4">--}}
+                <h6>Coinbase</h6>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="col-form-label">API Key</label>
+                            <input class="form-control" type="text" placeholder="Wallet ID" wire:model.defer="coinbase_api_key" value="{{ old('coinbase_api_key') }}">
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="col-form-label">xPub Key</label>
-                        <input class="form-control" type="text" placeholder="xPub Key" wire:model.defer="blockchain_xpub_key" value="{{ old('blockchain.xpub_key') }}">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="col-form-label">Secret</label>
+                            <input class="form-control" type="text" placeholder="Passphrase" wire:model.defer="coinbase_secret" value="{{ old('coinbase_secret') }}">
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="col-form-label">API Key</label>
-                        <input class="form-control" type="text" placeholder="API Key" wire:model.defer="blockchain_api_key" value="{{ old('blockchain.api_key') }}">
-                    </div>
-                </div>
-                <hr class="mt-4 mb-4">
+                    <hr class="mt-4 mb-4">
                 <h6 class="pb-3 mb-0">Payeer</h6>
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="col-form-label">Merchant ID</label>
-                        <input class="form-control" type="text" placeholder="Merchant ID" wire:model.defer="payeer_merchant_id" value="{{ old('payeer.merchant_id') }}">
+                        <input class="form-control" type="text" placeholder="Merchant ID" wire:model.defer="payeer_merchant_id" value="{{ old('payeer_merchant_id') }}">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="col-form-label">Secret</label>
-                        <input class="form-control" type="text" placeholder="Secret" wire:model.defer="payeer_secret" value="{{ old('payeer.secret') }}">
+                        <input class="form-control" type="text" placeholder="Secret" wire:model.defer="payeer_secret" value="{{ old('payeer_secret') }}">
                     </div>
                 </div>
             </div>

@@ -41,7 +41,7 @@ class ProcessController extends Controller
     {
 //        info('Payeer IPN', $request->all());
         if (isset($_POST["m_operation_id"], $_POST["m_sign"])) {
-            $deposit = Deposit::where('trx_id', $_POST['m_orderid'])->firstOrFail();
+            $deposit = Deposit::with('user')->where('trx_id', $_POST['m_orderid'])->firstOrFail();
             $sign_hash = strtoupper(hash('sha256', implode(":", [
                 $_POST['m_operation_id'],
                 $_POST['m_operation_ps'],

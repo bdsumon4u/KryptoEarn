@@ -39,7 +39,7 @@ class ProcessController extends Controller
 
     public function ipn()
     {
-        $deposit = Deposit::where('trx', $_POST['PAYMENT_ID'])->firstOrFail();
+        $deposit = Deposit::with('user')->where('trx', $_POST['PAYMENT_ID'])->firstOrFail();
         $passphrase = strtoupper(md5(setting('gateway', 'perfect_money_passphrase')));
 
         define('ALTERNATE_PHRASE_HASH', $passphrase);

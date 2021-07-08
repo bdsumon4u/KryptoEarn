@@ -40,4 +40,5 @@ Route::group(['prefix' => 'ipn', 'as' => 'ipn.'], function () {
     Route::post('perfect-money', [\App\Http\Gateways\PerfectMoney\ProcessController::class, 'ipn'])->name('perfect-money');
     Route::get('blockchain', [\App\Http\Gateways\Blockchain\ProcessController::class, 'ipn'])->name('blockchain');
     Route::post('payeer', [\App\Http\Gateways\Payeer\ProcessController::class, 'ipn'])->name('payeer');
+    Route::post('coinbase', [\App\Http\Gateways\Coinbase\ProcessController::class, 'ipn'])->name('coinbase');
 });

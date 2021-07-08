@@ -50,7 +50,7 @@
                                                 <div class="card-body"><h5 class="card-title text-center">BITCOIN</h5>
                                                     <img class="img-responsive"
                                                          style="display: block; margin-left: auto; margin-right: auto; margin-bottom:10px"
-                                                         src="{{ asset('cuba/user1/assets/images/gateway/blockchain.png') }}"
+                                                         src="{{ asset('cuba/user1/assets/images/gateway/coinbase.png') }}"
                                                          height="100" width="100" alt="Card image cap">
                                                     <button
                                                         data-bs-toggle="modal" data-bs-target="#depositModal505"
@@ -209,7 +209,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="gateway" value="blockchain" class="btn btn-success w-100">
+                        <button type="submit" name="gateway" value="coinbase" class="btn btn-success w-100">
                             PROCEED
                         </button>
                         <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>

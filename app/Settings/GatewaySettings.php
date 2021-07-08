@@ -13,6 +13,8 @@ class GatewaySettings extends Settings
     public string $blockchain_api_key;
     public string $payeer_merchant_id;
     public string $payeer_secret;
+    public string $coinbase_api_key;
+    public string $coinbase_secret;
 
     public static function group(): string
     {

@@ -17,6 +17,8 @@ class GatewaySetting extends Component
     public string $blockchain_api_key;
     public string $payeer_merchant_id;
     public string $payeer_secret;
+    public string $coinbase_api_key;
+    public string $coinbase_secret;
 
     public $rules = [
         'perfect_money_wallet_id' => 'nullable|max:255',
@@ -28,6 +30,9 @@ class GatewaySetting extends Component
 
         'payeer_merchant_id' => 'nullable|max:255',
         'payeer_secret' => 'nullable|max:255',
+
+        'coinbase_api_key' => 'nullable|max:255',
+        'coinbase_secret' => 'nullable|max:255',
     ];
 
     public function mount(GatewaySettings $settings): void
