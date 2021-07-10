@@ -58,7 +58,7 @@ class PartnerController extends Controller
                 ->printable(false),
             ['data' => 'phone', 'name' => 'phone', 'title' => 'Phone'],
             ['data' => 'email', 'name' => 'email', 'title' => 'Email'],
-//            ['data' => 'country', 'name' => 'country', 'title' => 'Country'],
+            ['data' => 'country', 'name' => 'country', 'title' => 'Country'],
             ['data' => 'language', 'name' => 'language', 'title' => 'Language'],
             ['data' => 'city', 'name' => 'city', 'title' => 'City'],
             ['data' => 'road_no', 'name' => 'road_no', 'title' => 'Road No'],
