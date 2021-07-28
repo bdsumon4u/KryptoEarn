@@ -291,7 +291,7 @@
                                                             data-target="#collapseOne" aria-expanded=true
                                                             aria-controls=collapseOne
                                                         >
-                                                            <span class=icon></span>What do I need to register?
+                                                            What do I need to register?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -311,7 +311,7 @@
                                                             data-target="#collapseTwo" aria-expanded=false
                                                             aria-controls=collapseTwo
                                                         >
-                                                            <span class=icon></span>How do I start working?
+                                                            How do I start working?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -331,7 +331,7 @@
                                                             data-target="#collapseThree" aria-expanded=false
                                                             aria-controls=collapseThree
                                                         >
-                                                            <span class=icon></span>How can I get paid?
+                                                            How can I get paid?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -353,7 +353,7 @@
                                                             data-target="#icoCollapseOne" aria-expanded=true
                                                             aria-controls=icoCollapseOne
                                                         >
-                                                            <span class=icon></span>Do I need to pay to register?
+                                                            Do I need to pay to register?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -373,7 +373,7 @@
                                                             data-target="#icoCollapseTwo" aria-expanded=false
                                                             aria-controls=icoCollapseTwo
                                                         >
-                                                            <span class=icon></span>Can I upgrade from one package to another before it has expired?
+                                                            Can I upgrade from one package to another before it has expired?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -393,7 +393,7 @@
                                                             data-target="#icoCollapseThree" aria-expanded=false
                                                             aria-controls=icoCollapseThree
                                                         >
-                                                            <span class=icon></span>What do I gain by using my referral link to invite other people to join the site?
+                                                            What do I gain by using my referral link to invite other people to join the site?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -417,7 +417,7 @@
                                                             data-target="#tokenCollapseOne" aria-expanded=true
                                                             aria-controls=tokenCollapseOne
                                                         >
-                                                            <span class=icon></span>What deposit methods are available?
+                                                            What deposit methods are available?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -433,7 +433,7 @@
                                                             data-target="#tokenCollapseTwo" aria-expanded=false
                                                             aria-controls=tokenCollapseTwo
                                                         >
-                                                            <span class=icon></span>How do I deposit money to my account?
+                                                            How do I deposit money to my account?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -448,7 +448,7 @@
                                                            data-target="#tokenCollapseThree" aria-expanded=false
                                                            aria-controls=tokenCollapseThree
                                                         >
-                                                            <span class=icon></span>How long does it take for the money to reflect in my account?
+                                                            How long does it take for the money to reflect in my account?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -468,7 +468,7 @@
                                                             data-target="#clientCollapseOne" aria-expanded=true
                                                             aria-controls=clientCollapseOne
                                                         >
-                                                            <span class=icon></span>When can I withdraw?
+                                                            When can I withdraw?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -484,7 +484,7 @@
                                                             data-target="#clientCollapseTwo" aria-expanded=false
                                                             aria-controls=clientCollapseTwo
                                                         >
-                                                            <span class=icon></span>Is there a minimum withdrawal amount?
+                                                            Is there a minimum withdrawal amount?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -500,7 +500,7 @@
                                                             data-target="#clientCollapseThree" aria-expanded=false
                                                             aria-controls=clientCollapseThree
                                                         >
-                                                            <span class=icon></span>Do I need referrals to withdraw funds?
+                                                            Do I need referrals to withdraw funds?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -524,7 +524,7 @@
                                                             data-target="#legalCollapseOne" aria-expanded=true
                                                             aria-controls=legalCollapseOne
                                                         >
-                                                            <span class=icon></span>
+
                                                             What is a Password?
                                                         </a>
                                                     </h5>
@@ -541,7 +541,7 @@
                                                             data-target="#legalCollapseTwo" aria-expanded=false
                                                             aria-controls=legalCollapseTwo
                                                         >
-                                                            <span class=icon></span>I forgot my Password, what do I do?
+                                                            I forgot my Password, what do I do?
                                                         </a>
                                                     </h5>
                                                 </div>
@@ -557,7 +557,7 @@
                                                 <div class=card-header id=legalHeadingThree>
                                                     <h5 class=mb-0>
                                                         <a class="btn btn-link collapsed" data-toggle=collapse data-target="#legalCollapseThree" aria-expanded=false aria-controls=legalCollapseThree>
-                                                            <span class=icon></span>Do I get logged out automatically once I stop using the site?
+                                                            Do I get logged out automatically once I stop using the site?
                                                         </a>
                                                     </h5>
                                                 </div>
