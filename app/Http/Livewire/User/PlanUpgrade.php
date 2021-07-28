@@ -23,7 +23,13 @@ class PlanUpgrade extends Component
 
     public function submit()
     {
-        resolve(PlanController::class)->update(request(), $this->plans->first(fn ($plan) => $plan->id == $this->plan_id));
+        if (!$plan = $this->plans->first(fn ($plan) => $plan->id == $this->plan_id)) {
+            return $this->dispatchBrowserEvent('alert', [
+                'type' => 'danger',
+                'message' => 'Please Select a Plan.',
+            ]);
+        }
+        resolve(PlanController::class)->update(request(), $plan);
         $this->redirectAction([PlanController::class, 'index']);
     }
 }

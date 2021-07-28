@@ -17,7 +17,7 @@
                                 </select>
                                 <br>
                                 @if($plan_id)
-                                <h2 id="pack_amount">${{ $plans->first(fn ($plan) => $plan->id == $plan_id)->price }}</h2>
+                                <h2 id="pack_amount">${{ optional($plans->first(fn ($plan) => $plan->id == $plan_id))->price }}</h2>
                                 @endif
                                 <label>Preffered payment method</label>
                                 <div class="form-group row">
