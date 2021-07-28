@@ -92,7 +92,8 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
 
     public function referred()
     {
-        return $this->hasMany(static::class, 'referrer_id');
+        return $this->hasMany(static::class, 'referrer_id')
+            ->latest('id');
     }
 
     public function memberships()

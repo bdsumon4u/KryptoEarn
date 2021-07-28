@@ -95,7 +95,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Username</th>
-                                <th scope="col">Email - (Hidden)</th>
+                                <th scope="col">Phone</th>
                                 <th scope="col">Package</th>
                                 <th scope="col">Date Joined</th>
                             </tr>
@@ -103,9 +103,10 @@
                             <tbody>
                             @foreach($user->referred as $referred)
                             <tr>
-                                <th scope="row">{{ $referred->id }}</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $referred->name }}</td>
-                                <td>@foreach(str_split($referred->email) as $char) {{ $loop->first || $loop->last ? $char : '*' }} @endforeach</td>
+                                <td>{{ $referred->phone }}</td>
+{{--                                <td>@foreach(str_split($referred->email) as $char) {{ $loop->first || $loop->last ? $char : '*' }} @endforeach</td>--}}
                                 <td>{{ $referred->membership->plan->name }}</td>
                                 <td>{{ $referred->created_at->format('d-M-Y H:i A') }}</td>
                             </tr>
