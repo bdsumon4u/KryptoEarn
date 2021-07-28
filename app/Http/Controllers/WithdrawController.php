@@ -77,16 +77,6 @@ class WithdrawController extends Controller
     {
         $user = request()->user()->load('wallets');
 
-        if (!$user->is_partner) {
-            if (($now = now(config('app.timezone'))) && !$now->isMonday() && !$now->isFriday()) {
-                return back()->with('error', 'Today Is Neither Monday Nor Friday.');
-            }
-
-            if (($withdraw = $user->withdraws()->latest('id')->first()) && $withdraw->created_at->addDay()->isFuture()) {
-                return back()->with('error', 'You Can\'t Withdraw More Than Once Within 24H.');
-            }
-        }
-
         $gateway = array_merge(Arr::get($user->extra ?? [], 'gateway', [
             'addresses' => [
                 'perfect_money' => '',
@@ -109,6 +99,16 @@ class WithdrawController extends Controller
     {
         $data = $this->processData($request);
         $user = $request->user();
+
+        if (!$user->is_partner) {
+            if (($now = now(config('app.timezone'))) && !$now->isMonday() && !$now->isFriday()) {
+                return back()->with('error', 'Today Is Neither Monday Nor Friday.');
+            }
+
+            if (($withdraw = $user->withdraws()->latest('id')->first()) && $withdraw->created_at->addDay()->isFuture()) {
+                return back()->with('error', 'You Can\'t Withdraw More Than Once Within 24H.');
+            }
+        }
 
         if (!Hash::check($data['password'], $user->password)) {
             return back()->with('error', 'Incorrect Password');
