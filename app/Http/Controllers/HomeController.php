@@ -22,7 +22,7 @@ class HomeController extends Controller
             return Plan::whereIsActive(true)->get();
         });
         $totalUsers = \cache()->remember('users:total', 5 * 60, fn () => User::count());
-        $totalWithdraws = \cache()->remember('withdraws:total', 5 * 60, fn () => Withdraw::sum('amount'));
+        $totalWithdraws = \cache()->remember('withdraws:total', 5 * 60, fn () => Withdraw::where('status', 'completed')->sum('amount'));
 
         return view('welcome', compact('plans', 'totalUsers', 'totalWithdraws'));
     }
