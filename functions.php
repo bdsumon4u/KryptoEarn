@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 if (!function_exists('admin_url')) {
     function admin_url(string $prefix = 'admin'): string
@@ -11,9 +12,21 @@ if (!function_exists('admin_url')) {
     }
 }
 
+if (!function_exists('ip_info')) {
+    function ip_info(string $key, string $default = '') {
+        $array = cache()->remember('ip_info', 5 * 60, function () {
+            return Http::get('http://ip-api.com/json')->json();
+        });
+        return $key ? data_get($array, $key, $default) : $array;
+    }
+}
+
 if (!function_exists('select_timezone')) {
     function select_timezone($selected = null): string
     {
+        if (!$selected) {
+            $selected = ip_info('timezone', 'Asia/Dhaka');
+        }
         return collect(timezone_identifiers_list())
             ->map(function ($row) use ($selected) {
                 return '<option value="'.$row.'" ' . ($row === $selected ? 'selected' : '') . '>'.$row.'</option>';
@@ -25,6 +38,9 @@ if (!function_exists('select_timezone')) {
 if (!function_exists('select_country')) {
     function select_country($selected = null): string
     {
+        if (!$selected) {
+            $selected = ip_info('country', 'Bangladesh');
+        }
         return collect(config('country'))
             ->map(function ($row) use ($selected) {
                 return '<option value="'.$row.'" ' . ($row === $selected ? 'selected' : '') . '>'.$row.'</option>';
