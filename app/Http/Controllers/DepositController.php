@@ -85,7 +85,7 @@ class DepositController extends Controller
     {
         $data = $this->processData($request);
 
-        $min_amount = config('gateway.deposit.'.$data['gateway'].'.min_amount');
+        $min_amount = setting('gateway', $data['gateway'].'_deposit_min_amount');
         if ($data['amount'] < $min_amount) {
             return back()->withErrors('Amount Must Be At Least $'.$min_amount);
         }
@@ -186,8 +186,8 @@ class DepositController extends Controller
             'gateway' => 'required',
         ]);
 
-        $charge = config('gateway.deposit.'.$data['gateway'].'.fixed_charge', 0)
-            + $data['amount'] * config('gateway.deposit.'.$data['gateway'].'.percent_charge', 0) / 100;
+        $charge = setting('gateway', $data['gateway'].'_deposit_fixed_charge', 0)
+            + $data['amount'] * setting('gateway', $data['gateway'].'_deposit_percent_charge', 0) / 100;
         $data['charge'] = round($charge, 2);
 
         return $data;

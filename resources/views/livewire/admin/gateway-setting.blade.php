@@ -21,7 +21,63 @@
                         <input class="form-control" type="text" placeholder="Passphrase" wire:model.defer="perfect_money_passphrase" value="{{ old('perfect_money_passphrase') }}">
                     </div>
                 </div>
-                <hr class="mt-4 mb-4">
+            </div>
+            <strong>Deposit Config</strong>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Minimum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="perfect_money_deposit_min_amount" value="{{ old('perfect_money_deposit_min_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Maximum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="perfect_money_deposit_max_amount" value="{{ old('perfect_money_deposit_max_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Fixed Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="perfect_money_deposit_fixed_charge" value="{{ old('perfect_money_deposit_fixed_charge') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Percent Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="perfect_money_deposit_percent_charge" value="{{ old('perfect_money_deposit_percent_charge') }}">
+                    </div>
+                </div>
+            </div>
+            <strong>Withdraw Config</strong>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Minimum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="perfect_money_withdraw_min_amount" value="{{ old('perfect_money_withdraw_min_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Maximum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="perfect_money_withdraw_max_amount" value="{{ old('perfect_money_withdraw_max_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Fixed Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="perfect_money_withdraw_fixed_charge" value="{{ old('perfect_money_withdraw_fixed_charge') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Percent Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="perfect_money_withdraw_percent_charge" value="{{ old('perfect_money_withdraw_percent_charge') }}">
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+{{--            <div class="row">--}}
 {{--                <h6 class="pb-3 mb-0">Blockchain</h6>--}}
 {{--                <div class="col-md-4">--}}
 {{--                    <div class="mb-3">--}}
@@ -41,22 +97,79 @@
 {{--                        <input class="form-control" type="text" placeholder="API Key" wire:model.defer="blockchain_api_key" value="{{ old('blockchain_api_key') }}">--}}
 {{--                    </div>--}}
 {{--                </div>--}}
-{{--                <hr class="mt-4 mb-4">--}}
-                <h6>Coinbase</h6>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label class="col-form-label">API Key</label>
-                            <input class="form-control" type="text" placeholder="Wallet ID" wire:model.defer="coinbase_api_key" value="{{ old('coinbase_api_key') }}">
-                        </div>
+{{--            </div>--}}
+{{--            <hr class="mt-4 mb-4">--}}
+            <h6>Coinbase</h6>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="col-form-label">API Key</label>
+                        <input class="form-control" type="text" placeholder="Wallet ID" wire:model.defer="coinbase_api_key" value="{{ old('coinbase_api_key') }}">
                     </div>
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label class="col-form-label">Secret</label>
-                            <input class="form-control" type="text" placeholder="Passphrase" wire:model.defer="coinbase_secret" value="{{ old('coinbase_secret') }}">
-                        </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="col-form-label">Secret</label>
+                        <input class="form-control" type="text" placeholder="Passphrase" wire:model.defer="coinbase_secret" value="{{ old('coinbase_secret') }}">
                     </div>
-                    <hr class="mt-4 mb-4">
+                </div>
+            </div>
+            <strong>Deposit Config</strong>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Minimum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="coinbase_deposit_min_amount" value="{{ old('coinbase_deposit_min_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Maximum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="coinbase_deposit_max_amount" value="{{ old('coinbase_deposit_max_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Fixed Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="coinbase_deposit_fixed_charge" value="{{ old('coinbase_deposit_fixed_charge') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Percent Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="coinbase_deposit_percent_charge" value="{{ old('coinbase_deposit_percent_charge') }}">
+                    </div>
+                </div>
+            </div>
+            <strong>Withdraw Config</strong>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Minimum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="coinbase_withdraw_min_amount" value="{{ old('coinbase_withdraw_min_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Maximum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="coinbase_withdraw_max_amount" value="{{ old('coinbase_withdraw_max_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Fixed Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="coinbase_withdraw_fixed_charge" value="{{ old('coinbase_withdraw_fixed_charge') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Percent Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="coinbase_withdraw_percent_charge" value="{{ old('coinbase_withdraw_percent_charge') }}">
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
                 <h6 class="pb-3 mb-0">Payeer</h6>
                 <div class="col-md-4">
                     <div class="mb-3">
@@ -68,6 +181,60 @@
                     <div class="mb-3">
                         <label class="col-form-label">Secret</label>
                         <input class="form-control" type="text" placeholder="Secret" wire:model.defer="payeer_secret" value="{{ old('payeer_secret') }}">
+                    </div>
+                </div>
+            </div>
+            <strong>Deposit Config</strong>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Minimum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="payeer_deposit_min_amount" value="{{ old('payeer_deposit_min_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Maximum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="payeer_deposit_max_amount" value="{{ old('payeer_deposit_max_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Fixed Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="payeer_deposit_fixed_charge" value="{{ old('payeer_deposit_fixed_charge') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Percent Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="payeer_deposit_percent_charge" value="{{ old('payeer_deposit_percent_charge') }}">
+                    </div>
+                </div>
+            </div>
+            <strong>Withdraw Config</strong>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Minimum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="payeer_withdraw_min_amount" value="{{ old('payeer_withdraw_min_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Maximum Amount</label>
+                        <input class="form-control" type="text" wire:model.defer="payeer_withdraw_max_amount" value="{{ old('payeer_withdraw_max_amount') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Fixed Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="payeer_withdraw_fixed_charge" value="{{ old('payeer_withdraw_fixed_charge') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="col-form-label">Percent Charge</label>
+                        <input class="form-control" type="text" wire:model.defer="payeer_withdraw_percent_charge" value="{{ old('payeer_withdraw_percent_charge') }}">
                     </div>
                 </div>
             </div>

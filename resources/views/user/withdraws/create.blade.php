@@ -62,7 +62,7 @@
                                                          height="100" width="100" alt="Card image cap">
                                                     @if($gateway['addresses']['bitcoin'])
                                                         <button
-                                                            data-bs-toggle="modal" data-bs-target="#depositModal105"
+                                                            data-bs-toggle="modal" data-bs-target="#depositModal505"
                                                             class="w-100 btn btn-success"
                                                         >SELECT</button>
                                                     @else
@@ -166,9 +166,9 @@
                         <label class="col-md-12 modal-msg-heading">
                             <strong>WITHDRAWAL AMOUNT</strong><br>
                             <span class="modal-msg">
-                                ${{ config('gateway.withdraw.perfect_money.min_amount') }} - ${{ config('gateway.withdraw.perfect_money.max_amount') }} <br>
+                                ${{ setting('gateway', 'perfect_money_withdraw_min_amount', 0) }} - ${{ setting('gateway', 'perfect_money_withdraw_max_amount', 0) }} <br>
                                 <strong> CHARGES </strong><br>
-                                ${{ config('gateway.withdraw.perfect_money.fixed_charge') }} USD + {{ config('gateway.withdraw.perfect_money.percent_charge') }}% <br>
+                                ${{ setting('gateway', 'perfect_money_withdraw_fixed_charge', 0) }} USD + {{ setting('gateway', 'perfect_money_withdraw_percent_charge', 0) }}% <br>
                                 <strong> EARNING BALANCE </strong><br>
                                 USD : {{ $user->earningPocket()->balanceFloat }}<br>
                                 <strong> PERFECT MONEY ACCOUNT </strong><br>
@@ -223,9 +223,9 @@
                         <label class="col-md-12 modal-msg-heading">
                             <strong>WITHDRAWAL AMOUNT</strong><br>
                             <span class="modal-msg">
-                                ${{ config('gateway.withdraw.bitcoin.min_amount') }} - ${{ config('gateway.withdraw.bitcoin.max_amount') }} <br>
+                                ${{ setting('gateway', 'coinbase_withdraw_min_amount', 0) }} - ${{ setting('gateway', 'coinbase_withdraw_max_amount', 0) }} <br>
                                 <strong> CHARGES </strong><br>
-                                ${{ config('gateway.withdraw.bitcoin.fixed_charge') }} USD + {{ config('gateway.withdraw.bitcoin.percent_charge') }}% <br>
+                                ${{ setting('gateway', 'coinbase_withdraw_fixed_charge', 0) }} USD + {{ setting('gateway', 'coinbase_withdraw_percent_charge', 0) }}% <br>
                                 <strong> EARNING BALANCE </strong><br>
                                 USD : {{ $user->earningPocket()->balanceFloat }}<br>
                                 <strong> BITCOIN ADDRESS </strong><br>
@@ -280,9 +280,9 @@
                         <label class="col-md-12 modal-msg-heading">
                             <strong>WITHDRAWAL AMOUNT</strong><br>
                             <span class="modal-msg">
-                                ${{ config('gateway.withdraw.payeer.min_amount') }} - ${{ config('gateway.withdraw.payeer.max_amount') }} <br>
+                                ${{ setting('gateway', 'payeer_withdraw_min_amount', 0) }} - ${{ setting('gateway', 'payeer_withdraw_max_amount', 0) }} <br>
                                 <strong> CHARGES </strong><br>
-                                ${{ config('gateway.withdraw.payeer.fixed_charge') }} USD + {{ config('gateway.withdraw.payeer.percent_charge') }}% <br>
+                                ${{ setting('gateway', 'payeer_withdraw_fixed_charge', 0) }} USD + {{ setting('gateway', 'payeer_withdraw_percent_charge', 0) }}% <br>
                                 <strong> EARNING BALANCE </strong><br>
                                 USD : {{ $user->earningPocket()->balanceFloat }}<br>
                                 <strong> PAYEER ACCOUNT </strong><br>

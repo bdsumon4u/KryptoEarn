@@ -189,8 +189,8 @@ class WithdrawController extends Controller
             'gateway' => 'required',
         ]);
 
-        $charge = config('gateway.withdraw.'.$data['gateway'].'.fixed_charge', 0)
-            + $data['amount'] * config('gateway.withdraw.'.$data['gateway'].'.percent_charge', 0) / 100;
+        $charge = setting('gateway', $data['gateway'].'_withdraw_fixed_charge', 0)
+            + $data['amount'] * setting('gateway', $data['gateway'].'_withdraw_percent_charge', 0) / 100;
         $data['charge'] = round($charge, 2);
 
         return $data;

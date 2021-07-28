@@ -144,9 +144,9 @@
                         <label class="col-md-12 modal-msg-heading">
                             <strong>DEPOSIT AMOUNT</strong><br>
                             <span class="modal-msg">
-                                ${{ config('gateway.deposit.perfect_money.min_amount') }} - ${{ config('gateway.deposit.perfect_money.max_amount') }} <br>
+                                ${{ setting('gateway', 'perfect_money_deposit_min_amount', 0) }} - ${{ setting('gateway', 'perfect_money_deposit_max_amount', 0) }} <br>
                                 <strong> CHARGES </strong><br>
-                                ${{ config('gateway.deposit.perfect_money.fixed_charge') }} USD + {{ config('gateway.deposit.perfect_money.percent_charge') }}% <br>
+                                ${{ setting('gateway', 'perfect_money_deposit_fixed_charge', 0) }} USD + {{ setting('gateway', 'perfect_money_deposit_percent_charge', 0) }}% <br>
                             </span>
                         </label>
                         <hr>
@@ -188,9 +188,9 @@
                         <label class="col-md-12 modal-msg-heading">
                             <strong>DEPOSIT AMOUNT</strong><br>
                             <span class="modal-msg">
-                                ${{ config('gateway.deposit.bitcoin.min_amount') }} - ${{ config('gateway.deposit.bitcoin.max_amount') }} <br>
+                                ${{ setting('gateway', 'coinbase_deposit_min_amount', 0) }} - ${{ setting('gateway', 'coinbase_deposit_max_amount', 0) }} <br>
                                 <strong> CHARGES </strong><br>
-                                ${{ config('gateway.deposit.bitcoin.fixed_charge') }} USD + {{ config('gateway.deposit.bitcoin.percent_charge') }}% <br>
+                                ${{ setting('gateway', 'coinbase_deposit_fixed_charge', 0) }} USD + {{ setting('gateway', 'coinbase_deposit_percent_charge', 0) }}% <br>
                             </span>
                         </label>
                         <hr>
@@ -232,9 +232,9 @@
                         <label class="col-md-12 modal-msg-heading">
                             <strong>DEPOSIT AMOUNT</strong><br>
                             <span class="modal-msg">
-                                ${{ config('gateway.deposit.payeer.min_amount') }} - ${{ config('gateway.deposit.payeer.max_amount') }} <br>
+                                ${{ setting('gateway', 'payeer_deposit_min_amount', 0) }} - ${{ setting('gateway', 'payeer_deposit_max_amount', 0) }} <br>
                                 <strong> CHARGES </strong><br>
-                                ${{ config('gateway.deposit.payeer.fixed_charge') }} USD + {{ config('gateway.deposit.payeer.percent_charge') }}% <br>
+                                ${{ setting('gateway', 'payeer_deposit_fixed_charge', 0) }} USD + {{ setting('gateway', 'payeer_deposit_percent_charge', 0) }}% <br>
                             </span>
                         </label>
                         <hr>
