@@ -23,6 +23,7 @@ class PartnerController extends Controller
     public function index(Builder $builder)
     {
         $query = User::query()
+            ->blocked(false)
             ->with('membership.plan')
 //            ->where('country', request()->user()->country)
             ->whereHas('partner', function ($query) {

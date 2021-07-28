@@ -79,6 +79,12 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet, WalletFlo
         'profile_photo_url',
     ];
 
+    public function scopeBlocked($query, $blocked = true)
+    {
+        $query->where('extra->is_blocked', $blocked);
+        return $blocked ? $query : $query->orWhere('extra->is_blocked', null);
+    }
+
     public function referrer()
     {
         return $this->belongsTo(static::class, 'referrer_id');
