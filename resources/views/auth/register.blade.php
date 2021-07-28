@@ -106,8 +106,8 @@
 
                                             <div class="ml-2">
                                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'">'.__('Terms of Service').'</a>',
-                                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'">'.__('Privacy Policy').'</a>',
+                                                        'terms_of_service' => '<a target="_blank" href="https://policies.google.com/terms">'.__('Terms of Service').'</a>',
+                                                        'privacy_policy' => '<a target="_blank" href="https://policies.google.com/privacy">'.__('Privacy Policy').'</a>',
                                                 ]) !!}
                                             </div>
                                         </div>
