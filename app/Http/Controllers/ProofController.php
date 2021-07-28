@@ -19,6 +19,7 @@ class ProofController extends Controller
             'withdraws' => Withdraw::query()
                 ->where('status', 'completed')
                 ->with('user')
+                ->latest('id')
                 ->paginate(10),
         ]);
     }
