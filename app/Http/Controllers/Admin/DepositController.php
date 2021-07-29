@@ -19,12 +19,22 @@ class DepositController extends Controller
     public function index(Builder $builder)
     {
         if (request()->ajax()) {
-            return DataTables::of(Deposit::query())->toJson();
+            return DataTables::of(Deposit::with('user'))->toJson();
         }
 
         $html = $builder->columns([
             ['data' => 'id', 'name' => 'id', 'title' => 'Id'],
             ['data' => 'trx_id', 'name' => 'trx_id', 'title' => 'Trx Id'],
+            Column::make('user')
+                ->title('User')
+                ->searchable(false)
+                ->orderable(false)
+                ->render('function(){
+                    return this.user.username;
+                }')
+                ->footer('User')
+                ->exportable(true)
+                ->printable(true),
             Column::make('gateway')
                 ->title('Gateway')
                 ->searchable(true)

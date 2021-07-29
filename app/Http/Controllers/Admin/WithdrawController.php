@@ -31,6 +31,16 @@ class WithdrawController extends Controller
         $html = $builder->columns([
             ['data' => 'id', 'name' => 'id', 'title' => 'Id'],
             ['data' => 'trx_id', 'name' => 'trx_id', 'title' => 'Trx Id'],
+            Column::make('user')
+                ->title('User')
+                ->searchable(false)
+                ->orderable(false)
+                ->render('function(){
+                    return this.user.username;
+                }')
+                ->footer('User')
+                ->exportable(true)
+                ->printable(true),
             Column::make('type')
                 ->title('Type')
                 ->searchable(false)
