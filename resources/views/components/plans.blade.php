@@ -27,6 +27,11 @@
                                     @method('PATCH')
                                     @if(request()->isAdmin())
                                         <a class="btn btn-primary btn-lg" href="{{ route('plans.edit', $plan) }}">Edit Plan</a>
+                                        <form action="{{ route('plans.destroy', $plan) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-lg">Delete</button>
+                                        </form>
                                     @else
                                         <button class="btn btn-primary btn-lg" type="submit">Purchase</button>
                                     @endif

@@ -17,7 +17,7 @@ Route::domain(admin_url())->group(function () {
     Route::redirect('/', '/dashboard');
     Route::group(['middleware' => ['auth:sanctum,admin', 'verified']], function () {
         Route::get('/dashboard', \App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
-        Route::resource('/plans', \App\Http\Controllers\Admin\PlanController::class)->except(['show', 'destroy']);
+        Route::resource('/plans', \App\Http\Controllers\Admin\PlanController::class)->except(['show']);
         Route::get('/users/{user}/block', \App\Http\Controllers\Admin\UserBlockController::class)->name('users.block');
         Route::resource('/users', \App\Http\Controllers\Admin\UserController::class)->only(['index', 'edit', 'update']);
         Route::resource('/deposits', \App\Http\Controllers\Admin\DepositController::class);

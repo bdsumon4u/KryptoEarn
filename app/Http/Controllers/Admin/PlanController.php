@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PlanRequest;
 use App\Models\Plan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
@@ -73,5 +74,17 @@ class PlanController extends Controller
         $plan->update($request->validData());
 
         return redirect()->action([static::class, 'index'])->with('success', 'The Plan Is Updated.');
+    }
+
+    public function destroy(Plan $plan)
+    {
+        $user = User::whereHas('membership.plan', function ($query) use ($plan) {
+            $query->where('id', $plan->id);
+        })->first();
+        if ($user) {
+            return back()->with('error', 'User: "' . $user->username . '" Has This Plan. You Can\'t Delete It.');
+        }
+        $plan->delete();
+        return back()->with('success', 'Plan Deleted.');
     }
 }
