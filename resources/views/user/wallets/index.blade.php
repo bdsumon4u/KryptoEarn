@@ -111,7 +111,7 @@
                                 <td>{{ $transaction->meta['name'] }}</td>
                                 <td>{{ $transaction->type === 'deposit' ? '+' : '-' }}</td>
                                 <td>{{ strtoupper(str_replace('-', ' ', $transaction->wallet->name)) }}</td>
-                                <td>${{ round($transaction->amountFloat, 2) }}</td>
+                                <td>${{ round(abs($transaction->amountFloat), 2) }}</td>
                                 <td>{{ $transaction->created_at->diffForHumans() }}</td>
                             </tr>
                             @endforeach
