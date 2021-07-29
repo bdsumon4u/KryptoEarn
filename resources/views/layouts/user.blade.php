@@ -61,6 +61,27 @@
                 overflow-x: hidden;
             }
         }
+
+        table.table.dataTable > thead > tr > th.sorting::before,
+        table.table.dataTable > thead > tr > th.sorting_asc::before,
+        table.table.dataTable > thead > tr > th.sorting::after,
+        table.table.dataTable > thead > tr > th.sorting_desc::after,
+        table.table.dataTable > thead > tr > th.sorting:before,
+        table.table.dataTable > thead > tr > th.sorting_asc:before,
+        table.table.dataTable > thead > tr > th.sorting:after,
+        table.table.dataTable > thead > tr > th.sorting_desc:after {
+            content: '' !important;
+            opacity: 0 !important;
+            display: none !important;
+            font-family: '' !important;
+            background-image: url('') !important;
+        }
+        table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
+            content: '' !important;
+        }
+        table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+            content: '' !important;
+        }
     </style>
     @stack('styles')
     <x-onesignal-scripts />
